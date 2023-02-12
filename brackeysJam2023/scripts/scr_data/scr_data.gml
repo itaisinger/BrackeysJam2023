@@ -28,8 +28,9 @@ function player_get_action()
 	//use item
 	else
 	{
+		var _ret = arr_items[index-att_num];
 		array_delete(arr_items,index-att_num,1);
-		return arr_items[index-att_num];
+		return _ret;
 	}
 }
 function nme_rand()

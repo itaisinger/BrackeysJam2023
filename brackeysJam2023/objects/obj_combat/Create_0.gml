@@ -43,7 +43,7 @@ arr_states_functions[COMBAT_STATES.off] = function()
 {
 }
 arr_states_functions[COMBAT_STATES.init] = function(){
-	obj_player_menu.set_player(global.player_struct);
+	obj_player_menu.update_player(global.player_struct);
 	
 	//send the ui object the fighters data
 	
@@ -73,9 +73,14 @@ arr_states_functions[COMBAT_STATES.gather_actions] = function(){
 arr_states_functions[COMBAT_STATES.play_out] = function(){
 	
 	//this state runs on a realtime loop. a loop end is triggered by the ui telling us the anim is done.
-	
+	if(state_changed)
+		global.action_done = 1;
+		
+		
 	if(global.action_done)	//start a new action
 	{
+		global.action_done = 0;
+		
 		if(ds_priority_size(prio_actions))	//there are actions left, start the next one.
 		{
 			var _action = ds_priority_delete_max(prio_actions);
@@ -89,6 +94,9 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 			//act out attack
 			current_nme.damage(_action[1].damage)
 			_action[1].ability_script();
+			
+			//update stuff
+			obj_player_menu.update_player(global.player_struct);
 		}
 		else	//turns done, start a new combat loop.
 		{
@@ -96,7 +104,6 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 		}
 	}
 	
-	global.action_done = 1;
 }
 	
 //methods
@@ -104,3 +111,13 @@ function init()
 {
 	state = COMBAT_STATES.init;
 }
+
+
+#region ability scripts
+
+//these scripts are initizlised here so that they would be bound to this object.
+//this can be workarouned by just having them use obj_combat.current_fighter every time, but fuck it.
+
+//cancelled
+
+#endregion

@@ -75,7 +75,6 @@
     {"name":"__init_global","order":2,"path":"scripts/__init_global/__init_global.yy",},
     {"name":"__scribble_font_add_from_project","order":6,"path":"scripts/__scribble_font_add_from_project/__scribble_font_add_from_project.yy",},
     {"name":"scribble","order":8,"path":"scripts/scribble/scribble.yy",},
-    {"name":"obj_enemy","order":3,"path":"objects/obj_enemy/obj_enemy.yy",},
     {"name":"string_width_scribble","order":4,"path":"scripts/string_width_scribble/string_width_scribble.yy",},
     {"name":"scribble_font_add_all","order":1,"path":"scripts/scribble_font_add_all/scribble_font_add_all.yy",},
     {"name":"__scribble_gen_2_parser","order":2,"path":"scripts/__scribble_gen_2_parser/__scribble_gen_2_parser.yy",},

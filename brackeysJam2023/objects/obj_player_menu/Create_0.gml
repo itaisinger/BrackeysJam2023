@@ -27,7 +27,6 @@ ds_list_add(menu_side,button("items"	,function(){change_menu(menu_items)}));
 ds_list_add(menu_side,button("actions"	,function(){change_menu(menu_actions)}));
 
 
-
 //logic
 attack_index = -1;
 item_index = -1;
@@ -72,7 +71,7 @@ function change_menu(menu)
 		}
 	}
 }
-function set_player(player)
+function update_player(player)
 {
 	//send in a player struct or object to fill in data
 	player_struct = player;
