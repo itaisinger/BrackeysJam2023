@@ -1,0 +1,69 @@
+///// combat system /////
+
+the combat will be handled by a combat manager object.
+
+
+/// combat turns loop ///
+
+combat stages:
+player chooses attack
+gather attacks from the player and the enemy
+play out attacks in order
+end the combat if necessary
+
+// player chooses attack
+at the start of the loop, the combat manager calls the combat menu object and asks it to open the player menu.
+the menu is a few clickable buttons, and when clicked they send the attack index to menu, 
+which then sends the corresponding attack to the player object and tell the combat manager that the player chose an attack, and we can proceed to the next stage.
+
+// getting turns
+all combat participants have a get_turn() method that asks them to send in an attack struct.
+by now, the player has chosen an attack and it is saved inside a varieble, so when get_turn() is called, it will return that attack.
+both attack are stored inside a list. each attack's speed is calculated by fighter_speed + attack_speed_add, and are then properly sorted.
+
+// playing out attacks
+playing out attacks will work like so:
+	- run the attack (subtract hp, run script)
+	- send message to the ui element
+	- wait for the player to press continue
+	- loop back until we are out of attacks
+
+// end the combat if necessary
+check whether one of the sides is out of hp, and if so end the combat.
+otherwise, loop back to "player chooses attack".
+
+
+
+/// ability scripts ///
+there is a list of ability scripts that is created inside of the combat manager, so that the scripts will be bound to it.
+those scripts will usually use the varieble "fighter_self" and "fighter_enemy" to traget participants of the fight and affect them,
+like applying some effect.
+
+structs classes:
+
+fighter{
+	name,
+	hp,
+	speed,
+	attacks_arr,
+}
+
+attack{
+	name,
+	damage,
+	speed_add,
+	ability_script,
+}
+
+
+// player object
+
+methods:
+get_turn()		opens the turn choose menu
+
+// enemy object
+the enemy object has a fighter structs, and in it it fills his data.
+
+methods:
+init()			initializes the data into a fighter strcut.
+get_turn()		returns an attack from its attack array.

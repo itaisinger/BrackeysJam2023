@@ -15,5 +15,7 @@
     {"name":"Notes","order":13,"path":"folders/Notes.yy",},
     {"name":"Extensions","order":14,"path":"folders/Extensions.yy",},
   ],
-  "ResourceOrderSettings": [],
+  "ResourceOrderSettings": [
+    {"name":"Script1","order":1,"path":"scripts/Script1/Script1.yy",},
+  ],
 }
