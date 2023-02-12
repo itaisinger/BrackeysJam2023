@@ -59,8 +59,19 @@ function item(_name, _sprite_num, _script, _damage=0, _spd=0) constructor
 
 /// ability scripts
 global.map_abilities = ds_map_create();
-global.map_abilities[? "heal"] = function heal(amnt)
+global.map_abilities[? "heal"] = function(amnt)
 {
 	obj_combat.current_fighter.heal(amnt);	
 }
-//global.map_abilities[? "speed up"] = function
+global.map_abilities[? "speed up"] = function(amnt)
+{
+	obj_combat.current_fighter.speed += amnt;
+}
+global.map_abilities[? "add heal"] = function(amnt)
+{
+	obj_combat.current_fighter.add_item(global.map_items[?"heal"]);
+}
+
+
+global.map_items = ds_map_create();
+global.map_items[? "heal"] = item("heal",0,function(){global.map_abilities[? "heal"](10)})
