@@ -21,8 +21,6 @@ menu_attacks = ds_list_create();
 menu_items   = ds_list_create();
 menu_actions = ds_list_create();
 
-var _fun = function(){change_menu(menu_options)}
-
 //side menu
 ds_list_add(menu_side,button("attacks"	,function(){change_menu(menu_attacks)}));
 ds_list_add(menu_side,button("items"	,function(){change_menu(menu_items)}));
@@ -38,6 +36,10 @@ for(var i=0; i < 3; i++)
 //logic
 attack_index = -1;
 item_index = -1;
+player_struct = {
+	arr_attacks : [],
+	arr_items : [],
+};
 
 //methods
 function change_menu(menu)
@@ -78,6 +80,7 @@ function change_menu(menu)
 function set_player(player)
 {
 	//send in a player struct or object to fill in data
+	player_struct = player;
 	
 	//clear previous data
 	ds_list_clear(menu_attacks);
@@ -94,6 +97,22 @@ function set_player(player)
 	}
 	
 	change_menu(menu_attacks);
+}
+function activate()
+{
+	attack_index = -1;
+	item_index = -1;
+	change_menu(menu_attacks);
+}
+function get_action_index()
+{
+	//called by the player structs
+	//returns an attack/item index, and the player get_action function makes sense out of it.
+	return attack_index != -1 ? attack_index : array_length(player_struct.arr_attacks) + item_index;
+}
+function is_action_chosen()
+{
+	return attack_index != -1 or item_index != -1
 }
 
 change_menu(menu_attacks);

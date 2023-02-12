@@ -17,9 +17,12 @@ the menu is a few clickable buttons, and when clicked they send the attack index
 which then sends the corresponding attack to the player object and tell the combat manager that the player chose an attack, and we can proceed to the next stage.
 
 // getting turns
-all combat participants have a get_turn() method that asks them to send in an attack struct.
-by now, the player has chosen an attack and it is saved inside a varieble, so when get_turn() is called, it will return that attack.
+all combat participants have a get_action() method that asks them to send in an attack struct.
+by now, the player has chosen an attack and it is saved inside a varieble, so when get_action() is called, it will return that attack.
 both attack are stored inside a list. each attack's speed is calculated by fighter_speed + attack_speed_add, and are then properly sorted.
+
+items can be also returned instead of attacks, but they are just the same. 
+items are essentially attacks with 0 damage and an ability.
 
 // playing out attacks
 playing out attacks will work like so:
@@ -68,14 +71,14 @@ item{
 // player object
 
 methods:
-get_turn()		opens the turn choose menu
+get_action()		opens the turn choose menu
 
 // enemy object
 the enemy object has a fighter structs, and in it it fills his data.
 
 methods:
 init()			initializes the data into a fighter strcut.
-get_turn()		returns an attack from its attack array.
+get_action()		returns an attack from its attack array.
 
 
 

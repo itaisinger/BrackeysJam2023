@@ -1,4 +1,4 @@
-function fighter(_name, _sprite, _hp, _speed, _attacks, _items) constructor
+function fighter(_name, _sprite, _hp, _speed, _attacks, _items, _action) constructor
 {
 	///@param name
 	///@param sprite
@@ -6,6 +6,7 @@ function fighter(_name, _sprite, _hp, _speed, _attacks, _items) constructor
 	///@param speed
 	///@param attacks
 	///@param items
+	///@param behavior
 	return {
 		name: _name,
 		sprite: _sprite,
@@ -13,6 +14,8 @@ function fighter(_name, _sprite, _hp, _speed, _attacks, _items) constructor
 		speed: _speed,
 		arr_attacks: _attacks,
 		arr_items: _items,
+		damage : function(dmg){hp = max(0,hp-dmg)},
+		get_action : _action,
 	}
 }
 function attack(_name, _damage, _speed_add=0, _ability=function(){})
@@ -29,15 +32,17 @@ function attack(_name, _damage, _speed_add=0, _ability=function(){})
 		ability_script: _ability,
 	}
 }
-function item(_name, _sprite_num, _script)
+function item(_name, _sprite_num, _script, _damage=0)
 {
 	///@param name
 	///@param sprite_index
 	///@param script
+	///@param damage
 	
 	return {
 		name: _name,
 		sprite: _sprite_num,
-		script: _script,
+		ability_script: _script,
+		damage: _damage,
 	}
 }

@@ -8,7 +8,4 @@ function stick_to(argument0, argument1, argument2) {
 	var yy = argument2;
 	x = obj.x+xx;
 	y = obj.y+yy;
-
-
-
 }
