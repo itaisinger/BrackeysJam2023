@@ -12,7 +12,6 @@ there are menu lists that hold button data structs.
 use change_menu(menu) to replace the current buttons with new oens.
 /*/
 
-setup();
 
 list_buttons_insts = ds_list_create();	//holds the current main buttons
 list_buttons_side = ds_list_create();
@@ -29,10 +28,16 @@ ds_list_add(menu_side,button("attacks"	,function(){change_menu(menu_attacks)}));
 ds_list_add(menu_side,button("items"	,function(){change_menu(menu_items)}));
 ds_list_add(menu_side,button("actions"	,function(){change_menu(menu_actions)}));
 
+for(var i=0; i < 3; i++)
+{
+	ds_list_add(list_buttons_side,instance_create_depth(x - 170,y + 39*i,0,obj_button,menu_side[|i]));
+	list_buttons_side[|i].margin -= 2;
+	list_buttons_side[|i].set_size(150,33);
+}
 
-
-//visuals
-trans_prec = 0;
+//logic
+attack_index = -1;
+item_index = -1;
 
 //methods
 function change_menu(menu)
@@ -46,16 +51,28 @@ function change_menu(menu)
 	
 	//populate new list
 	list_buttons_insts = ds_list_create();
-	var _ystart = y;
-	draw_set_font(font_menu);
-	var _margin = string_height("hi") * 1.1;
-	for(var i=0; i < ds_list_size(menu); i++)
+	var _yy = y;
+	var _xx = x;
+	draw_set_font(font_button);
+	var _button_h = 50;
+	var _button_w = 200;
+	var _margin = 10;
+	for(var i=0; i < 4; i++)
 	{
-		ds_list_add(list_buttons_insts,instance_create_depth(x,_ystart + i*_margin,0,obj_button_fade,menu[|i]));
-		list_buttons_insts[|i].font = font_menu;
-		list_buttons_insts[|i].margin = 0;
-		//list_buttons_insts[|i].centerize();
-		list_buttons_insts[|i].image_alpha = 0;
+		//create button
+		var _data = i < ds_list_size(menu) ? menu[|i] : {text: "",state: BUTTON_STATES.disabled};
+		ds_list_add(list_buttons_insts,instance_create_depth(_xx,_yy,0,obj_button,_data));
+		list_buttons_insts[|i].index = i;
+		list_buttons_insts[|i].parent = self;
+		list_buttons_insts[|i].set_size(_button_w,_button_h)
+		
+		//calculate next button place
+		_yy += _button_h + _margin;
+		if(i == 1)
+		{
+			_yy = y;
+			_xx += _button_w + _margin;
+		}
 	}
 }
 function set_player(player)
@@ -67,14 +84,16 @@ function set_player(player)
 	ds_list_clear(menu_items);
 	
 	//fill data
-	for(var i=0; i < ds_list_size(player.list_attacks); i ++)
+	for(var i=0; i < array_length(player.arr_attacks); i ++)
 	{
-		menu_attacks[|i] = player.list_attacks[|i];
+		menu_attacks[|i] = {text : player.arr_attacks[i].name,my_function : function(){parent.attack_index = index}};
 	}
-	for(var i=0; i < ds_list_size(player.list_items); i ++)
+	for(var i=0; i < array_length(player.arr_items); i ++)
 	{
-		menu_items[|i] = player.list_items[|i];
+		menu_items[|i] = {text : player.arr_items[i].name, my_function : function(){parent.item_index = index}};
 	}
+	
+	change_menu(menu_attacks);
 }
 
-change_menu(menu_main);
+change_menu(menu_attacks);

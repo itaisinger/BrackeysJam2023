@@ -6,24 +6,18 @@ outline is inside bbox.
 //visuals
 //is_gui = 0;	//collision works a little funny with gui buttons. they stay in place and detect collision to a different mouse object that also stay within that screen range.
 msg = "";
-//font = font_button;
+
 depth = DEPTH.button;
 
 colors = {
 	text	 : c_white,
 	text_disabled : make_color_rgb(180,180,180),
 	normal	 : c_col1,
-	hover	 : c_col1_light,
+	hover : c_col1_light,
 	press	 : c_col1_dark,
 	disabled : c_col1_gray,
 }
 
-//normal_col	 = c_col1;
-//hover_col	 = c_col1_light; 
-//press_col	 = c_col1_dark;
-//disabled_col = c_col1_gray;
-//text_col	= c_white;
-//text_disabled_col = make_color_rgb(180,180,180);
 
 current_col = colors.normal;
 current_text_col = colors.text;
@@ -31,12 +25,12 @@ halign = fa_left;
 valign = fa_top;
 
 outline_w = OUTLINE_W;
-margin = 5;
+margin = 4;
 
 //logic
 active = 1;
 parent = noone;
-state = 0;
+//state = 0; set in the varieble definition
 state_functions = [];
 
 //my_function = function(){show_message("hi")};

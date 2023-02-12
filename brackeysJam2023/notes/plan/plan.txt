@@ -54,6 +54,9 @@ attack{
 	damage,
 	speed_add,
 	ability_script,
+	
+	accuracy,
+	crit_chance
 }
 
 item{

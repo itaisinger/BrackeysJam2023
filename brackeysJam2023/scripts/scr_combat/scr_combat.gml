@@ -11,11 +11,11 @@ function fighter(_name, _sprite, _hp, _speed, _attacks, _items) constructor
 		sprite: _sprite,
 		hp: _hp,
 		speed: _speed,
-		list_attacks: _attacks,
-		list_items: _items,
+		arr_attacks: _attacks,
+		arr_items: _items,
 	}
 }
-function attack(_name, _damage, _speed_add, _ability)
+function attack(_name, _damage, _speed_add=0, _ability=function(){})
 {
 	///@param name
 	///@param damage

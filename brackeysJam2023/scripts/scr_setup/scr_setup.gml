@@ -31,6 +31,8 @@ function game_init(){
 	
 	global.base_outline_width = 4;
 	#macro OUTLINE_W global.base_outline_width
+	#macro ATTACK_BUTTON_MARGIN 3
+	#macro MAX_ATTACKS 4
 	
 }
 
