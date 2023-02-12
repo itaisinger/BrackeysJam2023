@@ -128,6 +128,7 @@
     {"name":"scribble_rgb_to_bgr","order":6,"path":"scripts/scribble_rgb_to_bgr/scribble_rgb_to_bgr.yy",},
     {"name":"scribble_font_set_style_family","order":14,"path":"scripts/scribble_font_set_style_family/scribble_font_set_style_family.yy",},
     {"name":"__scribble_font_add_msdf_from_project","order":7,"path":"scripts/__scribble_font_add_msdf_from_project/__scribble_font_add_msdf_from_project.yy",},
+    {"name":"todo","order":3,"path":"notes/todo/todo.yy",},
     {"name":"__scribble_gc_collect","order":9,"path":"scripts/__scribble_gc_collect/__scribble_gc_collect.yy",},
     {"name":"scribble_external_sound_exists","order":1,"path":"scripts/scribble_external_sound_exists/scribble_external_sound_exists.yy",},
     {"name":"__scribble_font_add_sprite","order":8,"path":"scripts/__scribble_font_add_sprite/__scribble_font_add_sprite.yy",},

@@ -1,5 +1,41 @@
-
-a turn base rouguelite where every time you die, you merge the enemy that killed you into yourself.
+// my little frankenstein
+a turn base rouguelite where every time you die, you start as the enemy that killed you.
+when you kill an enemy you join them into you like frankenstein.
 enemies would be body parts or everyday objects and have 1-2 attacks.
 the game would be short (10~ fights) and a boss at the end.
 replay the game and die a few times to get stronger and beat the boss.
+
+strategy:
+some enemies have lame attack but based stats, so you need to choose wether to merge them into urself ur not
+fighters have a type. type attacks are strong againts a type and weak againts another.
+
+types:
+eyes - see more fights ahead. more accuracy.
+hands - increase max item count for every 2 hands.
+legs - speed up abilites
+torso(?) - generally have more hp
+mouth(?) - +20% consumeable effectiveness
+
+eyes > legs
+legs > hands
+hands > eyes
+
+hands > eyes
+eyes > torso
+torso > legs
+legs > mouth
+mouth > hands
+
+
+fighter sprites are a mesh of sprites that are saved globally as a new sprite
+
+
+macro gameplay loop
+
+main menu screen, current player character shown in the side, starting with a hand
+start run
+shown a map as a list of upcoming fights
+enter fight, turn base pokemon combat. some attack\items permenently increase your stats for this run.
+when winning, you can choose to merge the enemy into yourself. if you do, you can add one of the enemy organs into yourself.
+	when merging, you have to add one of the organ's attacks or items into your own, and your stats average out with that organ 50/50.
+you are shown the next few fights.

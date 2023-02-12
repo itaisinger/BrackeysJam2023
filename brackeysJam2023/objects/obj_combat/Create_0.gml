@@ -105,7 +105,7 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 	}
 	
 }
-	
+
 //methods
 function init()
 {
