@@ -15,9 +15,14 @@ function fighter(_name, _sprite, _hp, _speed, _attacks, _items, _action) constru
 		speed: _speed,
 		arr_attacks: _attacks,
 		arr_items: _items,
-		damage : function(dmg){hp = max(0,hp-dmg)},
-		heal : function(amnt){hp = min(max_hp,hp+amnt)},
 		get_action : _action,
+		damage	: function(dmg){hp = max(0,hp-dmg)},
+		heal	: function(amnt){hp = min(max_hp,hp+amnt)},
+		add_item: function(_item){
+			if(array_length(arr_items) >= 4) return false;
+			array_push(arr_items,_item);
+			return true;
+		}
 	}
 }
 function attack(_name, _damage, _speed_add=0, _ability=function(){}) constructor
@@ -54,7 +59,8 @@ function item(_name, _sprite_num, _script, _damage=0, _spd=0) constructor
 
 /// ability scripts
 global.map_abilities = ds_map_create();
-global.map_abilities[? "heal"] = function heal()
+global.map_abilities[? "heal"] = function heal(amnt)
 {
-	obj_combat.current_fighter.heal(20);	
+	obj_combat.current_fighter.heal(amnt);	
 }
+//global.map_abilities[? "speed up"] = function
