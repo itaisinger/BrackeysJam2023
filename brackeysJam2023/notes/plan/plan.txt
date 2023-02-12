@@ -33,7 +33,6 @@ check whether one of the sides is out of hp, and if so end the combat.
 otherwise, loop back to "player chooses attack".
 
 
-
 /// ability scripts ///
 there is a list of ability scripts that is created inside of the combat manager, so that the scripts will be bound to it.
 those scripts will usually use the varieble "fighter_self" and "fighter_enemy" to traget participants of the fight and affect them,
@@ -43,9 +42,11 @@ structs classes:
 
 fighter{
 	name,
+	sprite,
 	hp,
 	speed,
 	attacks_arr,
+	items_arr,
 }
 
 attack{
@@ -55,6 +56,11 @@ attack{
 	ability_script,
 }
 
+item{
+	name,
+	sprite_index,
+	script,
+}
 
 // player object
 
@@ -67,3 +73,20 @@ the enemy object has a fighter structs, and in it it fills his data.
 methods:
 init()			initializes the data into a fighter strcut.
 get_turn()		returns an attack from its attack array.
+
+
+
+
+
+/////// UI ////////
+obj_ui is the main ui object that handles all the front end visualisation.
+it has a few methods that can be used by the back end to send info.
+
+set_main_text(text)					prints a message in the main textbox
+set_fighter_sprites(player,nme)		set the fighter sprites
+
+
+// obj_player_menu
+the player menu will consist of a few buttons:
+side menu: attacks, items, action(?)
+main menu: 4 big item buttons, containing the top menu's options.

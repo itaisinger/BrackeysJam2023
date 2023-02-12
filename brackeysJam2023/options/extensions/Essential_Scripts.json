@@ -1,0 +1,9 @@
+{
+  "resourceType": "GMExtensionConfigSet",
+  "configurables": null,
+  "extensionId": {
+    "name": "Essential_Scripts",
+    "path": "extensions/Essential_Scripts/Essential_Scripts.yy"
+  },
+  "resourceVersion": "1.0"
+}

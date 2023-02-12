@@ -1,0 +1,5 @@
+
+a turn base rouguelite where every time you die, you merge the enemy that killed you into yourself.
+enemies would be body parts or everyday objects and have 1-2 attacks.
+the game would be short (10~ fights) and a boss at the end.
+replay the game and die a few times to get stronger and beat the boss.
