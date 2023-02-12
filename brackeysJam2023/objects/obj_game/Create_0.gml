@@ -15,8 +15,6 @@ global.nme_struct = fighter("bungalos",spr_zombie,100,7,
 //create objs
 instance_create_depth(x,y,0,obj_player_menu);
 instance_create_depth(x,y,0,obj_combat);
-
-
-
+instance_create_depth(x,y,0,obj_combat_ui);
 
 obj_combat.init();

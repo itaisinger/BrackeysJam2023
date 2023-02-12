@@ -26,12 +26,7 @@ ds_list_add(menu_side,button("attacks"	,function(){change_menu(menu_attacks)}));
 ds_list_add(menu_side,button("items"	,function(){change_menu(menu_items)}));
 ds_list_add(menu_side,button("actions"	,function(){change_menu(menu_actions)}));
 
-for(var i=0; i < 3; i++)
-{
-	ds_list_add(list_buttons_side,instance_create_depth(x - 170,y + 39*i,0,obj_button,menu_side[|i]));
-	list_buttons_side[|i].margin -= 2;
-	list_buttons_side[|i].set_size(150,33);
-}
+
 
 //logic
 attack_index = -1;
@@ -115,4 +110,22 @@ function is_action_chosen()
 	return attack_index != -1 or item_index != -1
 }
 
+function init_side_menu()
+{
+	//clear
+	while(ds_list_size(list_buttons_side))
+	{
+		instance_destroy(list_buttons_side[|0]);
+		ds_list_delete(list_buttons_side,0);
+	}
+	
+	//repopulate
+	for(var i=0; i < 3; i++)
+	{
+		ds_list_add(list_buttons_side,instance_create_depth(x - 170,y + 39*i,0,obj_button,menu_side[|i]));
+		list_buttons_side[|i].margin -= 2;
+		list_buttons_side[|i].set_size(150,33);
+	}
+}
 change_menu(menu_attacks);
+init_side_menu();
