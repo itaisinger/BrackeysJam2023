@@ -13,6 +13,11 @@ global.nme_struct = fighter("bungalos",spr_zombie,100,7,
 					[],
 					bhvr_scroll);
 
+global.player_struct.merge_child(get_base_fighter(FIGHTERS.eye));
+global.player_struct.merge_child(get_base_fighter(FIGHTERS.leg));
+global.nme_struct.merge_child(get_base_fighter(FIGHTERS.hand));
+global.nme_struct.merge_child(get_base_fighter(FIGHTERS.eye));
+
 //create objs
 instance_create_depth(x,y,0,obj_player_menu);
 instance_create_depth(x,y,0,obj_combat);

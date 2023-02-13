@@ -21,3 +21,5 @@ enum TYPES{
 	torso,
 	mouth,
 }
+
+#macro TYPES_NUM 3

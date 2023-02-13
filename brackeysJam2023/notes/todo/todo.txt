@@ -1,6 +1,7 @@
 // itai
 combat logic
-
+	types
+	effectiveness based on types and accuracy
 
 move to trello
 
