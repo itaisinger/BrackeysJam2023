@@ -9,7 +9,7 @@ function smooth_approach(argument0, argument1, argument2) {
 	 * view_yview = smooth_approach(view_yview, y-view_hview/2, 0.1);
 	 */
 	var diff = argument1-argument0;
-	if abs(diff) < 0.0005
+	if abs(diff) < 0.005
 	{
 	   return argument1;
 	}

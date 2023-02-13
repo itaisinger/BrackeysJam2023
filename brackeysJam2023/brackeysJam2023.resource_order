@@ -146,6 +146,7 @@
     {"name":"ds_list_random","order":1,"path":"scripts/ds_list_random/ds_list_random.yy",},
     {"name":"scribble_font_set_default","order":13,"path":"scripts/scribble_font_set_default/scribble_font_set_default.yy",},
     {"name":"__scribble_config_colours","order":1,"path":"scripts/__scribble_config_colours/__scribble_config_colours.yy",},
+    {"name":"rm_win","order":8,"path":"rooms/rm_win/rm_win.yy",},
     {"name":"scribble_font_delete","order":5,"path":"scripts/scribble_font_delete/scribble_font_delete.yy",},
     {"name":"__scribble_system_glyph_data","order":11,"path":"scripts/__scribble_system_glyph_data/__scribble_system_glyph_data.yy",},
     {"name":"scr_data","order":7,"path":"scripts/scr_data/scr_data.yy",},

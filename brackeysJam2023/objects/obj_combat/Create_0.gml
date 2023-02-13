@@ -79,6 +79,19 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 		
 	if(global.action_done)	//start a new action
 	{
+		/// check if combat is done ///
+		
+		//player won
+		if(global.nme_struct.hp <= 0)
+			obj_game.combat_won();
+		
+		//player lost
+		else if(global.player_struct.hp <= 0)
+			obj_game.combat_lost();
+		
+		
+		/// play out next action ///
+		
 		global.action_done = 0;
 		
 		if(ds_priority_size(prio_actions))	//there are actions left, start the next one.
@@ -122,8 +135,10 @@ arr_states_functions[COMBAT_STATES.end_loop] = function()
 		obj_game.combat_won();
 		
 	//player lost
-	if(global.player_struct.hp <= 0)
+	else if(global.player_struct.hp <= 0)
 		obj_game.combat_lost();
+		
+	else state = COMBAT_STATES.choose_action;
 }
 
 //methods

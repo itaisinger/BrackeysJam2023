@@ -65,7 +65,7 @@ global.map_items[? "heal"] = item("heal",0,function(){global.map_abilities[? "he
 // attacks map
 global.map_attacks = ds_map_create();
 //					  data name					  ingame name						dmg type		speed				ability
-global.map_attacks[? "cannon"]			= attack("almightly cannon of destruction",	50,	TYPES.none,	-20)
+global.map_attacks[? "cannon"]			= attack("almightly cannon of destruction",	100,	TYPES.none,	20)
 global.map_attacks[? "punch"]			= attack("punch",							10,	TYPES.hand)
 global.map_attacks[? "sweep"]			= attack("sweep",							13,	TYPES.hand,	-40)
 global.map_attacks[? "kick"]			= attack("kick",							15,	TYPES.leg,	ATT_SPEEDS.slow)
@@ -134,7 +134,7 @@ function bhvr_player()	//trigger the player menu to activate
 function bhvr_random()	//choose a random attack or item
 {
 	var rand = irandom(array_length(arr_attacks) + array_length(arr_items))
-	return rand < arr_attacks ? arr_attacks[rand] : arr_items[rand - array_length(arr_attacks)];
+	return rand < array_length(arr_attacks) ? arr_attacks[rand] : arr_items[rand - array_length(arr_attacks)];
 }
 function bhvr_scroll()	//scroll through all the attacks in a loop
 {

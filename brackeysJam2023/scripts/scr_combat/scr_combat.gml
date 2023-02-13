@@ -146,6 +146,15 @@ function get_base_fighter(fighter_index) constructor
 {
 	return global.list_fighters[|fighter_index];
 }
+function create_base_fighter(fighter_index) constructor
+{
+	var source = global.list_fighters[|fighter_index];
+	var copy = fighter(source.name,source.sprite,source.hp,source.speed,
+					   source.arr_attacks,source.arr_items,source.get_action);
+	copy.type = source.type;
+	copy.merge_child(source);
+	return copy;
+}
 function attack(_name, _damage,  _type=TYPES.none,_speed_add=0, _ability=function(){}) constructor
 {
 	///@param name
@@ -176,6 +185,7 @@ function item(_name, _sprite_num, _script, _damage=0, _spd=0) constructor
 		ability_script: _script,
 		damage: _damage,
 		speed_add: _spd,
+		type : TYPES.none,
 	}
 }
 

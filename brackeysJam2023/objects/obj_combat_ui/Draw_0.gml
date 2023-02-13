@@ -4,15 +4,22 @@
 //draw fighters
 var _fighter = global.player_struct
 var _pos = positions.player;
+var _xs = 1;
 
 repeat(2)
 {
 	draw_set_halign(fa_center);
 	var _spr_h = sprite_get_height(_fighter.sprite);
 	var _spr_w = sprite_get_width(_fighter.sprite);
-	draw_sprite(_fighter.sprite,0,_pos[0],_pos[1]);
+	
+	//draw sprite
+	draw_sprite_ext(_fighter.sprite,0,_pos[0],_pos[1],_xs,1,0,c_white,1);
+	
+	//name
 	draw_set_valign(fa_bottom);
 	draw_text(_pos[0],_pos[1]-_spr_h-3,_fighter.name);
+	
+	//hp
 	draw_set_valign(fa_top);
 	draw_text(_pos[0],_pos[1],string(_fighter.hp) + "/" + string(_fighter.max_hp))
 
@@ -25,6 +32,7 @@ repeat(2)
 	//set enemy
 	_fighter = global.nme_struct
 	_pos = positions.nme;
+	_xs = -1;
 }
 
 

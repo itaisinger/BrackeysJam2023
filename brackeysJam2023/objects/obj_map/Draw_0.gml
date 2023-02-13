@@ -1,8 +1,8 @@
 // draw encounters
 var _num = ds_list_size(list_encounters);
-var _margin = 100;
+_margin = 100;
 var _x = room_width/2;
-var _y = room_height - 100;
+var _y = room_height - 100 + _margin*global.current_floor;
 for(var i=0; i < _num; i++)
 {
 	_y -= _margin;
