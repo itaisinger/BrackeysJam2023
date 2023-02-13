@@ -110,6 +110,18 @@ function fighter(_name, _sprite, _hp, _speed, _attacks, _items, _action) constru
 				arr_types[i] = _types_cnt[i] / _childs_num;
 			}
 		},
+		get_main_type: function()
+		{
+			var _main_type = TYPES.none;
+			var _max_prec = 0;
+
+			for (var i = 0; i < TYPES_NUM; ++i) {
+			    if(arr_types[i] > _max_prec)
+					_main_type = i;
+			}
+			
+			return _main_type;
+		}
 	}
 }
 function base_fighter(_name, _sprite, _hp, _speed, _type, _attacks, _items, _action) constructor

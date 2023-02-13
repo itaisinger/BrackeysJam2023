@@ -95,9 +95,10 @@ global.type_matchups[# TYPES.eye,	TYPES.eye]	= 1;
 // fighters list
 enum FIGHTERS{
 	hand,
-	zombie,
 	eye,
 	leg,
+	
+	maxx,
 }
 
 global.list_fighters = ds_list_create();

@@ -34,6 +34,11 @@ function game_init(){
 	#macro ATTACK_BUTTON_MARGIN 3
 	#macro MAX_ATTACKS 4
 	
+	randomise();
+	
+	global.list_encounters = ds_list_create();
+	global.current_floor = 0;
+	
 }
 
 enum DEPTH{

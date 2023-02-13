@@ -130,3 +130,53 @@ global.nme_struct = fighter("bungalos",spr_zombie,100,7,
 					[],
 					bhvr_scroll);
 	
+	
+/////// rooms ///////
+
+
+// menu
+ - basic menu. 
+ - the current player fighter is displayed at the side.
+ - when calling start_run, obj game will generate the entire run and goto the map room.
+ 
+// map
+ - given a list of nme structs, combat encounters if anything is added to them.
+ - creates a list of encounters displayers. 
+ - adjusts the player and camera
+ - after playing some basic animation, calls start_combat and sends the relevant nme struct.
+
+// combat
+ - upon entering, obj game sets global player and nme structs and creates the combat obj.
+ - combat obj takes it from there, and when the combat is done, calls back the game with combat_won or lost.
+ 
+// merge
+ - draws the current player body in the middle of the screen
+ - creates a attack obj that follows the mouse and flips and such.
+ - when confirming, saves the canvas as the new sprite and sends it to the player. it then calls finish_merge.
+
+// end
+ - some text and the player sprite onscreen.
+ - the player sprite is saved?
+ - back to menu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
