@@ -46,6 +46,7 @@
   ],
   "ResourceOrderSettings": [
     {"name":"scribble_super_create","order":1,"path":"scripts/scribble_super_create/scribble_super_create.yy",},
+    {"name":"rm_itaidev","order":2,"path":"rooms/rm_itaidev/rm_itaidev.yy",},
     {"name":"obj_combat_ui","order":3,"path":"objects/obj_combat_ui/obj_combat_ui.yy",},
     {"name":"Hand2","order":1,"path":"sprites/Hand2/Hand2.yy",},
     {"name":"scribble_anim_wave","order":7,"path":"scripts/scribble_anim_wave/scribble_anim_wave.yy",},
@@ -81,6 +82,7 @@
     {"name":"__scribble_gen_8_position_glyphs","order":8,"path":"scripts/__scribble_gen_8_position_glyphs/__scribble_gen_8_position_glyphs.yy",},
     {"name":"scr_combat","order":6,"path":"scripts/scr_combat/scr_combat.yy",},
     {"name":"__init_global","order":2,"path":"scripts/__init_global/__init_global.yy",},
+    {"name":"rm_yehudadev","order":1,"path":"rooms/rm_yehudadev/rm_yehudadev.yy",},
     {"name":"__scribble_font_add_from_project","order":6,"path":"scripts/__scribble_font_add_from_project/__scribble_font_add_from_project.yy",},
     {"name":"scribble","order":8,"path":"scripts/scribble/scribble.yy",},
     {"name":"string_width_scribble","order":4,"path":"scripts/string_width_scribble/string_width_scribble.yy",},
