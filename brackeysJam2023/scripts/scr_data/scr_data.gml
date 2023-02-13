@@ -12,3 +12,12 @@ enum ATT_SPEEDS{
 	
 }
 
+
+enum TYPES{
+	hand,
+	eye,
+	leg,
+	
+	torso,
+	mouth,
+}

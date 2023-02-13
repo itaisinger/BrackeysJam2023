@@ -16,15 +16,97 @@ function fighter(_name, _sprite, _hp, _speed, _attacks, _items, _action) constru
 		arr_attacks: _attacks,
 		arr_items: _items,
 		get_action : _action,
-		damage	: function(dmg){hp = max(0,hp-dmg)},
-		heal	: function(amnt){hp = min(max_hp,hp+amnt)},
-		add_item: function(_item){
+		
+		arr_types : array_create(3,0),	//array of 0-1 for each type, representing %.
+		arr_children : [],
+		max_items : 1,
+		
+		//methods
+		damage	: function(dmg)		//returns how much damage was done
+		{	
+			var hpprev = hp;
+			hp = max(0,hp-dmg)
+			
+			return hp - hpprev;	
+			},
+		heal	: function(amnt)	//returns how much hp was healed
+			{
+			var hpprev = hp;
+			hp = min(max_hp,hp+amnt)
+			return hp - hpprev;
+			},
+		add_item: function(_item){	//returns whether the item was added or not
 			if(array_length(arr_items) >= 4) return false;
 			array_push(arr_items,_item);
 			return true;
 		}
+		merge_child : function(child) //send in a fighter to merge it into me
+		{	
+			///@param child_fighter
+			
+			//hp
+			var _hp_remain_prec = hp/max_hp;
+			max_hp = (max_hp + child.max_hp)/2;
+			hp = max_hp * _hp_remain_prec;
+			
+			speed = (speed + child.speed)/2;
+			array_push(arr_childern,child.type);	//will crash if trying to merge a non base fighter.
+			update_types();
+			//attacks and item merges are called by set_attack and set_item.
+			
+			//put here code about more item count for more hands
+		}
+		set_attack : function(_attack,_pos)
+		{
+			///@param attack
+			///@param position
+			arr_attacks[_pos] = _attack;
+		}
+		set_item : function(_item,_pos)	//set item. override current items
+		{
+			///@param item
+			///@param position
+			arr_items[_pos] = _item;
+		}
+		update_types : function()	//just loop through the child_arr and update the types_arr
+		{
+			/*/
+			create a temp array of how many are of each type
+			/*/
+			var _childs_num = array_length(arr_childern)
+			var _types_cnt = [];
+			for(var i=0; i < _childs_num; i++)
+			{
+				_types_cnt[arr_children]++;
+			}
+			
+			//loop through types.
+			//for each type, the % is the value in the corresponding spot in the types_cnt arr divided by the total amount of children.
+			for(var i=0; i < array_length(arr_types); i++)
+			{
+				arr_types[i] = _types_cnt[i] / _childs_num;
+			}
+		}
 	}
 }
+
+function base_fighter(_name, _sprite, _hp, _speed, _type, _attacks, _items, _action) constructor
+{
+	///@param name
+	///@param sprite
+	///@param hp
+	///@param speed
+	///@param type
+	///@param attacks
+	///@param items
+	///@param behavior
+	
+	var _f =  fighter(_name, _sprite, _hp, _speed, _type, _attacks, _items, _action)
+	_f.type = _type
+	_f.arr_childern[0] = _type;
+	_f.update_types();
+}
+
 function attack(_name, _damage, _speed_add=0, _ability=function(){}) constructor
 {
 	///@param name
@@ -55,7 +137,6 @@ function item(_name, _sprite_num, _script, _damage=0, _spd=0) constructor
 		speed_add: _spd,
 	}
 }
-
 
 /// ability scripts
 global.map_abilities = ds_map_create();
@@ -94,7 +175,24 @@ global.map_items[? "heal"] = item("heal",0,function(){global.map_abilities[? "he
 // attacks map
 global.map_attacks = ds_map_create();
 global.map_attacks[? "cannon"] = attack("almightly cannon of destruction",50,-20)
+global.map_attacks[? "punch"] = attack("punch",10)
+global.map_attacks[? "sweep"] = attack("sweep",13,-40)
+global.map_attacks[? "kick"] = attack("kick",15,ATT_SPEEDS.slow)
+global.map_attacks[? "scrutinize"] = attack("scrutinize",8)
 global.map_attacks[? "charge cannon"] = attack("charge cannon",0,0,function(){global.map_abilities[?"charge"](global.map_attacks[?"cannon"])})
+
+
+// fighters list
+enum FIGHTERS{
+	hand,
+	zombie,
+	eye,
+	leg,
+}
+
+global.list_fighters = ds_list_create();
+global.list_fighters[|FIGHTERS.hand] =		base_fighter("handyman",	spr_hand,	70,	ATT_SPEEDS.fast,	TYPES.hand, [global.map_attacks[?"punch"],global.map_attacks[?"sweep"]], [global.map_items[? "heal"]], bhvr_random);
+global.list_fighters[|FIGHTERS.eye] =		base_fighter("eye",			spr_eye,	50,	ATT_SPEEDS.normal,	TYPES.eye,	[global.map_attacks[?"scrutinize"]], [], bhvr_scroll);
 
 #region action choosing behaviors
 

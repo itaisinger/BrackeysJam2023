@@ -41,6 +41,21 @@ there is a list of ability scripts that is created inside of the combat manager,
 those scripts will usually use the varieble "fighter_self" and "fighter_enemy" to traget participants of the fight and affect them,
 like applying some effect.
 
+/// types ///
+fighter doesnt have a spesific type, but a % of each type.
+a fighter has an array of all the children fighters of it, and a method to update the array that hold the % of every type.
+in order to manage it, a fighter also holds an array of all of its children fighters's types, 
+and a function that updates it's types_arr by looping through the children's types.
+
+fighters can also be assigned a standalone type variable, and that var is used when you merge them into another fighter.
+all base creatures are created with base_fighter(), that takes a type and assigns it as its "type" variable.
+
+in conclusion, type relevant variables:
+type			int		holds enum value of a type. only base fighters have this var.
+types_arr		array	has a value for each type in the game. values are 0-1, representing how much of this fighter is this type.
+children_arr	array	holds a value for each children of this fighter, one for every time it has merged. each value is an enum from TYPES.
+
+
 structs classes:
 
 fighter{
@@ -48,6 +63,7 @@ fighter{
 	sprite,
 	hp,
 	speed,
+	types_arr,
 	attacks_arr,
 	items_arr,
 }
