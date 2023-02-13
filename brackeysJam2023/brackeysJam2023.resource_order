@@ -55,6 +55,7 @@
     {"name":"Leg2","order":3,"path":"sprites/Leg2/Leg2.yy",},
     {"name":"string_width_scribble_ext","order":5,"path":"scripts/string_width_scribble_ext/string_width_scribble_ext.yy",},
     {"name":"scribble_glyph_get","order":15,"path":"scripts/scribble_glyph_get/scribble_glyph_get.yy",},
+    {"name":"obj_mouse","order":2,"path":"objects/obj_mouse/obj_mouse.yy",},
     {"name":"scribble_font_scale","order":12,"path":"scripts/scribble_font_scale/scribble_font_scale.yy",},
     {"name":"Torso1","order":8,"path":"sprites/Torso1/Torso1.yy",},
     {"name":"set_chance","order":3,"path":"scripts/set_chance/set_chance.yy",},

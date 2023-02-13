@@ -133,7 +133,7 @@ function bhvr_player()	//trigger the player menu to activate
 //enemy ai
 function bhvr_random()	//choose a random attack or item
 {
-	var rand = irandom(array_length(arr_attacks) + array_length(arr_items))
+	var rand = irandom(array_length(arr_attacks) + array_length(arr_items)-1)
 	return rand < array_length(arr_attacks) ? arr_attacks[rand] : arr_items[rand - array_length(arr_attacks)];
 }
 function bhvr_scroll()	//scroll through all the attacks in a loop

@@ -83,11 +83,17 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 		
 		//player won
 		if(global.nme_struct.hp <= 0)
+		{
 			obj_game.combat_won();
+			return;
+		}
 		
 		//player lost
 		else if(global.player_struct.hp <= 0)
+		{
 			obj_game.combat_lost();
+			return;
+		}
 		
 		
 		/// play out next action ///
