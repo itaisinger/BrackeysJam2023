@@ -53,7 +53,8 @@ function change_menu(menu)
 	var _button_h = 50;
 	var _button_w = 200;
 	var _margin = 10;
-	for(var i=0; i < 4; i++)
+	var _num = menu == menu_attacks ? MAX_ATTACKS : player_struct.max_items;
+	for(var i=0; i < _num; i++)
 	{
 		//create button
 		var _data = i < ds_list_size(menu) ? menu[|i] : {text: "",state: BUTTON_STATES.disabled};

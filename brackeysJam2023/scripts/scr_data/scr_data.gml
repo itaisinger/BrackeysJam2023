@@ -78,13 +78,18 @@ global.map_attacks[? "thunder"]			= attack("zues's thuder",					20, TYPES.eye, -
 global.map_attacks[? "charge cannon"]	= attack("charge cannon",					0,	TYPES.none,	0,					function(){global.map_abilities[?"charge"](global.map_attacks[?"cannon"])})
 
 //type matchups
+#macro SUPER_EFFECTIVE 3
+#macro NOT_EFFECTIVE 0.3
 global.type_matchups = ds_grid_create(TYPES_NUM,TYPES_NUM);
-global.type_matchups[# TYPES.hand,	TYPES.eye]	= 2;
-global.type_matchups[# TYPES.hand,	TYPES.leg]	= 0.5;
-global.type_matchups[# TYPES.eye,	TYPES.leg]	= 2;
-global.type_matchups[# TYPES.eye,	TYPES.hand] = 0.5;
-global.type_matchups[# TYPES.leg,	TYPES.hand] = 2;
-global.type_matchups[# TYPES.leg,	TYPES.eye]	= 0.5;
+global.type_matchups[# TYPES.hand,	TYPES.eye]	= SUPER_EFFECTIVE;
+global.type_matchups[# TYPES.hand,	TYPES.leg]	= NOT_EFFECTIVE;
+global.type_matchups[# TYPES.eye,	TYPES.leg]	= SUPER_EFFECTIVE;
+global.type_matchups[# TYPES.eye,	TYPES.hand] = NOT_EFFECTIVE;
+global.type_matchups[# TYPES.leg,	TYPES.hand] = SUPER_EFFECTIVE;
+global.type_matchups[# TYPES.leg,	TYPES.eye]	= NOT_EFFECTIVE;
+global.type_matchups[# TYPES.leg,	TYPES.leg]	= 1;
+global.type_matchups[# TYPES.hand,	TYPES.hand]	= 1;
+global.type_matchups[# TYPES.eye,	TYPES.eye]	= 1;
 
 
 // fighters list

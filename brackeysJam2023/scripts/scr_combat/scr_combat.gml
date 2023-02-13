@@ -24,19 +24,19 @@ function fighter(_name, _sprite, _hp, _speed, _attacks, _items, _action) constru
 		//methods
 		damage	: function(dmg,_type=TYPES.none)		//returns how much damage was done
 		{	
-			//loop through types and add to the total:	(base_dmg/types_num)*type_effectiveness
+			//loop through types and add to the total:	base_dmg*type_effectiveness*how much of me is this type
 			var hpprev = hp;
 			var _dmg_todo = 0;
 			
 			for (var i = 0; i < TYPES_NUM; ++i) {
-			    _dmg_todo += (dmg/TYPES_NUM)*get_type_damage(_type,arr_types[i])
+			    _dmg_todo += dmg*get_type_damage(_type,i)*arr_types[i]
 			}
 			
 			//deal damage
 			hp = max(0,hp-_dmg_todo);
 
 			//return damage dealt
-			return hp - hpprev;	
+			return hpprev - hp;	
 			},
 		heal	: function(amnt)	//returns how much hp was healed
 			{
@@ -63,7 +63,21 @@ function fighter(_name, _sprite, _hp, _speed, _attacks, _items, _action) constru
 			update_types();
 			//attacks and item merges are called by set_attack and set_item.
 			
-			//put here code about more item count for more hands
+			//more item count for more hands
+			if(child.type == TYPES.hand)
+			{
+				//count hands
+				var _cnt = 0;
+				for (var i = 0; i < array_length(arr_children); ++i) {
+				    _cnt += arr_children[i] == TYPES.hand;
+				}
+				
+				max_items = min(4,1 + floor(_cnt/2));
+				//0-1: 1
+				//1-2: 2
+				//3-4: 3
+				//4-5: 4
+			}
 		},
 		set_attack : function(_attack,_pos)
 		{
@@ -162,7 +176,6 @@ function get_type_damage(_attack,_fighter)
 	if(_attack == TYPES.none or _fighter == TYPES.none)
 		return 1;
 		
-	log(global.type_matchups[# _attack,_fighter])
 	return global.type_matchups[# _attack,_fighter];
 	
 }

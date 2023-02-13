@@ -85,15 +85,25 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 		{
 			var _action = ds_priority_delete_max(prio_actions);
 			
-			//send ui text the new attack text
-			add_main_message(_action[0].name + " used " + _action[1].name + "!");
+			
 			
 			current_fighter = _action[0];
 			current_nme = current_fighter == global.player_struct ? global.nme_struct : global.player_struct;
 			
 			//act out attack
-			current_nme.damage(_action[1].damage)
+			var _dmg_dealt = current_nme.damage(_action[1].damage,_action[1].type);
+			var _eff = _dmg_dealt / _action[1].damage;
 			_action[1].ability_script();
+			
+			//send ui text the new attack text
+			add_main_message(_action[0].name + " used " + _action[1].name + "!");
+			
+			if(_eff >= (SUPER_EFFECTIVE+1)/2)
+				add_main_message("HOLY SHIT");
+			if(_eff <= (NOT_EFFECTIVE+1)/2)
+				add_main_message("yikes..");
+			
+			log(_eff);
 			
 			//update stuff
 			obj_player_menu.update_player(global.player_struct);
