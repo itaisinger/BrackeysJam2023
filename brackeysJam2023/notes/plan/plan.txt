@@ -55,6 +55,9 @@ type			int		holds enum value of a type. only base fighters have this var.
 types_arr		array	has a value for each type in the game. values are 0-1, representing how much of this fighter is this type.
 children_arr	array	holds a value for each children of this fighter, one for every time it has merged. each value is an enum from TYPES.
 
+// type matchups
+grid_type_matchups:	grid that stores matchups. the x represents the attacker and the y the attacked. the value is the % to be applied to the damage.
+call get_type_damage(attack_type,fighter_type) to get the %.
 
 structs classes:
 

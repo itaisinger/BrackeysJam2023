@@ -3,13 +3,13 @@ game_init();
 global.main_text = "";
 
 global.player_struct = fighter("yossi",spr_hand,100,10,
-					[attack("pow",5),attack("zues's thuder",20,ATT_SPEEDS.slow),attack("grow",0,0,global.map_abilities[?"add heal"]),global.map_attacks[?"charge cannon"]],
+					[global.map_attacks[?"pow"],global.map_attacks[?"thunder"],global.map_attacks[?"grow"],global.map_attacks[?"charge cannon"]],
 					[item("messanger",0,function(){show_message("the messanger!")}),
 					item("heal",1,function(){global.map_abilities[?"heal"](10)},0,-20)],
 					bhvr_player);
 
 global.nme_struct = fighter("bungalos",spr_zombie,100,7,
-					[attack("feet",5),attack("fetus",1,ATT_SPEEDS.priority)],
+					[global.map_attacks[?"feet"],global.map_attacks[?"fetus"]],
 					[],
 					bhvr_scroll);
 

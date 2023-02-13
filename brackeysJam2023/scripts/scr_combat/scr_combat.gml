@@ -22,11 +22,20 @@ function fighter(_name, _sprite, _hp, _speed, _attacks, _items, _action) constru
 		max_items : 1,
 		
 		//methods
-		damage	: function(dmg)		//returns how much damage was done
+		damage	: function(dmg,_type=TYPES.none)		//returns how much damage was done
 		{	
+			//loop through types and add to the total:	(base_dmg/types_num)*type_effectiveness
 			var hpprev = hp;
-			hp = max(0,hp-dmg)
+			var _dmg_todo = 0;
 			
+			for (var i = 0; i < TYPES_NUM; ++i) {
+			    _dmg_todo += (dmg/TYPES_NUM)*get_type_damage(_type,arr_types[i])
+			}
+			
+			//deal damage
+			hp = max(0,hp-_dmg_todo);
+
+			//return damage dealt
 			return hp - hpprev;	
 			},
 		heal	: function(amnt)	//returns how much hp was healed
@@ -111,10 +120,11 @@ function get_base_fighter(fighter_index) constructor
 {
 	return global.list_fighters[|fighter_index];
 }
-function attack(_name, _damage, _speed_add=0, _ability=function(){}) constructor
+function attack(_name, _damage,  _type=TYPES.none,_speed_add=0, _ability=function(){}) constructor
 {
 	///@param name
 	///@param damage
+	///@param type
 	///@param speed_add
 	///@param ability_script
 	
@@ -122,6 +132,7 @@ function attack(_name, _damage, _speed_add=0, _ability=function(){}) constructor
 		name: _name,
 		damage: _damage,
 		speed_add: _speed_add,
+		type : _type,
 		ability_script: _ability,
 	}
 }
@@ -142,111 +153,17 @@ function item(_name, _sprite_num, _script, _damage=0, _spd=0) constructor
 	}
 }
 
-/// ability scripts
-global.map_abilities = ds_map_create();
-global.map_abilities[? "heal"] = function(amnt)
+
+//// combat management scripts ////
+function get_type_damage(_attack,_fighter)
 {
-	obj_combat.current_fighter.heal(amnt);	
-}
-global.map_abilities[? "speed up"] = function(amnt)
-{
-	obj_combat.current_fighter.speed += amnt;
-}
-global.map_abilities[? "add heal"] = function(amnt)
-{
-	obj_combat.current_fighter.add_item(global.map_items[?"heal"]);
-}
-global.map_abilities[? "charge"] = function(_attack)
-{
-	///@param attack
-	
-	//replace get_action
-	with(obj_combat.current_fighter)
-	{
-		previous_bhvr = get_action;
-		charged_attack = _attack;
-		get_action = function(){
-			get_action = previous_bhvr;
-			return charged_attack;
-		}
-	}
-}
-
-// items map
-global.map_items = ds_map_create();
-global.map_items[? "heal"] = item("heal",0,function(){global.map_abilities[? "heal"](10)})
-
-// attacks map
-global.map_attacks = ds_map_create();
-global.map_attacks[? "cannon"] = attack("almightly cannon of destruction",50,-20)
-global.map_attacks[? "punch"] = attack("punch",10)
-global.map_attacks[? "sweep"] = attack("sweep",13,-40)
-global.map_attacks[? "kick"] = attack("kick",15,ATT_SPEEDS.slow)
-global.map_attacks[? "scrutinize"] = attack("scrutinize",8)
-global.map_attacks[? "charge cannon"] = attack("charge cannon",0,0,function(){global.map_abilities[?"charge"](global.map_attacks[?"cannon"])})
-
-
-// fighters list
-enum FIGHTERS{
-	hand,
-	zombie,
-	eye,
-	leg,
-}
-
-global.list_fighters = ds_list_create();
-global.list_fighters[|FIGHTERS.hand] =		base_fighter("handyman",	spr_hand,	70,	ATT_SPEEDS.fast,	TYPES.hand, [global.map_attacks[?"punch"],global.map_attacks[?"sweep"]], [global.map_items[? "heal"]], bhvr_random);
-global.list_fighters[|FIGHTERS.eye] =		base_fighter("anxiety",		spr_eye,	50,	ATT_SPEEDS.normal,	TYPES.eye,	[global.map_attacks[?"scrutinize"]], [], bhvr_scroll);
-global.list_fighters[|FIGHTERS.leg] =		base_fighter("leger",		spr_leg,	90,	ATT_SPEEDS.slow,	TYPES.leg,	[global.map_attacks[?"kick"]], [], bhvr_scroll);
-
-#region action choosing behaviors
-
-//essentially these are functions you assign in the get_action parameter of enemy structs.
-
-//player
-function bhvr_player()	//trigger the player menu to activate
-{
-	var index = obj_player_menu.get_action_index();
-	var att_num = array_length(arr_attacks);
-	
-	//return attack
-	if(index < att_num)
-	{
-		return arr_attacks[index];
-	}
-	//use item
-	else
-	{
-		var _ret = arr_items[index-att_num];
-		array_delete(arr_items,index-att_num,1);
-		return _ret;
-	}
-}
-
-//enemy ai
-function bhvr_random()	//choose a random attack or item
-{
-	var rand = irandom(array_length(arr_attacks) + array_length(arr_items))
-	return rand < arr_attacks ? arr_attacks[rand] : arr_items[rand - array_length(arr_attacks)];
-}
-function bhvr_scroll()	//scroll through all the attacks in a loop
-{
-	//init
-	if(!variable_struct_exists(self,"scroll"))
-		scroll = -1;
-	
-	//scroll
-	scroll++;
-	
-	//loop back
-	if(scroll >= array_length(arr_attacks))
-		scroll = 0;
+	///@param attack_type
+	///@param fighter_type  
+	if(_attack == TYPES.none or _fighter == TYPES.none)
+		return 1;
 		
-	//return
-	return arr_attacks[scroll];
+	log(global.type_matchups[# _attack,_fighter])
+	return global.type_matchups[# _attack,_fighter];
+	
 }
 
-//specials
-
-
-#endregion

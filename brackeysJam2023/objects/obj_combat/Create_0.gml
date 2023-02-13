@@ -86,7 +86,7 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 			var _action = ds_priority_delete_max(prio_actions);
 			
 			//send ui text the new attack text
-			global.main_text = _action[0].name + " used " + _action[1].name + "!";
+			add_main_message(_action[0].name + " used " + _action[1].name + "!");
 			
 			current_fighter = _action[0];
 			current_nme = current_fighter == global.player_struct ? global.nme_struct : global.player_struct;

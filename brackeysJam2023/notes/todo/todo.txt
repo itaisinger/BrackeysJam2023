@@ -9,4 +9,6 @@ move to trello
 ost
 
 
-merging
+//////////////////
+check that type matchups effectiveness work
+messages writing double bug

@@ -31,4 +31,5 @@ repeat(2)
 //draw main text
 _pos = positions.main_text;
 draw_panel(_pos[0],_pos[1],500,60,c_col1,c_col1);
-draw_text_scribble(_pos[0]+10,_pos[1]+10,global.main_text);
+draw_text_scribble(_pos[0]+10,_pos[1]+10,current_main_text,typer_count);
+draw_text(500,2,typer_count)

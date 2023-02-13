@@ -38,3 +38,12 @@ function button(_text,func) constructor
 {
 	return {text: _text, my_function : func};
 }
+function add_main_message(text)
+{
+	ds_queue_enqueue(global.queue_messages,text);
+	with obj_combat_ui
+	{
+		if(current_main_text == "")
+			progress_messages();
+	}
+}
