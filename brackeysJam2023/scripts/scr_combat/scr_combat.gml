@@ -76,11 +76,14 @@ global.map_abilities[? "charge"] = function(_attack)
 	///@param attack
 	
 	//replace get_action
-	previous_bhvr = obj_combat.current_fighter.get_action;
-	charged_attack = _attack;
-	obj_combat.current_fighter.get_action = function(){
-		get_action = previous_bhvr;
-		return charged_attack;
+	with(obj_combat.current_fighter)
+	{
+		previous_bhvr = get_action;
+		charged_attack = _attack;
+		get_action = function(){
+			get_action = previous_bhvr;
+			return charged_attack;
+		}
 	}
 }
 

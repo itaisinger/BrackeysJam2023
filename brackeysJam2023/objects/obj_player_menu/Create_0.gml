@@ -94,6 +94,10 @@ function update_player(player)
 }
 function activate()
 {
+	//activate if the player is now choosing attacks normally, otherwise skip this.
+	if(global.player_struct.get_action != bhvr_player)
+		return;
+		
 	attack_index = -1;
 	item_index = -1;
 	change_menu(menu_attacks);
