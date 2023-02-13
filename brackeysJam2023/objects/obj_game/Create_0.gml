@@ -22,8 +22,20 @@ global.nme_struct.merge_child(get_base_fighter(FIGHTERS.hand));
 global.nme_struct.merge_child(get_base_fighter(FIGHTERS.eye));
 
 //create objs
-instance_create_depth(x,y,0,obj_player_menu);
-instance_create_depth(x,y,0,obj_combat);
-instance_create_depth(x,y,0,obj_combat_ui);
+instance_create_depth(x,y,0,obj_mouse);
 
-obj_combat.init();
+
+/// methods, api.
+
+function start_run()
+{
+	
+}
+function combat_won()
+{
+
+}
+function combat_lost()
+{
+
+}
