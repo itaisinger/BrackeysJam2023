@@ -1,7 +1,6 @@
 // itai
 combat logic
-	types
-	effectiveness based on types and accuracy
+	acc
 
 move to trello
 
@@ -10,5 +9,7 @@ ost
 
 
 //////////////////
-check that type matchups effectiveness work
-messages writing double bug
+
+accuracy:
+add stat in fighters class
+add stat in attacks 

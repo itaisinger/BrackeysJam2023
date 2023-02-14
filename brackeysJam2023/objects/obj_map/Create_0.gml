@@ -42,7 +42,6 @@ arr_stage_functions[MAP_STAGES.zoom_out] = function()
 				eyes_remain++;
 		}
 		
-		log(eyes_remain)
 	}
 	
 	//zoom out again or finish stage
