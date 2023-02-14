@@ -127,6 +127,7 @@
     {"name":"spr_leg","order":3,"path":"sprites/spr_leg/spr_leg.yy",},
     {"name":"scribble_font_duplicate","order":6,"path":"scripts/scribble_font_duplicate/scribble_font_duplicate.yy",},
     {"name":"spr_zombie","order":1,"path":"sprites/spr_zombie/spr_zombie.yy",},
+    {"name":"obj_fighter_display","order":5,"path":"objects/obj_fighter_display/obj_fighter_display.yy",},
     {"name":"draw_sprite_shadow","order":1,"path":"scripts/draw_sprite_shadow/draw_sprite_shadow.yy",},
     {"name":"string_height_scribble_ext","order":3,"path":"scripts/string_height_scribble_ext/string_height_scribble_ext.yy",},
     {"name":"scribble_msdf_thickness_offset","order":5,"path":"scripts/scribble_msdf_thickness_offset/scribble_msdf_thickness_offset.yy",},
