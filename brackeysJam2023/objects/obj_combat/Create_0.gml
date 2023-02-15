@@ -104,13 +104,24 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 		{
 			var _action = ds_priority_delete_max(prio_actions);
 			
-			
-			
 			current_fighter = _action[0];
 			current_nme = current_fighter == global.player_struct ? global.nme_struct : global.player_struct;
 			
+			//calculate crit or miss
+			var _acc = _action[0].accuracy * _action[1].accuracy;
+			var _roll = random(1);
+			var _hit_acc = _acc*_roll;
+			var _is_miss = 0, _is_crit = 0;
+			
+			if(_hit_acc > CRIT_CHANCE) _is_crit = 1;
+			else if(_hit_acc < MISS_CHANCE) _is_miss = 1;
+			
+			var _final_damage = _action[1].damage
+			if(_is_crit) _final_damage *= CRIT_MULT;
+			if(_is_miss) _final_damage = 0;
+			
 			//act out attack
-			var _dmg_dealt = current_nme.damage(_action[1].damage,_action[1].type);
+			var _dmg_dealt = current_nme.damage(_final_damage,_action[1].type);
 			var _eff = _dmg_dealt / _action[1].damage;
 			_action[1].ability_script();
 			
@@ -122,7 +133,9 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 			if(_eff <= (NOT_EFFECTIVE+1)/2)
 				add_main_message("yikes..");
 			
-			log(_eff);
+			if(_is_crit) add_main_message("CRIT!");
+			if(_is_miss) add_main_message("But he missed..");
+			
 			
 			//update stuff
 			obj_player_menu.update_player(global.player_struct);

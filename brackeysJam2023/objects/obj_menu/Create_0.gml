@@ -18,7 +18,6 @@ list_buttons_insts = ds_list_create();	//holds the current button insts
 menu_main = ds_list_create();
 menu_options = ds_list_create();
 
-var _fun = function(){change_menu(menu_options)}
 
 ds_list_add(menu_main,button("start run", function(){obj_game.start_run()}));
 ds_list_add(menu_main,button("options", function(){change_menu(menu_options)}));

@@ -1,9 +1,10 @@
-function fighter(_name, _sprite, _hp, _speed, _attacks, _items, _action) constructor
+function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _action) constructor
 {
 	///@param name
 	///@param sprite
 	///@param hp
 	///@param speed
+	///@param accuracy
 	///@param attacks
 	///@param items
 	///@param behavior
@@ -13,9 +14,11 @@ function fighter(_name, _sprite, _hp, _speed, _attacks, _items, _action) constru
 		hp: _hp,
 		max_hp : _hp,
 		speed: _speed,
+		accuracy: _accuracy,
 		arr_attacks: _attacks,
 		arr_items: _items,
 		get_action : _action,
+		
 		
 		arr_types : array_create(3,0),	//array of 0-1 for each type, representing %.
 		arr_children : [],
@@ -124,18 +127,19 @@ function fighter(_name, _sprite, _hp, _speed, _attacks, _items, _action) constru
 		}
 	}
 }
-function base_fighter(_name, _sprite, _hp, _speed, _type, _attacks, _items, _action) constructor
+function base_fighter(_name, _sprite, _hp, _speed, _accuracy, _type, _attacks, _items, _action) constructor
 {
 	///@param name
 	///@param sprite
 	///@param hp
 	///@param speed
+	///@param accuracy
 	///@param type
 	///@param attacks
 	///@param items
 	///@param behavior
 	
-	var _f =  fighter(_name, _sprite, _hp, _speed, _attacks, _items, _action)
+	var _f =  fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _action)
 	_f.type = _type
 	_f.arr_children[0] = _type;
 	_f.update_types();
@@ -149,18 +153,19 @@ function get_base_fighter(fighter_index) constructor
 function create_base_fighter(fighter_index) constructor
 {
 	var source = global.list_fighters[|fighter_index];
-	var copy = fighter(source.name,source.sprite,source.hp,source.speed,
+	var copy = fighter(source.name,source.sprite,source.hp,source.speed,source.accuracy,
 					   source.arr_attacks,source.arr_items,source.get_action);
 	copy.type = source.type;
 	copy.merge_child(source);
 	return copy;
 }
-function attack(_name, _damage,  _type=TYPES.none,_speed_add=0, _ability=function(){}) constructor
+function attack(_name, _damage,  _type=TYPES.none,_speed_add=0, _acc=1, _ability=function(){}) constructor
 {
 	///@param name
 	///@param damage
 	///@param type
 	///@param speed_add
+	///@param accuracy
 	///@param ability_script
 	
 	return {
@@ -169,15 +174,17 @@ function attack(_name, _damage,  _type=TYPES.none,_speed_add=0, _ability=functio
 		speed_add: _speed_add,
 		type : _type,
 		ability_script: _ability,
+		accuracy: _acc,
 	}
 }
-function item(_name, _sprite_num, _script, _damage=0, _spd=0) constructor
+function item(_name, _sprite_num, _script, _damage=0, _spd=0, _acc=1) constructor
 {
 	///@param name
 	///@param sprite_index
 	///@param script
 	///@param damage
 	///@param speed_add
+	///@param accuracy
 	
 	return {
 		name: _name,
@@ -186,6 +193,7 @@ function item(_name, _sprite_num, _script, _damage=0, _spd=0) constructor
 		damage: _damage,
 		speed_add: _spd,
 		type : TYPES.none,
+		accuracy: 1,
 	}
 }
 

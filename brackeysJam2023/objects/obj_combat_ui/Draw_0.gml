@@ -6,7 +6,7 @@ var _fighter = global.player_struct
 var _pos = positions.player;
 var _xs = 1;
 
-repeat(2)
+repeat(0)
 {
 	draw_set_halign(fa_center);
 	var _spr_h = sprite_get_height(_fighter.sprite);

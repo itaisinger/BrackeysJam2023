@@ -24,7 +24,7 @@ menu_actions = ds_list_create();
 //side menu
 ds_list_add(menu_side,button("attacks"	,function(){change_menu(menu_attacks)}));
 ds_list_add(menu_side,button("items"	,function(){change_menu(menu_items)}));
-ds_list_add(menu_side,button("actions"	,function(){change_menu(menu_actions)}));
+//ds_list_add(menu_side,button("actions"	,function(){change_menu(menu_actions)}));
 
 
 //logic
@@ -124,7 +124,7 @@ function init_side_menu()
 	}
 	
 	//repopulate
-	for(var i=0; i < 3; i++)
+	for(var i=0; i < ds_list_size(menu_side); i++)
 	{
 		ds_list_add(list_buttons_side,instance_create_depth(x - 170,y + 39*i,0,obj_button,menu_side[|i]));
 		list_buttons_side[|i].margin -= 2;

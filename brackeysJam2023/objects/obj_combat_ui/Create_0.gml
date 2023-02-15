@@ -15,6 +15,10 @@ current_main_text = "";
 typer_cd = 3;
 alarm[0] = 1;
 
+/// create fighters display
+with(instance_create_depth(positions.player[0],positions.player[1],0,obj_fighter_display)) set_fighter(global.player_struct);
+with(instance_create_depth(positions.nme[0],positions.nme[1],0,obj_fighter_display)) set_fighter(global.nme_struct);
+
 function progress_messages()
 {
 	if(ds_queue_size(global.queue_messages))
@@ -25,7 +29,6 @@ function progress_messages()
 		global.action_done = 1;
 	}
 	typer_count = 0;
-	
 	
 }
 

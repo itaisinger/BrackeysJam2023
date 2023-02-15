@@ -9,8 +9,8 @@ if (0 and mouse_check_button(mb_middle)) {
 	var move_x = device_mouse_x_to_gui(0) - mouse_x_previous;
 	var move_y = device_mouse_y_to_gui(0) - mouse_y_previous;
 	
-	camX -= move_x * zoom * pan_spd;
-	camY -= move_y * zoom * pan_spd;
+	camX -= move_x * zoom;
+	camY -= move_y * zoom;
 }
 
 

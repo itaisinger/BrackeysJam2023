@@ -11,7 +11,11 @@ enum ATT_SPEEDS{
 	priority = 100, //priority moves just add this value to their speed
 	
 }
-
+enum ATT_ACC{
+	low		= .7,
+	mid		= .8,
+	high	= .9,
+}
 
 enum TYPES{
 	hand,
@@ -23,8 +27,16 @@ enum TYPES{
 	
 	none,
 }
-
 #macro TYPES_NUM 3
+
+enum FIGHTER_ACC{
+	low = 0.7,
+	mid = 1,
+	high = 1.3,
+}
+#macro CRIT_CHANCE 0.9
+#macro MISS_CHANCE 0.1
+#macro CRIT_MULT 2
 
 
 
@@ -102,9 +114,9 @@ enum FIGHTERS{
 }
 
 global.list_fighters = ds_list_create();
-global.list_fighters[|FIGHTERS.hand] =		base_fighter("handyman",	spr_hand,	70,	ATT_SPEEDS.fast,	TYPES.hand, [global.map_attacks[?"punch"],global.map_attacks[?"sweep"]], [global.map_items[? "heal"]], bhvr_random);
-global.list_fighters[|FIGHTERS.eye] =		base_fighter("anxiety",		spr_eye,	50,	ATT_SPEEDS.normal,	TYPES.eye,	[global.map_attacks[?"scrutinize"]], [], bhvr_scroll);
-global.list_fighters[|FIGHTERS.leg] =		base_fighter("leger",		spr_leg,	90,	ATT_SPEEDS.slow,	TYPES.leg,	[global.map_attacks[?"kick"]], [], bhvr_scroll);
+global.list_fighters[|FIGHTERS.hand] =		base_fighter("handyman",	spr_hand,	70,	ATT_SPEEDS.fast,	FIGHTER_ACC.mid,	TYPES.hand, [global.map_attacks[?"punch"],global.map_attacks[?"sweep"]], [global.map_items[? "heal"]], bhvr_random);
+global.list_fighters[|FIGHTERS.eye] =		base_fighter("anxiety",		spr_eye,	50,	ATT_SPEEDS.normal,	FIGHTER_ACC.high,	TYPES.eye,	[global.map_attacks[?"scrutinize"]], [], bhvr_scroll);
+global.list_fighters[|FIGHTERS.leg] =		base_fighter("leger",		spr_leg,	90,	ATT_SPEEDS.slow,	FIGHTER_ACC.low,	TYPES.leg,	[global.map_attacks[?"kick"]], [], bhvr_scroll);
 
 #region action choosing behaviors
 
