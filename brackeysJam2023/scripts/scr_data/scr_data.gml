@@ -12,9 +12,9 @@ enum ATT_SPEEDS{
 	
 }
 enum ATT_ACC{
-	low		= .7,
-	mid		= .8,
-	high	= .9,
+	low		= 70,
+	mid		= 80,
+	high	= 90,
 }
 
 enum TYPES{
@@ -30,12 +30,12 @@ enum TYPES{
 #macro TYPES_NUM 3
 
 enum FIGHTER_ACC{
-	low = 0.7,
-	mid = 1,
-	high = 1.3,
+	low = 70,
+	mid = 100,
+	high = 130,
 }
 #macro CRIT_CHANCE 0.9
-#macro MISS_CHANCE 0.1
+#macro MISS_CHANCE 0.05
 #macro CRIT_MULT 2
 
 
@@ -53,6 +53,10 @@ global.map_abilities[? "speed up"] = function(amnt)
 global.map_abilities[? "add heal"] = function(amnt)
 {
 	obj_combat.current_fighter.add_item(global.map_items[?"heal"]);
+}
+global.map_abilities[? "add fuel"] = function(amnt)
+{
+	obj_combat.current_fighter.speed += 5;
 }
 global.map_abilities[? "charge"] = function(_attack)
 {
@@ -76,8 +80,8 @@ global.map_items[? "heal"] = item("heal",0,function(){global.map_abilities[? "he
 
 // attacks map
 global.map_attacks = ds_map_create();
-//					  data name					  ingame name						dmg type		speed				ability
-global.map_attacks[? "cannon"]			= attack("almightly cannon of destruction",	100,	TYPES.none,	20)
+//					  data name					  ingame name						dmg type		speed				accuracy	ability
+global.map_attacks[? "cannon"]			= attack("almightly cannon of destruction",	100,TYPES.none,	20)
 global.map_attacks[? "punch"]			= attack("punch",							10,	TYPES.hand)
 global.map_attacks[? "sweep"]			= attack("sweep",							13,	TYPES.hand,	-40)
 global.map_attacks[? "kick"]			= attack("kick",							15,	TYPES.leg,	ATT_SPEEDS.slow)
@@ -85,9 +89,10 @@ global.map_attacks[? "scrutinize"]		= attack("scrutinize",						8)
 global.map_attacks[? "pow"]				= attack("pow",								5)
 global.map_attacks[? "feet"]			= attack("feet",							7,	TYPES.leg)
 global.map_attacks[? "fetus"]			= attack("fetus",							1,	TYPES.leg,	ATT_SPEEDS.priority)
-global.map_attacks[? "grow"]			= attack("grow",							0,	TYPES.leg,	0,					global.map_abilities[?"add heal"])
+global.map_attacks[? "grow"]			= attack("grow",							0,	TYPES.leg,	0,					1,			global.map_abilities[?"add heal"])
 global.map_attacks[? "thunder"]			= attack("zues's thuder",					20, TYPES.eye, -20)
-global.map_attacks[? "charge cannon"]	= attack("charge cannon",					0,	TYPES.none,	0,					function(){global.map_abilities[?"charge"](global.map_attacks[?"cannon"])})
+global.map_attacks[? "add fuel"]		= attack("add fuel",						0,	TYPES.none, 0,					1,			global.map_abilities[? "add fuel"])
+global.map_attacks[? "charge cannon"]	= attack("charge cannon",					0,	TYPES.none,	0,					1,			function(){global.map_abilities[?"charge"](global.map_attacks[?"cannon"])})
 
 //type matchups
 #macro SUPER_EFFECTIVE 3
@@ -109,6 +114,7 @@ enum FIGHTERS{
 	hand,
 	eye,
 	leg,
+	wheel,
 	
 	maxx,
 }
@@ -117,6 +123,7 @@ global.list_fighters = ds_list_create();
 global.list_fighters[|FIGHTERS.hand] =		base_fighter("handyman",	spr_hand,	70,	ATT_SPEEDS.fast,	FIGHTER_ACC.mid,	TYPES.hand, [global.map_attacks[?"punch"],global.map_attacks[?"sweep"]], [global.map_items[? "heal"]], bhvr_random);
 global.list_fighters[|FIGHTERS.eye] =		base_fighter("anxiety",		spr_eye,	50,	ATT_SPEEDS.normal,	FIGHTER_ACC.high,	TYPES.eye,	[global.map_attacks[?"scrutinize"]], [], bhvr_scroll);
 global.list_fighters[|FIGHTERS.leg] =		base_fighter("leger",		spr_leg,	90,	ATT_SPEEDS.slow,	FIGHTER_ACC.low,	TYPES.leg,	[global.map_attacks[?"kick"]], [], bhvr_scroll);
+global.list_fighters[|FIGHTERS.wheel] =		base_fighter("wheel",		spr_wheel,	70,	ATT_SPEEDS.slow-10,	FIGHTER_ACC.mid,	TYPES.leg,	[global.map_attacks[?"add fuel"]], [], bhvr_scroll);
 
 #region action choosing behaviors
 

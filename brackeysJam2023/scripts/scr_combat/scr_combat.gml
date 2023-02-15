@@ -159,7 +159,7 @@ function create_base_fighter(fighter_index) constructor
 	copy.merge_child(source);
 	return copy;
 }
-function attack(_name, _damage,  _type=TYPES.none,_speed_add=0, _acc=1, _ability=function(){}) constructor
+function attack(_name, _damage,  _type=TYPES.none,_speed_add=0, _acc=100, _ability=function(){}) constructor
 {
 	///@param name
 	///@param damage
@@ -177,7 +177,7 @@ function attack(_name, _damage,  _type=TYPES.none,_speed_add=0, _acc=1, _ability
 		accuracy: _acc,
 	}
 }
-function item(_name, _sprite_num, _script, _damage=0, _spd=0, _acc=1) constructor
+function item(_name, _sprite_num, _script, _damage=0, _spd=0, _acc=100) constructor
 {
 	///@param name
 	///@param sprite_index

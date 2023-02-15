@@ -79,12 +79,14 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 		
 	if(global.action_done)	//start a new action
 	{
+		global.action_done = 0;
+		
 		/// check if combat is done ///
 		
 		//player won
 		if(global.nme_struct.hp <= 0)
 		{
-			obj_game.combat_won();
+			obj_combat_ui.merge_offer();
 			return;
 		}
 		
@@ -96,9 +98,7 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 		}
 		
 		
-		/// play out next action ///
-		
-		global.action_done = 0;
+		/// play out next action ///	
 		
 		if(ds_priority_size(prio_actions))	//there are actions left, start the next one.
 		{
@@ -108,13 +108,13 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 			current_nme = current_fighter == global.player_struct ? global.nme_struct : global.player_struct;
 			
 			//calculate crit or miss
-			var _acc = _action[0].accuracy * _action[1].accuracy;
+			var _acc = (_action[0].accuracy/100) * (_action[1].accuracy/100);
 			var _roll = random(1);
 			var _hit_acc = _acc*_roll;
-			var _is_miss = 0, _is_crit = 0;
-			
-			if(_hit_acc > CRIT_CHANCE) _is_crit = 1;
-			else if(_hit_acc < MISS_CHANCE) _is_miss = 1;
+
+			var _is_crit = _hit_acc > CRIT_CHANCE;
+			var _is_miss = _hit_acc < MISS_CHANCE;
+
 			
 			var _final_damage = _action[1].damage
 			if(_is_crit) _final_damage *= CRIT_MULT;
@@ -128,14 +128,15 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 			//send ui text the new attack text
 			add_main_message(_action[0].name + " used " + _action[1].name + "!");
 			
-			if(_eff >= (SUPER_EFFECTIVE+1)/2)
-				add_main_message("HOLY SHIT");
-			if(_eff <= (NOT_EFFECTIVE+1)/2)
-				add_main_message("yikes..");
-			
 			if(_is_crit) add_main_message("CRIT!");
 			if(_is_miss) add_main_message("But he missed..");
-			
+			else
+			{
+				if(_eff >= (SUPER_EFFECTIVE+1)/2)
+					add_main_message("HOLY SHIT");
+				if(_eff <= (NOT_EFFECTIVE+1)/2)
+					add_main_message("yikes..");	
+			}
 			
 			//update stuff
 			obj_player_menu.update_player(global.player_struct);
@@ -151,7 +152,7 @@ arr_states_functions[COMBAT_STATES.end_loop] = function()
 {
 	//player won
 	if(global.nme_struct.hp <= 0)
-		obj_game.combat_won();
+		obj_combat_ui.merge_offer();
 		
 	//player lost
 	else if(global.player_struct.hp <= 0)

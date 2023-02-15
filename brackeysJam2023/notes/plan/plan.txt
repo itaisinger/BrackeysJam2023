@@ -92,15 +92,6 @@ item{
 methods:
 get_action()		opens the turn choose menu
 
-// enemy object
-the enemy object has a fighter structs, and in it it fills his data.
-
-methods:
-init()			initializes the data into a fighter strcut.
-get_action()		returns an attack from its attack array.
-
-
-
 
 
 /////// UI ////////
@@ -116,6 +107,12 @@ the player menu will consist of a few buttons:
 side menu: attacks, items, action(?)
 main menu: 4 big item buttons, containing the top menu's options.
 
+
+// obj_fighter_display
+given a fighter struct reference and a position, and it takes care of rendering it properly.
+methods:
+set_fighter(fighter)
+shake(amount)
 
 // how to create player and enemy structs
 

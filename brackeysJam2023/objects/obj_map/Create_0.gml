@@ -1,6 +1,7 @@
 
 player_struct = global.player_struct;
 list_encounters = global.list_encounters;
+anim_spd = 0.26;
 
 global.map_player = {
 	x : room_width/2, 
@@ -26,9 +27,9 @@ arr_stage_functions[MAP_STAGES.start] = function()
 {
 	if(obj_camera.zoom == obj_camera.zoom_dest)
 		stage = MAP_STAGES.zoom_out;
-		
-	player.xscale = wave(1.1,0.9,2,0);
-	player.yscale = wave(0.9,1.1,2,0);
+	
+	player.xscale = approach(player.xscale,wave(1.1,0.9,2,0),anim_spd);
+	player.yscale = approach(player.yscale,wave(0.9,1.1,2,0),anim_spd);
 }
 arr_stage_functions[MAP_STAGES.zoom_out] = function()
 {
@@ -45,7 +46,7 @@ arr_stage_functions[MAP_STAGES.zoom_out] = function()
 	}
 	
 	//zoom out again or finish stage
-	if(obj_camera.zoom == obj_camera.zoom_dest)
+	if(abs(obj_camera.zoom - obj_camera.zoom_dest) < 0.01)
 	{
 		if(eyes_remain > 0)
 		{
@@ -58,27 +59,36 @@ arr_stage_functions[MAP_STAGES.zoom_out] = function()
 		}
 	}
 	
-	player.xscale = wave(1.1,0.9,2,0);
-	player.yscale = wave(0.9,1.1,2,0);
+	player.xscale = approach(player.xscale,wave(1.1,0.9,2,0),anim_spd);
+	player.yscale = approach(player.yscale,wave(0.9,1.1,2,0),anim_spd);
 }
 arr_stage_functions[MAP_STAGES.walk] = function()
 {
 	if(stage_changed)
 	{
+		player.ystart = player.y;
 		player.ydest = player.y - _margin;
+		player.yprog = 0;
 	}
 	
-	player.y = approach(player.y,player.ydest, 0.5)
+	player.yprog = approach(player.yprog,1, 0.01)
+	player.y = lerp(player.ystart,player.ydest, player.yprog)
 	
-	player.xscale = wave(1.3,0.7,1,0);
-	player.yscale = wave(0.7,1.3,1,0);
-	player.angle = wave(-20,20,2,0);
+	log(player.ydest - player.y);
+	
+	player.xscale = approach(player.xscale,wave(1.3,0.7,1,0),anim_spd);
+	player.yscale = approach(player.yscale,wave(0.7,1.3,1,0),anim_spd);
+	//player.angle = approach(player.angle,wave(-25,25,2,0),anim_spd);
 	
 	if(player.y == player.ydest)
 		stage = MAP_STAGES.endd
 }
 arr_stage_functions[MAP_STAGES.endd] = function()
 {
+	player.xscale = approach(player.xscale,wave(1.1,0.9,2,0),anim_spd);
+	player.yscale = approach(player.yscale,wave(0.9,1.1,2,0),anim_spd);
+	player.angle = approach(player.angle,0,anim_spd*0.3);
+	
 	if(stage_changed)
 	{
 		wait = 1;

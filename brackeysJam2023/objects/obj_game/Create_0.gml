@@ -2,7 +2,7 @@ game_init();
 randomise();
 
 //text:
-global.player_struct = fighter("yossi",spr_hand,100,10,0.8,
+global.player_struct = fighter("yossi",spr_hand1,100,10,FIGHTER_ACC.mid,
 					[global.map_attacks[?"punch"],global.map_attacks[?"kick"],global.map_attacks[?"cannon"],global.map_attacks[?"scrutinize"]],
 					[item("messanger",0,function(){show_message("the messanger!")}),
 					item("heal",1,function(){global.map_abilities[?"heal"](10)},0,-20)],
@@ -18,7 +18,6 @@ global.player_struct.merge_child(get_base_fighter(FIGHTERS.hand));
 
 //create objs
 instance_create_depth(x,y,0,obj_mouse);
-
 
 /*/
 globals to set:
@@ -37,6 +36,7 @@ function generate_run()
 	{
 		ds_list_add(global.list_encounters,create_base_fighter(irandom(FIGHTERS.maxx-1)));
 	}
+	global.list_encounters[|0] = create_base_fighter(FIGHTERS.leg)
 }
 
 
@@ -70,4 +70,12 @@ function combat_won()
 function combat_lost()
 {
 	room_goto(rm_end);
+}
+function start_merge()
+{
+	room_goto(rm_merge);
+}
+function finish_merge()
+{
+	combat_won();
 }

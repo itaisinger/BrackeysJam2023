@@ -34,9 +34,9 @@ function dropdown_button_function()
 	parent.return_value = return_value;
 }
 
-function button(_text,func) constructor
+function button(_text,func,_margin=4,_font=font_button) constructor
 {
-	return {text: _text, my_function : func};
+	return {text: _text, my_function : func, margin: _margin, font : _font};
 }
 function add_main_message(text)
 {
