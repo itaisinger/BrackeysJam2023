@@ -124,7 +124,12 @@ function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _acti
 			}
 			
 			return _main_type;
-		}
+		},
+		set_sprite: function(_spr)
+		{
+			///@param new_sprite
+			sprite = _spr;
+		},
 	}
 }
 function base_fighter(_name, _sprite, _hp, _speed, _accuracy, _type, _attacks, _items, _action) constructor

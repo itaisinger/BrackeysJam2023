@@ -39,6 +39,11 @@ function game_init(){
 	global.list_encounters = ds_list_create();
 	global.current_floor = 0;
 	
+	#macro FIGHTER_SPR_W 900
+	#macro FIGHTER_SPR_H 900
+	#macro ORGAN_SPR_W 300
+	#macro ORGAN_SPR_H 300
+	
 }
 
 enum DEPTH{

@@ -1,8 +1,8 @@
 
 
 //find proper size
-var _screenw = window_get_width();
-var _screenh = window_get_height();
+_screenw = window_get_width();
+_screenh = window_get_height();
 var _playerw = sprite_get_width(global.player_struct.sprite);
 var _playerh = sprite_get_height(global.player_struct.sprite);
 
@@ -14,17 +14,41 @@ size = min(_sizew,_sizeh)/2;
 //surface
 sur = -1;
 
-
+trigger_finish = 0;
 
 function sur_init()
 {
-	var _screenw = window_get_width();
-	var _screenh = window_get_height();
-	sur = surface_create(_screenw,_screenh);
+	sur = surface_create(FIGHTER_SPR_W,FIGHTER_SPR_H);
 	surface_set_target(sur);
-
+	draw_clear(c_red);
 	//draw player sprite
-	draw_sprite_ext(global.player_struct.sprite,0,room_width/2,room_height/2,size,size,0,c_white,1);
+	draw_sprite_ext(global.player_struct.sprite,0,FIGHTER_SPR_W/2,FIGHTER_SPR_H/2,1,1,0,c_white,1);
+
 
 	surface_reset_target();
+}
+
+function finish()
+{
+	surface_set_target(sur);
+		
+	//add enemy to surface
+	with(obj_merge_nme) draw_self();
+	surface_reset_target();
+	
+	////resize the surface to the appropriate size
+	//var _resize = surface_create(FIGHTER_SPR_W,FIGHTER_SPR_H);
+	//surface_set_target(_resize);
+	//draw_surface_stretched(sur,0,0,FIGHTER_SPR_W,FIGHTER_SPR_H);
+	//surface_reset_target();
+	
+	//save sprite into the player
+	var _spr = sprite_create_from_surface(sur,0,0,FIGHTER_SPR_W,FIGHTER_SPR_H,0,0,FIGHTER_SPR_W/2,FIGHTER_SPR_H/2);
+	global.player_struct.set_sprite(_spr);
+	
+	//free
+	surface_free(sur);
+	//surface_free(_resize);
+	
+	obj_game.finish_merge();
 }
