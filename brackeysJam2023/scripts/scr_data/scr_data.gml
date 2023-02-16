@@ -50,6 +50,10 @@ global.map_abilities[? "speed up"] = function(amnt)
 {
 	obj_combat.current_fighter.speed += amnt;
 }
+global.map_abilities[? "lower nme speed"] = function(amnt)
+{
+	obj_combat.current_nme.speed -= amnt;	
+}
 global.map_abilities[? "add heal"] = function(amnt)
 {
 	obj_combat.current_fighter.add_item(global.map_items[?"heal"]);
@@ -91,7 +95,10 @@ global.map_attacks[? "feet"]			= attack("feet",							7,	TYPES.leg)
 global.map_attacks[? "fetus"]			= attack("fetus",							1,	TYPES.leg,	ATT_SPEEDS.priority)
 global.map_attacks[? "grow"]			= attack("grow",							0,	TYPES.leg,	0,					1,			global.map_abilities[?"add heal"])
 global.map_attacks[? "thunder"]			= attack("zues's thuder",					20, TYPES.eye, -20)
+global.map_attacks[? "laser beam"]		= attack("laser beam",						5,	TYPES.eye,  ATT_SPEEDS.priority)
+global.map_attacks[? "run over"]        = attack("run over",                        15, TYPES.leg, ATT_SPEEDS.slow)
 global.map_attacks[? "add fuel"]		= attack("add fuel",						0,	TYPES.none, 0,					1,			global.map_abilities[? "add fuel"])
+global.map_attacks[? "plunge"]          = attack("plunge",                          8,  TYPES.hand, 0,                  1,          global.map_abilities[? "lower nme speed"](10))
 global.map_attacks[? "charge cannon"]	= attack("charge cannon",					0,	TYPES.none,	0,					1,			function(){global.map_abilities[?"charge"](global.map_attacks[?"cannon"])})
 
 //type matchups
@@ -115,6 +122,9 @@ enum FIGHTERS{
 	eye,
 	leg,
 	wheel,
+	laser_visor,
+	rocket,
+	plunger,
 	
 	maxx,
 }
@@ -123,7 +133,10 @@ global.list_fighters = ds_list_create();
 global.list_fighters[|FIGHTERS.hand] =		base_fighter("handyman",	spr_hand,	70,	ATT_SPEEDS.fast,	FIGHTER_ACC.mid,	TYPES.hand, [global.map_attacks[?"punch"],global.map_attacks[?"sweep"]], [global.map_items[? "heal"]], bhvr_random);
 global.list_fighters[|FIGHTERS.eye] =		base_fighter("anxiety",		spr_eye,	50,	ATT_SPEEDS.normal,	FIGHTER_ACC.high,	TYPES.eye,	[global.map_attacks[?"scrutinize"]], [], bhvr_scroll);
 global.list_fighters[|FIGHTERS.leg] =		base_fighter("leger",		spr_leg,	90,	ATT_SPEEDS.slow,	FIGHTER_ACC.low,	TYPES.leg,	[global.map_attacks[?"kick"]], [], bhvr_scroll);
-global.list_fighters[|FIGHTERS.wheel] =		base_fighter("wheel",		spr_wheel,	70,	ATT_SPEEDS.slow-10,	FIGHTER_ACC.mid,	TYPES.leg,	[global.map_attacks[?"add fuel"]], [], bhvr_scroll);
+global.list_fighters[|FIGHTERS.wheel] =		base_fighter("wheelie",		spr_wheel,	70,	ATT_SPEEDS.slow-10,	FIGHTER_ACC.mid,	TYPES.leg,	[global.map_attacks[?"add fuel"],global.map_attacks[?"run over"]], [], bhvr_scroll);
+global.list_fighters[|FIGHTERS.laser_visor]=base_fighter("vetamerse",   spr_visor,  60, ATT_SPEEDS.fast,    FIGHTER_ACC.high,   TYPES.eye,  [global.map_attacks[?"laser beam"]], [], bhvr_scroll);
+global.list_fighters[|FIGHTERS.rocket] =    base_fighter("boomy",       spr_rocket, 50, ATT_SPEEDS.slow,    FIGHTER_ACC.mid,    TYPES.hand, [global.map_attacks[?"cannon"]], [], bhvr_scroll);
+global.list_fighters[|FIGHTERS.plunger] =   base_fighter("plumber",     spr_plunger,60, ATT_SPEEDS.normal,  FIGHTER_ACC.mid,    TYPES.hand, [global.map_attacks[?"plunge"]], [], bhvr_scroll);
 
 #region action choosing behaviors
 

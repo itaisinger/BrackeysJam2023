@@ -20,6 +20,5 @@ draw_text(x,y-_spr_h/3-10,my_fighter.name);
 //draw hp
 draw_text(x,y-_spr_h/3-_text_offset,string(my_fighter.hp) + "/" + string(my_fighter.max_hp));
 
-//would this shake work?
 
 draw_reset();
