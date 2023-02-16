@@ -3,14 +3,16 @@ x = mouse_x;
 y = mouse_y;
 
 //resize
-var _add = 0.2*(keyboard_check(vk_up) - keyboard_check(vk_down));
-if(abs(image_xscale + _add)<0.1) _add = 0;
+var _add = 0.05*(keyboard_check(vk_up) - keyboard_check(vk_down));
 
 image_xscale += _add*sign(image_xscale);
 image_yscale += _add*sign(image_yscale);
 
+image_xscale = sign(image_xscale) * max(0.3,abs(image_xscale))
+image_yscale = sign(image_yscale) * max(0.3,abs(image_yscale))
+
 //rotate
-var _add = 3*(keyboard_check(vk_right) - keyboard_check(vk_left));
+var _add = 2*(keyboard_check(vk_right) - keyboard_check(vk_left));
 image_angle -= _add;
 
 //flip

@@ -20,7 +20,7 @@ function sur_init()
 {
 	sur = surface_create(FIGHTER_SPR_W,FIGHTER_SPR_H);
 	surface_set_target(sur);
-	draw_clear(c_red);
+	//draw_clear(c_red);
 	//draw player sprite
 	draw_sprite_ext(global.player_struct.sprite,0,FIGHTER_SPR_W/2,FIGHTER_SPR_H/2,1,1,0,c_white,1);
 
@@ -31,16 +31,15 @@ function sur_init()
 function finish()
 {
 	surface_set_target(sur);
-		
-	//add enemy to surface
-	with(obj_merge_nme) draw_self();
-	surface_reset_target();
 	
-	////resize the surface to the appropriate size
-	//var _resize = surface_create(FIGHTER_SPR_W,FIGHTER_SPR_H);
-	//surface_set_target(_resize);
-	//draw_surface_stretched(sur,0,0,FIGHTER_SPR_W,FIGHTER_SPR_H);
-	//surface_reset_target();
+	//add enemy to surface
+	with(obj_merge_nme)
+	{	
+		x -= (other._screenw-FIGHTER_SPR_W)/2;
+		y -= (other._screenh-FIGHTER_SPR_H)/2;
+		draw_self();
+	}
+	surface_reset_target();
 	
 	//save sprite into the player
 	var _spr = sprite_create_from_surface(sur,0,0,FIGHTER_SPR_W,FIGHTER_SPR_H,0,0,FIGHTER_SPR_W/2,FIGHTER_SPR_H/2);
@@ -48,7 +47,6 @@ function finish()
 	
 	//free
 	surface_free(sur);
-	//surface_free(_resize);
 	
 	obj_game.finish_merge();
 }

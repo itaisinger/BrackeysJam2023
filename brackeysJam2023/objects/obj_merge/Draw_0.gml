@@ -2,7 +2,12 @@
 if(sur == -1)
 	sur_init();
 
-draw_surface(sur,(_screenw-FIGHTER_SPR_W)/2,(_screenh-FIGHTER_SPR_H)/2);
+var _x1 = (_screenw-FIGHTER_SPR_W)/2;
+var _y1 = (_screenh-FIGHTER_SPR_H)/2;
+draw_set_alpha(0.4);
+draw_rectangle(_x1,_y1,_x1+FIGHTER_SPR_W,_y1+FIGHTER_SPR_H,0)
+draw_set_alpha(1);
+draw_surface(sur,_x1,_y1);;
 
 //instructions
 arr = ["resize and rotate with arrow keys","flip with mouse buttons","press enter to confirm"];
