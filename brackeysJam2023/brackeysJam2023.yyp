@@ -67,6 +67,7 @@
     {"id":{"name":"scribble_super_create","path":"scripts/scribble_super_create/scribble_super_create.yy",},"order":0,},
     {"id":{"name":"__init_d3d","path":"scripts/__init_d3d/__init_d3d.yy",},"order":0,},
     {"id":{"name":"obj_combat_ui","path":"objects/obj_combat_ui/obj_combat_ui.yy",},"order":0,},
+    {"id":{"name":"spr_healthbar","path":"sprites/spr_healthbar/spr_healthbar.yy",},"order":0,},
     {"id":{"name":"spr_hand2","path":"sprites/spr_hand2/spr_hand2.yy",},"order":0,},
     {"id":{"name":"scribble_super_clear","path":"scripts/scribble_super_clear/scribble_super_clear.yy",},"order":0,},
     {"id":{"name":"scribble_anim_wave","path":"scripts/scribble_anim_wave/scribble_anim_wave.yy",},"order":0,},
@@ -248,13 +249,13 @@
     {"id":{"name":"rm_combat","path":"rooms/rm_combat/rm_combat.yy",},"order":0,},
   ],
   "RoomOrderNodes": [
-    {"roomId":{"name":"rm_yehudadev","path":"rooms/rm_yehudadev/rm_yehudadev.yy",},},
     {"roomId":{"name":"rm_menu","path":"rooms/rm_menu/rm_menu.yy",},},
     {"roomId":{"name":"rm_merge","path":"rooms/rm_merge/rm_merge.yy",},},
     {"roomId":{"name":"rm_combat","path":"rooms/rm_combat/rm_combat.yy",},},
     {"roomId":{"name":"rm_map","path":"rooms/rm_map/rm_map.yy",},},
     {"roomId":{"name":"rm_end","path":"rooms/rm_end/rm_end.yy",},},
     {"roomId":{"name":"rm_win","path":"rooms/rm_win/rm_win.yy",},},
+    {"roomId":{"name":"rm_yehudadev","path":"rooms/rm_yehudadev/rm_yehudadev.yy",},},
   ],
   "TextureGroups": [
     {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},

@@ -50,6 +50,7 @@
   "ResourceOrderSettings": [
     {"name":"scribble_super_create","order":1,"path":"scripts/scribble_super_create/scribble_super_create.yy",},
     {"name":"obj_combat_ui","order":3,"path":"objects/obj_combat_ui/obj_combat_ui.yy",},
+    {"name":"spr_healthbar","order":3,"path":"sprites/spr_healthbar/spr_healthbar.yy",},
     {"name":"spr_hand2","order":1,"path":"sprites/spr_hand2/spr_hand2.yy",},
     {"name":"scribble_anim_wave","order":7,"path":"scripts/scribble_anim_wave/scribble_anim_wave.yy",},
     {"name":"__scribble_config_defaults","order":2,"path":"scripts/__scribble_config_defaults/__scribble_config_defaults.yy",},
