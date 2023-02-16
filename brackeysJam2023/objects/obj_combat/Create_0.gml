@@ -83,20 +83,11 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 		
 		/// check if combat is done ///
 		
-		//player won
-		if(global.nme_struct.hp <= 0)
+		if(global.player_struct.hp <= 0 or global.nme_struct.hp <= 0)
 		{
-			obj_combat_ui.merge_offer();
+			state = COMBAT_STATES.end_loop;
 			return;
 		}
-		
-		//player lost
-		else if(global.player_struct.hp <= 0)
-		{
-			obj_game.combat_lost();
-			return;
-		}
-		
 		
 		/// play out next action ///	
 		
@@ -152,12 +143,17 @@ arr_states_functions[COMBAT_STATES.end_loop] = function()
 {
 	//player won
 	if(global.nme_struct.hp <= 0)
+	{
+		state = COMBAT_STATES.off;
 		obj_combat_ui.merge_offer();
-		
+	}	
 	//player lost
 	else if(global.player_struct.hp <= 0)
+	{
+		state = COMBAT_STATES.off;
 		obj_game.combat_lost();
-		
+	}
+	
 	else state = COMBAT_STATES.choose_action;
 }
 
@@ -166,13 +162,3 @@ function init()
 {
 	state = COMBAT_STATES.init;
 }
-
-
-#region ability scripts
-
-//these scripts are initizlised here so that they would be bound to this object.
-//this can be workarouned by just having them use obj_combat.current_fighter every time, but fuck it.
-
-//cancelled
-
-#endregion

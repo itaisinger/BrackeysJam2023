@@ -36,7 +36,6 @@ function generate_run()
 	{
 		ds_list_add(global.list_encounters,create_base_fighter(irandom(FIGHTERS.maxx-1)));
 	}
-	global.list_encounters[|0] = create_base_fighter(FIGHTERS.leg)
 }
 
 
