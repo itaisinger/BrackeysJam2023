@@ -1,10 +1,11 @@
 /*/
-this object handles the player action buttons
+this object handles the merge offer choices
 
-side bar:
- - attack
- - item
- - action(?)
+merge? yes\no
+choose organ
+choose attack\item to take
+choose spot to insert
+
 
 buttons are created with the instance_create and a struct
 
@@ -13,27 +14,18 @@ use change_menu(menu) to replace the current buttons with new oens.
 /*/
 
 
-list_buttons_insts = ds_list_create();	//holds the current main buttons
-list_buttons_side = ds_list_create();
+list_buttons_insts = ds_list_create();	//holds the current buttons
 
-menu_side	 = ds_list_create();
-menu_attacks = ds_list_create();
-menu_items   = ds_list_create();
-menu_actions = ds_list_create();
+menu = ds_list_create();
 
-//side menu
-ds_list_add(menu_side,button("attacks"	,function(){change_menu(menu_attacks)}));
-ds_list_add(menu_side,button("items"	,function(){change_menu(menu_items)}));
-//ds_list_add(menu_side,button("actions"	,function(){change_menu(menu_actions)}));
+//menu yes\no
+ds_list_add(menu,button("YES",function(){next_stage();}));
+ds_list_add(menu,button("NO",function(){obj_game.combat_won();}));
 
 
 //logic
-attack_index = -1;
-item_index = -1;
-player_struct = {
-	arr_attacks : [],
-	arr_items : [],
-};
+stage = 0;
+organ_to_merge = noone;
 
 //methods
 function change_menu(menu)
@@ -93,43 +85,45 @@ function update_player(player)
 	
 	change_menu(menu_attacks);
 }
-function activate()
+
+function next_stage()
 {
-	//activate if the player is now choosing attacks normally, otherwise skip this.
-	if(global.player_struct.get_action != bhvr_player)
-		return;
-	
-	attack_index = -1;
-	item_index = -1;
-	change_menu(menu_attacks);
-}
-function get_action_index()
-{
-	//called by the player structs
-	//returns an attack/item index, and the player get_action function makes sense out of it.
-	return attack_index != -1 ? attack_index : array_length(player_struct.arr_attacks) + item_index;
-}
-function is_action_chosen()
-{
-	return attack_index != -1 or item_index != -1
+	stage++;
+	switch stage
+	{
+		#region yes or not
+		case 0:
+			
+			change_menu(menu)
+			
+		break;
+		#endregion
+		#region choose organ
+		case 1:
+		
+		//populate organ list
+		ds_list_clear(menu);
+		var _organ = global.nme_struct.arr_children;
+		for(var i=0; i < array_length(_organ); i++)
+		{
+			ds_list_add(menu,button(_organ.name,function(){organ_to_merge = global.nme_struct.arr_children[other.i]}))	/// ????? does other works to get back to the scope the function was run from?
+			menu[|i].i = i;
+		}
+		
+		change_menu(menu);
+		
+		break;
+		#endregion
+		#region choose attack\item to take
+		case 2:
+		
+		break;
+		#endregion
+		#region choose spot to insert
+		case 3:
+		
+		break;
+		#endregion
+	}
 }
 
-function init_side_menu()
-{
-	//clear
-	while(ds_list_size(list_buttons_side))
-	{
-		instance_destroy(list_buttons_side[|0]);
-		ds_list_delete(list_buttons_side,0);
-	}
-	
-	//repopulate
-	for(var i=0; i < ds_list_size(menu_side); i++)
-	{
-		ds_list_add(list_buttons_side,instance_create_depth(x - 170,y + 39*i,0,obj_button,menu_side[|i]));
-		list_buttons_side[|i].margin -= 2;
-		list_buttons_side[|i].set_size(150,33);
-	}
-}
-change_menu(menu_attacks);
-init_side_menu();

@@ -153,6 +153,7 @@
     {"id":{"name":"spr_types","path":"sprites/spr_types/spr_types.yy",},"order":0,},
     {"id":{"name":"spr_leg3","path":"sprites/spr_leg3/spr_leg3.yy",},"order":0,},
     {"id":{"name":"scribble_anim_jitter","path":"scripts/scribble_anim_jitter/scribble_anim_jitter.yy",},"order":0,},
+    {"id":{"name":"obj_merge_menu","path":"objects/obj_merge_menu/obj_merge_menu.yy",},"order":0,},
     {"id":{"name":"__scribble_class_null_element","path":"scripts/__scribble_class_null_element/__scribble_class_null_element.yy",},"order":0,},
     {"id":{"name":"scribble_anim_shake","path":"scripts/scribble_anim_shake/scribble_anim_shake.yy",},"order":0,},
     {"id":{"name":"scribble_typewriter_add_character_delay","path":"scripts/scribble_typewriter_add_character_delay/scribble_typewriter_add_character_delay.yy",},"order":0,},

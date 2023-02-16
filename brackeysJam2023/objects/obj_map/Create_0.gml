@@ -28,8 +28,8 @@ arr_stage_functions[MAP_STAGES.start] = function()
 	if(obj_camera.zoom == obj_camera.zoom_dest)
 		stage = MAP_STAGES.zoom_out;
 	
-	player.xscale = approach(player.xscale,wave(1.1,0.9,2,0),anim_spd);
-	player.yscale = approach(player.yscale,wave(0.9,1.1,2,0),anim_spd);
+	player.xscale = approach(player.xscale,wave(1.05,0.95,2,0),anim_spd);
+	player.yscale = approach(player.yscale,wave(0.95,1.05,2,0),anim_spd);
 }
 arr_stage_functions[MAP_STAGES.zoom_out] = function()
 {
@@ -39,7 +39,7 @@ arr_stage_functions[MAP_STAGES.zoom_out] = function()
 		eyes_remain = 0;
 		var _children = player_struct.arr_children;
 		for (var i = 0; i < array_length(_children); ++i) {
-		    if(_children[i] == TYPES.eye)
+		    if(_children[i].type == TYPES.eye)
 				eyes_remain++;
 		}
 		
@@ -59,8 +59,8 @@ arr_stage_functions[MAP_STAGES.zoom_out] = function()
 		}
 	}
 	
-	player.xscale = approach(player.xscale,wave(1.1,0.9,2,0),anim_spd);
-	player.yscale = approach(player.yscale,wave(0.9,1.1,2,0),anim_spd);
+	player.xscale = approach(player.xscale,wave(1.05,0.95,2,0),anim_spd);
+	player.yscale = approach(player.yscale,wave(0.95,1.05,2,0),anim_spd);
 }
 arr_stage_functions[MAP_STAGES.walk] = function()
 {
@@ -74,10 +74,8 @@ arr_stage_functions[MAP_STAGES.walk] = function()
 	player.yprog = approach(player.yprog,1, 0.01)
 	player.y = lerp(player.ystart,player.ydest, player.yprog)
 	
-	log(player.ydest - player.y);
-	
-	player.xscale = approach(player.xscale,wave(1.3,0.7,1,0),anim_spd);
-	player.yscale = approach(player.yscale,wave(0.7,1.3,1,0),anim_spd);
+	player.xscale = approach(player.xscale,wave(1.15,0.85,1,0),anim_spd);
+	player.yscale = approach(player.yscale,wave(0.85,1.15,1,0),anim_spd);
 	//player.angle = approach(player.angle,wave(-25,25,2,0),anim_spd);
 	
 	if(player.y == player.ydest)
@@ -85,8 +83,8 @@ arr_stage_functions[MAP_STAGES.walk] = function()
 }
 arr_stage_functions[MAP_STAGES.endd] = function()
 {
-	player.xscale = approach(player.xscale,wave(1.1,0.9,2,0),anim_spd);
-	player.yscale = approach(player.yscale,wave(0.9,1.1,2,0),anim_spd);
+	player.xscale = approach(player.xscale,wave(1.05,0.95,2,0),anim_spd);
+	player.yscale = approach(player.yscale,wave(0.95,1.05,2,0),anim_spd);
 	player.angle = approach(player.angle,0,anim_spd*0.3);
 	
 	if(stage_changed)

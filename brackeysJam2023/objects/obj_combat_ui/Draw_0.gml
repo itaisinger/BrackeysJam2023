@@ -43,10 +43,5 @@ draw_panel(_pos[0],_pos[1],500,60,c_col1,c_col1);
 draw_text_scribble(_pos[0]+10,_pos[1]+10,current_main_text,typer_count);
 draw_text(500,2,ds_queue_size(global.queue_messages))
 
-//draw merge offer
-draw_set_all(merge_que_a,c_black,font_merge,fa_center,fa_middle)
-_pos = positions.merge_que;
-draw_text_scribble(_pos[0],_pos[1],"INITIATE MERGE?",typer_count);
-draw_text(500,2,ds_queue_size(global.queue_messages))
 
 draw_reset();

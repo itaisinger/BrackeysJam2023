@@ -18,5 +18,6 @@ for(var i=0; i < _num; i++)
 }
 
 // draw player
+var _s = 0.3;
 draw_sprite_ext(player_struct.sprite,0,
-				player.x,player.y,player.xscale,player.yscale,player.angle,c_white,1)
+				player.x,player.y,player.xscale*_s,player.yscale*_s,player.angle,c_white,1)

@@ -21,8 +21,11 @@ function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _acti
 		
 		
 		arr_types : array_create(3,0),	//array of 0-1 for each type, representing %.
-		arr_children : [],
+		arr_children : [],				//children structs are inserted. used to calculate types.
 		max_items : 1,
+		
+		//misc
+		//arr_children_fighters_structs : [],	//base fighters are inserted when enemies are created, so their data could be used to merge with.
 		
 		//methods
 		damage	: function(dmg,_type=TYPES.none)		//returns how much damage was done
@@ -62,7 +65,10 @@ function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _acti
 			hp = max_hp * _hp_remain_prec;
 			
 			speed = (speed + child.speed)/2;
-			array_push(arr_children,child.type);	//will crash if trying to merge a non base fighter.
+			accuracy = (accuracy + child.accuracy)/2
+			
+			array_push(arr_children,child);	
+			
 			update_types();
 			//attacks and item merges are called by set_attack and set_item.
 			
@@ -72,7 +78,7 @@ function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _acti
 				//count hands
 				var _cnt = 0;
 				for (var i = 0; i < array_length(arr_children); ++i) {
-				    _cnt += arr_children[i] == TYPES.hand;
+				    _cnt += arr_children[i].type == TYPES.hand;
 				}
 				
 				max_items = min(4,1 + floor(_cnt/2));
@@ -103,7 +109,7 @@ function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _acti
 			var _types_cnt = array_create(TYPES_NUM,0);
 			for(var i=0; i < _childs_num; i++)
 			{
-				_types_cnt[arr_children[i]]++;
+				_types_cnt[arr_children[i].type]++;
 			}
 			
 			//loop through types.
@@ -146,7 +152,7 @@ function base_fighter(_name, _sprite, _hp, _speed, _accuracy, _type, _attacks, _
 	
 	var _f =  fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _action)
 	_f.type = _type
-	_f.arr_children[0] = _type;
+	_f.arr_children[0] = _f;
 	_f.update_types();
 	
 	return _f;
