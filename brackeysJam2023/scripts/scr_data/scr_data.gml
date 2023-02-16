@@ -38,8 +38,6 @@ enum FIGHTER_ACC{
 #macro MISS_CHANCE 0.05
 #macro CRIT_MULT 2
 
-
-
 /// ability scripts
 global.map_abilities = ds_map_create();
 global.map_abilities[? "heal"] = function(amnt=10)
@@ -96,9 +94,9 @@ global.map_attacks[? "fetus"]			= attack("fetus",							1,	TYPES.leg,	ATT_SPEEDS
 global.map_attacks[? "grow"]			= attack("grow",							0,	TYPES.leg,	0,					100,			global.map_abilities[?"add heal"])
 global.map_attacks[? "thunder"]			= attack("zues's thuder",					20, TYPES.eye, -20)
 global.map_attacks[? "laser beam"]		= attack("laser beam",						5,	TYPES.eye,  ATT_SPEEDS.priority)
-global.map_attacks[? "run over"]        = attack("run over",                        15, TYPES.leg, ATT_SPEEDS.slow)
+global.map_attacks[? "run over"]        = attack("run over",                        15, TYPES.leg,	ATT_SPEEDS.slow)
 global.map_attacks[? "add fuel"]		= attack("add fuel",						0,	TYPES.none, 0,					100,			global.map_abilities[? "add fuel"])
-global.map_attacks[? "plunge"]          = attack("plunge",                          8,  TYPES.hand, 0,                  100,          function(){global.map_abilities[? "lower nme speed"](10)})
+global.map_attacks[? "plunge"]          = attack("plunge",                          8,  TYPES.hand, 0,                  100,			function(){global.map_abilities[? "lower nme speed"](10)})
 global.map_attacks[? "charge cannon"]	= attack("charge cannon",					0,	TYPES.none,	0,					100,			function(){global.map_abilities[?"charge"](global.map_attacks[?"cannon"])})
 
 //type matchups
@@ -114,7 +112,6 @@ global.type_matchups[# TYPES.leg,	TYPES.eye]	= NOT_EFFECTIVE;
 global.type_matchups[# TYPES.leg,	TYPES.leg]	= 1;
 global.type_matchups[# TYPES.hand,	TYPES.hand]	= 1;
 global.type_matchups[# TYPES.eye,	TYPES.eye]	= 1;
-
 
 // fighters list
 enum FIGHTERS{

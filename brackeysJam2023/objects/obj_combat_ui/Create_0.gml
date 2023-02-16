@@ -10,14 +10,13 @@ positions = {
 
 //main message typer
 global.queue_messages = ds_queue_create();
+global.messages_skippable = 1;
 typer_count = 0;
 current_main_text = "";
 typer_cd = 3;
 alarm[0] = 1;
 
-merge_que_a = 0;
 main_text_a = 1;
-combat_done = 0;
 
 /// create fighters display
 with(instance_create_depth(positions.player[0],positions.player[1],0,obj_fighter_display)) set_fighter(global.player_struct);
@@ -38,6 +37,9 @@ function progress_messages()
 	}
 	typer_count = 0;
 	
+	if(current_main_text == "INITIATE MERGE?")
+		global.messages_skippable = 0;
+	
 }
 function merge_offer()
 {
@@ -46,10 +48,8 @@ function merge_offer()
 	
 	//question
 	add_main_message(global.nme_struct.name + " fainted!")
-	add_main_message("INITIATE MERGE?")
 	
 	//create merge offer
 	instance_create_depth(positions.merge[0],positions.merge[1],0,obj_merge_menu);
-	
 
 }
