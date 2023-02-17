@@ -131,6 +131,7 @@
     {"name":"scribble_anim_jitter","order":2,"path":"scripts/scribble_anim_jitter/scribble_anim_jitter.yy",},
     {"name":"obj_merge_menu","order":2,"path":"objects/obj_merge_menu/obj_merge_menu.yy",},
     {"name":"__scribble_class_null_element","order":4,"path":"scripts/__scribble_class_null_element/__scribble_class_null_element.yy",},
+    {"name":"spr_healthbarbackground","order":4,"path":"sprites/spr_healthbarbackground/spr_healthbarbackground.yy",},
     {"name":"scribble_anim_shake","order":6,"path":"scripts/scribble_anim_shake/scribble_anim_shake.yy",},
     {"name":"scribble_typewriter_add_character_delay","order":6,"path":"scripts/scribble_typewriter_add_character_delay/scribble_typewriter_add_character_delay.yy",},
     {"name":"round_chance","order":2,"path":"scripts/round_chance/round_chance.yy",},
