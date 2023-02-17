@@ -55,7 +55,7 @@ function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _acti
 			array_push(arr_items,_item);
 			return true;
 		},
-		merge_child : function(child) //send in a fighter to merge it into me
+		merge_child : function(child, auto_merge_sprites=0) //send in a fighter to merge it into me
 		{	
 			///@param child_fighter
 			
@@ -87,6 +87,10 @@ function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _acti
 				//3-4: 3
 				//4-5: 4
 			}
+			
+			//sprite
+			if(auto_merge_sprites)
+				obj_sprite_merger.get_merged_sprite(self,child.sprite);
 		},
 		set_attack : function(_attack,_pos)
 		{
