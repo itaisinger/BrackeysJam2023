@@ -70,6 +70,7 @@
     {"name":"spr_mouth2","order":7,"path":"sprites/spr_mouth2/spr_mouth2.yy",},
     {"name":"scribble_font_force_bilinear_filtering","order":8,"path":"scripts/scribble_font_force_bilinear_filtering/scribble_font_force_bilinear_filtering.yy",},
     {"name":"scribble_external_sound_remove","order":2,"path":"scripts/scribble_external_sound_remove/scribble_external_sound_remove.yy",},
+    {"name":"obj_sprite_merger","order":4,"path":"objects/obj_sprite_merger/obj_sprite_merger.yy",},
     {"name":"obj_combat","order":3,"path":"objects/obj_combat/obj_combat.yy",},
     {"name":"__scribble_class_page","order":5,"path":"scripts/__scribble_class_page/__scribble_class_page.yy",},
     {"name":"__scribble_font_add_all_from_project","order":5,"path":"scripts/__scribble_font_add_all_from_project/__scribble_font_add_all_from_project.yy",},

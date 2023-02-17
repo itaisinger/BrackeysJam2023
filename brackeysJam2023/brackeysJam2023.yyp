@@ -96,6 +96,7 @@
     {"id":{"name":"obj_map","path":"objects/obj_map/obj_map.yy",},"order":1,},
     {"id":{"name":"font_button","path":"fonts/font_button/font_button.yy",},"order":0,},
     {"id":{"name":"scr_interface","path":"scripts/scr_interface/scr_interface.yy",},"order":0,},
+    {"id":{"name":"obj_sprite_merger","path":"objects/obj_sprite_merger/obj_sprite_merger.yy",},"order":0,},
     {"id":{"name":"obj_combat","path":"objects/obj_combat/obj_combat.yy",},"order":0,},
     {"id":{"name":"__scribble_class_page","path":"scripts/__scribble_class_page/__scribble_class_page.yy",},"order":0,},
     {"id":{"name":"__scribble_font_add_all_from_project","path":"scripts/__scribble_font_add_all_from_project/__scribble_font_add_all_from_project.yy",},"order":0,},

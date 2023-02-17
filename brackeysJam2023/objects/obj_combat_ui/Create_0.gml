@@ -1,6 +1,6 @@
 positions = {
-	player :		[room_width/3, room_height/2],
-	nme :			[room_width/1.5, room_height/2],
+	player :		[room_width*0.25, room_height*0.4],
+	nme :			[room_width*0.75, room_height*0.4],
 	main_text :		[room_width*0.5-250,room_height * 0.6],
 	player_menu :	[room_width*0.5-250,room_height * 0.7],
 	merge :			[room_width/2, room_height/1.5],

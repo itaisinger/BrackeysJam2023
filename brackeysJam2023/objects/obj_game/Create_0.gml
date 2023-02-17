@@ -7,7 +7,7 @@ global.player_struct = fighter("yossi",spr_hand1,100,10,FIGHTER_ACC.mid,
 					[item("messanger",0,function(){show_message("the messanger!")}),
 					item("heal",1,function(){global.map_abilities[?"heal"](10)},0,-20)],
 					bhvr_player);
-					
+
 global.nme_struct = -1;
 
 global.player_struct.merge_child(get_base_fighter(FIGHTERS.eye));
@@ -18,6 +18,7 @@ global.player_struct.merge_child(get_base_fighter(FIGHTERS.hand));
 
 //create objs
 instance_create_depth(x,y,0,obj_mouse);
+instance_create_depth(x,y,0,obj_sprite_merger);
 
 /*/
 globals to set:
@@ -35,6 +36,11 @@ function generate_run()
 	repeat(10)
 	{
 		ds_list_add(global.list_encounters,create_base_fighter(irandom(FIGHTERS.maxx-1)));
+		
+		repeat(irandom_range(2,4))
+		{
+			global.list_encounters[|ds_list_size(global.list_encounters)-1].merge_child(get_base_fighter(irandom(FIGHTERS.maxx-1)),true);
+		}
 	}
 }
 
@@ -48,11 +54,13 @@ function start_run()
 }
 function start_combat()
 {
+	obj_music.change_music(ost_combat);
 	global.nme_struct = global.list_encounters[|global.current_floor]
 	room_goto(rm_combat);
 }
 function combat_won()
 {
+	obj_music.change_music(ost_menu);
 	global.current_floor++;
 	
 	//end game
@@ -72,6 +80,7 @@ function combat_lost()
 }
 function start_merge()
 {
+	obj_music.change_music(ost_menu);
 	room_goto(rm_merge);
 }
 function finish_merge()
