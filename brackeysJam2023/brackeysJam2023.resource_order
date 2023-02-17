@@ -196,6 +196,7 @@
     {"name":"obj_camera","order":1,"path":"objects/obj_camera/obj_camera.yy",},
     {"name":"spr_leg1","order":2,"path":"sprites/spr_leg1/spr_leg1.yy",},
     {"name":"scribble_is_text_element","order":4,"path":"scripts/scribble_is_text_element/scribble_is_text_element.yy",},
+    {"name":"scr_sfx","order":8,"path":"scripts/scr_sfx/scr_sfx.yy",},
     {"name":"__scribble_class_event","order":1,"path":"scripts/__scribble_class_event/__scribble_class_event.yy",},
     {"name":"approach","order":1,"path":"scripts/approach/approach.yy",},
     {"name":"sfx_wierdsound","order":3,"path":"sounds/sfx_wierdsound/sfx_wierdsound.yy",},
