@@ -37,7 +37,7 @@ function generate_run()
 	{
 		ds_list_add(global.list_encounters,create_base_fighter(irandom(FIGHTERS.maxx-1)));
 		
-		repeat(irandom_range(2,4))
+		repeat(irandom_range(1,3))
 		{
 			global.list_encounters[|ds_list_size(global.list_encounters)-1].merge_child(get_base_fighter(irandom(FIGHTERS.maxx-1)),true);
 		}

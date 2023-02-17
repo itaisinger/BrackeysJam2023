@@ -4,7 +4,7 @@
 //var _hp		= my_fighter.hp;
 //var _max_hp = my_fighter.max_hp;
 var _text_offset = 50;
-var healthbar_w = 300;
+var healthbar_w = 3 * my_fighter.max_hp;
 var healthbar_h = 15;
 draw_set_halign(fa_center);
 draw_set_color(c_white);
