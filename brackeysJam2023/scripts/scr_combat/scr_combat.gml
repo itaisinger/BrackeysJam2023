@@ -206,8 +206,13 @@ function get_base_fighter(fighter_index) constructor
 function create_base_fighter(fighter_index) constructor
 {
 	var source = global.list_fighters[|fighter_index];
+
 	var copy = fighter(source.name,source.sprite,source.hp,source.speed,source.accuracy,
-					   source.arr_attacks,source.arr_items,source.get_action);
+					   [],[],source.get_action);
+					   
+	array_copy(copy.arr_attacks,0,source.arr_attacks,0,array_length(source.arr_attacks))
+	array_copy(copy.arr_items,0,source.arr_items,0,array_length(source.arr_items))
+	
 	copy.type = source.type;
 	copy.merge_stats(source);
 	return copy;
