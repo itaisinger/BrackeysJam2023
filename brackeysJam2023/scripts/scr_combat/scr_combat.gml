@@ -66,7 +66,7 @@ function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _acti
 			array_push(arr_items,_item);
 			return true;
 		},
-		merge_child : function(child, auto_merge_sprites=0) //send in a fighter to merge it into me
+		merge_stats : function(child, auto_merge_sprites=0) //send in a fighter to merge it into me
 		{	
 			///@param child_fighter
 			
@@ -102,6 +102,33 @@ function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _acti
 			//sprite
 			if(auto_merge_sprites)
 				obj_sprite_merger.get_merged_sprite(self,child.sprite);
+		},
+		merge_auto : function(child)
+		{
+			//stats
+			merge_stats(child);
+			
+			//sprite
+			obj_sprite_merger.get_merged_sprite(self,child.sprite);
+			
+			//add attack or item
+			var _att_num = array_length(child.arr_attacks), _item_num = array_length(child.arr_items);
+			var _rand = irandom(_att_num + _item_num - 1);
+			
+			//take attack
+			if(_rand < _att_num)
+			{
+				var _pos = array_length(arr_attacks);
+				if(_pos >= MAX_ATTACKS)
+					_pos = irandom(_pos-1);
+					
+				set_attack(child.arr_attacks[_rand],_pos);
+			}
+			//take item
+			else
+			{
+				add_item(child.arr_items[_rand-_att_num]);
+			}
 		},
 		set_attack : function(_attack,_pos)
 		{
@@ -182,7 +209,7 @@ function create_base_fighter(fighter_index) constructor
 	var copy = fighter(source.name,source.sprite,source.hp,source.speed,source.accuracy,
 					   source.arr_attacks,source.arr_items,source.get_action);
 	copy.type = source.type;
-	copy.merge_child(source);
+	copy.merge_stats(source);
 	return copy;
 }
 function attack(_name, _damage,  _type=TYPES.none,_speed_add=0, _acc=100, _ability=function(){}) constructor

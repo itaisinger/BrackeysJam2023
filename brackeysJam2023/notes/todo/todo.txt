@@ -7,4 +7,4 @@ ost
 //////////////////
 
 accuracy:
-make nme merge take attacks
+heal misses

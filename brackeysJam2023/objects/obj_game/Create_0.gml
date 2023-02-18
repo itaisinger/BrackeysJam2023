@@ -2,19 +2,16 @@ game_init();
 randomise();
 
 //text:
-global.player_struct = fighter("yossi",spr_hand1,100,10,FIGHTER_ACC.mid,
-					[global.map_attacks[?"punch"],global.map_attacks[?"kick"],global.map_attacks[?"cannon"],global.map_attacks[?"scrutinize"]],
-					[item("messanger",0,function(){show_message("the messanger!")}),
-					item("heal",1,function(){global.map_abilities[?"heal"](10)},0,-20)],
-					bhvr_player);
+//global.player_struct = fighter("yossi",spr_hand1,100,10,FIGHTER_ACC.mid,
+//					[global.map_attacks[?"punch"],global.map_attacks[?"kick"],global.map_attacks[?"cannon"],global.map_attacks[?"scrutinize"]],
+//					[item("messanger",0,function(){show_message("the messanger!")}),
+//					item("heal",1,function(){global.map_abilities[?"heal"](10)},0,-20)],
+//					bhvr_player);
+
+global.player_struct = create_base_fighter(FIGHTERS.hand);
+global.player_struct.get_action = bhvr_player;
 
 global.nme_struct = -1;
-
-global.player_struct.merge_child(get_base_fighter(FIGHTERS.eye));
-global.player_struct.merge_child(get_base_fighter(FIGHTERS.hand));
-global.player_struct.merge_child(get_base_fighter(FIGHTERS.hand));
-global.player_struct.merge_child(get_base_fighter(FIGHTERS.hand));
-global.player_struct.merge_child(get_base_fighter(FIGHTERS.hand));
 
 //create objs
 instance_create_depth(x,y,0,obj_mouse);
@@ -41,7 +38,7 @@ function generate_run()
 		
 		repeat(irandom_range(max(0,floor(_max_merge-2)),floor(_max_merge)))
 		{
-			global.list_encounters[|ds_list_size(global.list_encounters)-1].merge_child(get_base_fighter(irandom(FIGHTERS.maxx-1)),true);
+			global.list_encounters[|ds_list_size(global.list_encounters)-1].merge_auto(get_base_fighter(irandom(FIGHTERS.maxx-1)),true);
 		}
 	}
 }

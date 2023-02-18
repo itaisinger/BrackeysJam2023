@@ -102,6 +102,11 @@ function activate()
 	attack_index = -1;
 	item_index = -1;
 	change_menu(menu_attacks);
+	
+	//enable side menu
+	for (var i = 0; i < ds_list_size(list_buttons_side); ++i) {
+	    list_buttons_side[|i].state = BUTTON_STATES.natural;
+	}
 }
 function get_action_index()
 {
