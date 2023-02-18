@@ -33,11 +33,13 @@ function generate_run()
 {
 	ds_list_destroy(global.list_encounters);
 	global.list_encounters = ds_list_create();
+	var _max_merge = 0;
 	repeat(10)
 	{
+		_max_merge += 0.4;
 		ds_list_add(global.list_encounters,create_base_fighter(irandom(FIGHTERS.maxx-1)));
 		
-		repeat(irandom_range(1,3))
+		repeat(irandom_range(max(0,floor(_max_merge-2)),floor(_max_merge)))
 		{
 			global.list_encounters[|ds_list_size(global.list_encounters)-1].merge_child(get_base_fighter(irandom(FIGHTERS.maxx-1)),true);
 		}
@@ -63,6 +65,7 @@ function combat_won()
 {
 	obj_music.change_music(ost_menu);
 	global.current_floor++;
+	global.player_struct.heal_relative(0.1);
 	
 	//end game
 	if(global.current_floor >= ds_list_size(global.list_encounters))

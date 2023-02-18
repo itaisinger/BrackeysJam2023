@@ -14,6 +14,10 @@ switch (room) {
 	case rm_end:
 		obj_fighter_display.set_fighter(global.nme_struct);
 		break;
+	///////////
+	case rm_win:
+		obj_fighter_display.set_fighter(global.player_struct);
+		break;
     default:
         // code here
         break;

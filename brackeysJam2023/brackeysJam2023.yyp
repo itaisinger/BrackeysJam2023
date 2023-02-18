@@ -3,6 +3,7 @@
   "resourceVersion": "1.6",
   "name": "brackeysJam2023",
   "resources": [
+    {"id":{"name":"spr_run_win","path":"sprites/spr_run_win/spr_run_win.yy",},"order":2,},
     {"id":{"name":"scribble_super_create","path":"scripts/scribble_super_create/scribble_super_create.yy",},"order":0,},
     {"id":{"name":"__init_d3d","path":"scripts/__init_d3d/__init_d3d.yy",},"order":0,},
     {"id":{"name":"obj_combat_ui","path":"objects/obj_combat_ui/obj_combat_ui.yy",},"order":0,},
@@ -78,6 +79,7 @@
     {"id":{"name":"__scribble_system","path":"scripts/__scribble_system/__scribble_system.yy",},"order":0,},
     {"id":{"name":"smooth_approach","path":"scripts/smooth_approach/smooth_approach.yy",},"order":0,},
     {"id":{"name":"string_split","path":"scripts/string_split/string_split.yy",},"order":0,},
+    {"id":{"name":"obj_run_win","path":"objects/obj_run_win/obj_run_win.yy",},"order":2,},
     {"id":{"name":"scribble_font_exists","path":"scripts/scribble_font_exists/scribble_font_exists.yy",},"order":0,},
     {"id":{"name":"font_merge","path":"fonts/font_merge/font_merge.yy",},"order":1,},
     {"id":{"name":"spr_mouth1","path":"sprites/spr_mouth1/spr_mouth1.yy",},"order":0,},
@@ -168,6 +170,7 @@
     {"id":{"name":"scr_setup","path":"scripts/scr_setup/scr_setup.yy",},"order":0,},
     {"id":{"name":"obj_camera","path":"objects/obj_camera/obj_camera.yy",},"order":2,},
     {"id":{"name":"spr_leg1","path":"sprites/spr_leg1/spr_leg1.yy",},"order":0,},
+    {"id":{"name":"spr_press_space","path":"sprites/spr_press_space/spr_press_space.yy",},"order":3,},
     {"id":{"name":"scribble_is_text_element","path":"scripts/scribble_is_text_element/scribble_is_text_element.yy",},"order":0,},
     {"id":{"name":"obj_merge_nme","path":"objects/obj_merge_nme/obj_merge_nme.yy",},"order":4,},
     {"id":{"name":"obj_merge","path":"objects/obj_merge/obj_merge.yy",},"order":3,},

@@ -50,6 +50,17 @@ function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _acti
 			hp = min(max_hp,hp+amnt)
 			return hp - hpprev;
 			},
+		heal_relative: function(precent) //returns how much hp was healed
+		{
+			///@param precent[0-1]
+			var _to_heal = precent * max_hp;
+			
+			var _hpprev = hp;
+			
+			hp = min(max_hp,hp+_to_heal);
+			
+			return hp - _hpprev;
+		},
 		add_item: function(_item){	//returns whether the item was added or not
 			if(array_length(arr_items) >= 4) return false;
 			array_push(arr_items,_item);
