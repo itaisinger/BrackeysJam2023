@@ -1,8 +1,4 @@
 // itai
-combat logic
-	acc
-
-move to trello
 
 // yehuda
 ost
@@ -11,5 +7,4 @@ ost
 //////////////////
 
 accuracy:
-add stat in fighters class
-add stat in attacks 
+heal misses

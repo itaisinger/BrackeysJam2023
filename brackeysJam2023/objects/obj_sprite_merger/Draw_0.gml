@@ -16,13 +16,13 @@ while(ds_queue_size(queue_merges))
 	    for (var j = 0; j < _gridh; ++j) {
 		    
 			//roll vars
-			_scale = random_range(0.5,2);
+			_scale = random_range(0.4,0.9);
 			_flipx = choose(-1,1);
 			_flipy = choose(-1,1);
 			_rot = random(360);
 			
 			//pos
-			_pos = [i * (_gridw/FIGHTER_SPR_W),j * (_gridw/FIGHTER_SPR_H)];
+			_pos = [i * (FIGHTER_SPR_W/_gridw),j * (FIGHTER_SPR_H/_gridh)];
 			_pos = [(_pos[0] + FIGHTER_SPR_W)/2,(_pos[1] + FIGHTER_SPR_H)/2];
 			
 			//draw
@@ -33,6 +33,7 @@ while(ds_queue_size(queue_merges))
 	
 	//save
 	var _spr = sprite_create_from_surface(_sur,0,0,FIGHTER_SPR_W,FIGHTER_SPR_H,0,0,FIGHTER_SPR_W/2,FIGHTER_SPR_H/2);
+	sprite_save(_spr,0,"hi.png");
 	_fighter.set_sprite(_spr);
 	
 	surface_reset_target();

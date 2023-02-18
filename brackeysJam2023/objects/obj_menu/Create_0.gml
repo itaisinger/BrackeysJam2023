@@ -54,7 +54,7 @@ function change_menu(menu)
 	var _margin = string_height("hi") * 1.4;
 	for(var i=0; i < ds_list_size(menu); i++)
 	{
-		ds_list_add(list_buttons_insts,instance_create_depth(room_width/2,_ystart + i*_margin,0,obj_button_menu,menu[|i]));
+		ds_list_add(list_buttons_insts,instance_create_depth(x,_ystart + i*_margin,0,obj_button_menu,menu[|i]));
 		list_buttons_insts[|i].font = font_menu;
 		list_buttons_insts[|i].margin = 3;
 		list_buttons_insts[|i].outline_w = 0;

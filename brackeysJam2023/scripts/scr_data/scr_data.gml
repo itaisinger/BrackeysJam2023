@@ -83,7 +83,8 @@ global.map_items[? "heal"] = item("heal",0,function(){global.map_abilities[? "he
 // attacks map
 global.map_attacks = ds_map_create();
 //					  data name					  ingame name						dmg type		speed				accuracy	ability
-global.map_attacks[? "cannon"]			= attack("almightly cannon of destruction",	100,TYPES.none,	20)
+global.map_attacks[? "cannon2"]			= attack("almightly cannon of destruction",	100,TYPES.none,	20)
+global.map_attacks[? "cannon"]			= attack("almightly cannon",				20,	TYPES.none,	0,					80)
 global.map_attacks[? "punch"]			= attack("punch",							10,	TYPES.hand)
 global.map_attacks[? "sweep"]			= attack("sweep",							13,	TYPES.hand,	-40)
 global.map_attacks[? "kick"]			= attack("kick",							13,	TYPES.leg,	ATT_SPEEDS.slow)

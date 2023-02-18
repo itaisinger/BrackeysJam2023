@@ -3,7 +3,7 @@ function game_init(){
 	
 	/// UI ELEMENTS MACROS ///
 	
-	global.color_1 = make_color_rgb(251,77,130);
+	global.color_1 = make_color_rgb(163,98,10);
 	global.color_2 = make_color_rgb(251,77,216);
 	global.color_3 = make_color_rgb(25,127,120);
 	
