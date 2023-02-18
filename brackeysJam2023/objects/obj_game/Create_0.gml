@@ -66,13 +66,11 @@ function start_run()
 }
 function start_combat()
 {
-	obj_music.change_music(ost_combat);
 	global.nme_struct = global.list_encounters[|global.current_floor]
 	room_goto(rm_combat);
 }
 function combat_won()
 {
-	obj_music.change_music(ost_menu);
 	global.current_floor++;
 	global.player_struct.heal_relative(0.1);
 	
@@ -93,7 +91,7 @@ function combat_lost()
 }
 function start_merge()
 {
-	obj_music.change_music(ost_menu);
+	global.player_struct.merge_stats(global.nme_struct);
 	room_goto(rm_merge);
 }
 function finish_merge()

@@ -1,4 +1,4 @@
-
+log(instance_number(obj_music));
 switch (room) {
     case rm_combat:
 		obj_music.change_music(ost_combat);
@@ -11,6 +11,10 @@ switch (room) {
 	case rm_menu:
 		obj_music.change_music(ost_menu);
 		obj_fighter_display.set_fighter(global.player_struct);
+		break;
+	////////////
+	case rm_map:
+		obj_music.change_music(ost_menu);
 		break;
 	///////////
 	case rm_end:
