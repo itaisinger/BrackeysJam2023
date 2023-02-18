@@ -1,10 +1,4 @@
-// itai
-
-// yehuda
-ost
 
 
 //////////////////
-
-accuracy:
-heal misses
+make auto merge also merge the names by taking random group of letters and stiching it at the end

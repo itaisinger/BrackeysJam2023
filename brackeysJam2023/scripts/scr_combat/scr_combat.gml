@@ -251,7 +251,7 @@ function item(_name, _sprite_num, _script, _damage=0, _spd=0, _acc=100) construc
 		damage: _damage,
 		speed_add: _spd,
 		type : TYPES.none,
-		accuracy: 1,
+		accuracy: _acc,
 	}
 }
 

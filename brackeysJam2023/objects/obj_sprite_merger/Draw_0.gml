@@ -1,6 +1,6 @@
 ///@desc do merges
 
-while(ds_queue_size(queue_merges))
+if(ds_queue_size(queue_merges))
 {
 	//init surface
 	var _sur = surface_create(FIGHTER_SPR_W,FIGHTER_SPR_H);

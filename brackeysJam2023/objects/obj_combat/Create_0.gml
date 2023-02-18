@@ -99,13 +99,16 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 			current_nme = current_fighter == global.player_struct ? global.nme_struct : global.player_struct;
 			
 			//calculate crit or miss
+			/*/ 
+			roll a number from 0-100
+			if the number is larger than the the final attack accuracy, miss.
+			if the number is smalled than the acc/10, crit.
+			/*/
+			
 			var _acc = (_action[0].accuracy/100) * (_action[1].accuracy/100);
 			var _roll = random(1);
-			var _hit_acc = _acc*_roll;
-
-			var _is_crit = _hit_acc > CRIT_CHANCE;
-			var _is_miss = _hit_acc < MISS_CHANCE;
-
+			var _is_miss = _roll > _acc;
+			var _is_crit = _roll < (_acc * CRIT_CHANCE);
 			
 			var _final_damage = _action[1].damage
 			if(_is_crit) _final_damage *= CRIT_MULT;

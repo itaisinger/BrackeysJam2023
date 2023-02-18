@@ -34,8 +34,8 @@ enum FIGHTER_ACC{
 	mid = 100,
 	high = 130,
 }
-#macro CRIT_CHANCE 0.9
-#macro MISS_CHANCE 0.05
+#macro CRIT_CHANCE 0.1
+//#macro MISS_CHANCE 0.05
 #macro CRIT_MULT 2
 
 /// ability scripts
@@ -56,7 +56,7 @@ global.map_abilities[? "add heal"] = function(amnt=10)
 {
 	obj_combat.current_fighter.add_item(global.map_items[?"heal"]);
 }
-global.map_abilities[? "add fuel"] = function(amnt=10)
+global.map_abilities[? "add fuel"] = function(amnt=20)
 {
 	obj_combat.current_fighter.speed += amnt;
 }

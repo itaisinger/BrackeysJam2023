@@ -11,6 +11,7 @@ randomise();
 global.player_struct = create_base_fighter(FIGHTERS.hand);
 global.player_struct.get_action = bhvr_player;
 global.player_struct.name = "moshe";
+global.player_struct.set_attack(global.map_attacks[?"cannon2"],2);
 
 global.nme_struct = -1;
 
@@ -32,7 +33,7 @@ function generate_run()
 	
 	ds_list_destroy(global.list_encounters);
 	global.list_encounters = ds_list_create();
-	var _max_merge = 0, i=0;
+	var _max_merge = 0;
 	repeat(10)
 	{
 		_max_merge += 0.8;
@@ -42,11 +43,15 @@ function generate_run()
 		{
 			global.list_encounters[|ds_list_size(global.list_encounters)-1].merge_auto(get_base_fighter(irandom(FIGHTERS.maxx-1)),true);
 		}
-		log(string(i) + " player attacks: " + string(array_length(global.player_struct.arr_attacks)) + ", " + global.list_encounters[|i].name);
-		i++;
 	}
 	
-	
+	//boss
+	var _boss = global.list_encounters[|ds_list_size(global.list_encounters)-1];
+	_boss.name += " boss";
+	repeat(4)
+	{
+		_boss.merge_auto(get_base_fighter(irandom(FIGHTERS.maxx-1)));
+	}
 	
 }
 
