@@ -263,6 +263,7 @@ function next_stage()
 		}
 		
 		//end
+		global.nme_struct = organ_to_merge;
 		obj_game.start_merge();
 		
 		break;

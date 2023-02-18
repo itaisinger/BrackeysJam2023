@@ -49,6 +49,7 @@ function generate_run()
 
 function start_run()
 {
+	global.current_floor = 0;
 	generate_run();
 	room_goto(rm_map);
 }
@@ -86,4 +87,17 @@ function start_merge()
 function finish_merge()
 {
 	combat_won();
+}
+function finish_run()
+{
+	global.player_struct = global.nme_struct;
+	global.player_struct.hp = global.player_struct.max_hp;
+	
+	room_goto(rm_menu);
+}
+function win_run()
+{
+	global.player_struct.hp = global.player_struct.max_hp;
+	
+	room_goto(rm_menu);
 }

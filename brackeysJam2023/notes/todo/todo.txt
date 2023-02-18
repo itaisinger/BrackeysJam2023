@@ -1,8 +1,4 @@
 // itai
-combat logic
-	acc
-
-move to trello
 
 // yehuda
 ost
