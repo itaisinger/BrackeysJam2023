@@ -11,5 +11,4 @@ ost
 //////////////////
 
 accuracy:
-add stat in fighters class
-add stat in attacks 
+make nme merge take attacks
