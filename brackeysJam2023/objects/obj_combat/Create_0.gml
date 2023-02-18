@@ -148,6 +148,7 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 			}
 			
 			//shake
+			var _shake = 50 * (_final_damage / current_nme.max_hp)	//will not work properly if some sort of block is added.
 			var _current_nme_display = current_nme == global.nme_struct ? global.nme_display : global.player_display;
 			_current_nme_display.shake(_shake);
 			

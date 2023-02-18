@@ -15,7 +15,7 @@ function flipx()
 {
 	dir *= -1;
 }
-function shake()
+function shake(_remain)
 {
-	shake_remain = 5;
+	shake_remain = _remain;
 }
