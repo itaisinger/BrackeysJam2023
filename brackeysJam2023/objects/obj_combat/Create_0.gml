@@ -120,17 +120,38 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 			_action[1].ability_script();
 			
 			//send ui text the new attack text
+			var _shake = 20;
 			add_main_message(_action[0].name + " used " + _action[1].name + "!");
 			
-			if(_is_crit) add_main_message("CRIT!");
-			if(_is_miss) add_main_message("But he missed..");
+			if(_is_crit)
+			{
+				add_main_message("CRIT!");
+				_shake *= 2;
+			}
+			if(_is_miss) 
+			{
+				add_main_message("But he missed..");
+				_shake = 0;	
+			}
 			else
 			{
 				if(_eff >= (SUPER_EFFECTIVE+1)/2)
+				{
+					_shake *= 1.5;
 					add_main_message("HOLY SHIT");
+				}
 				if(_eff <= (NOT_EFFECTIVE+1)/2)
+				{
+					_shake *= 0.5;
 					add_main_message("yikes..");	
+				}
 			}
+			
+			//shake
+			var _current_nme_display = current_nme == global.nme_struct ? global.nme_display : global.player_display;
+			_current_nme_display.shake(_shake);
+			
+			
 			
 			//update stuff
 			obj_player_menu.update_player(global.player_struct);

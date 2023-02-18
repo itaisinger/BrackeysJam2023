@@ -19,8 +19,8 @@ alarm[0] = 1;
 main_text_a = 1;
 
 /// create fighters display
-with(instance_create_depth(positions.player[0],positions.player[1],0,obj_fighter_display)) set_fighter(global.player_struct);
-with(instance_create_depth(positions.nme[0],positions.nme[1],0,obj_fighter_display)) set_fighter(global.nme_struct);
+with(instance_create_depth(positions.player[0],positions.player[1],0,obj_fighter_display)){ set_fighter(global.player_struct); global.player_display = self;};
+with(instance_create_depth(positions.nme[0],positions.nme[1],0,obj_fighter_display)) {set_fighter(global.nme_struct); flipx(); global.nme_display = self;};
 
 //player menu
 instance_create_depth(positions.player_menu[0],positions.player_menu[1],0,obj_player_menu);

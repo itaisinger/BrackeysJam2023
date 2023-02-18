@@ -1,6 +1,7 @@
 cur_music = audio_play_sound(ost_menu,0,true,1);
 transition_time = 1000;
 changing_music = false;
+next_music = -1;
 audio_play_sound(cur_music,1000,true);
 
 function change_music(new_music)

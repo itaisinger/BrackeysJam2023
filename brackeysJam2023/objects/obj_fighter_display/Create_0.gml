@@ -13,7 +13,7 @@ shake_remain = 0;
 my_fighter = global.list_fighters[|FIGHTERS.plumber];
 function flipx()
 {
-	dir = -1;
+	dir *= -1;
 }
 function shake()
 {
