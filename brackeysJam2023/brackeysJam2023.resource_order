@@ -96,6 +96,7 @@
     {"name":"scribble","order":8,"path":"scripts/scribble/scribble.yy",},
     {"name":"string_width_scribble","order":4,"path":"scripts/string_width_scribble/string_width_scribble.yy",},
     {"name":"scribble_font_add_all","order":1,"path":"scripts/scribble_font_add_all/scribble_font_add_all.yy",},
+    {"name":"spr_healthbarbackground","order":4,"path":"sprites/spr_healthbarbackground/spr_healthbarbackground.yy",},
     {"name":"__scribble_gen_2_parser","order":2,"path":"scripts/__scribble_gen_2_parser/__scribble_gen_2_parser.yy",},
     {"name":"scribble_font_bake_outline","order":4,"path":"scripts/scribble_font_bake_outline/scribble_font_bake_outline.yy",},
     {"name":"scribble_anim_reset","order":5,"path":"scripts/scribble_anim_reset/scribble_anim_reset.yy",},

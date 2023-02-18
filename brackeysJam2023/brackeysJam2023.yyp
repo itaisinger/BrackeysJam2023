@@ -131,6 +131,7 @@
     {"id":{"name":"string_width_scribble","path":"scripts/string_width_scribble/string_width_scribble.yy",},"order":0,},
     {"id":{"name":"scribble_font_add_all","path":"scripts/scribble_font_add_all/scribble_font_add_all.yy",},"order":0,},
     {"id":{"name":"obj_run_over","path":"objects/obj_run_over/obj_run_over.yy",},"order":1,},
+    {"id":{"name":"spr_healthbarbackground","path":"sprites/spr_healthbarbackground/spr_healthbarbackground.yy",},"order":0,},
     {"id":{"name":"__scribble_gen_2_parser","path":"scripts/__scribble_gen_2_parser/__scribble_gen_2_parser.yy",},"order":0,},
     {"id":{"name":"scribble_font_bake_outline","path":"scripts/scribble_font_bake_outline/scribble_font_bake_outline.yy",},"order":0,},
     {"id":{"name":"scribble_anim_reset","path":"scripts/scribble_anim_reset/scribble_anim_reset.yy",},"order":0,},
