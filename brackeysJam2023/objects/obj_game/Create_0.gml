@@ -102,6 +102,7 @@ function finish_run()
 {
 	global.player_struct = global.nme_struct;
 	global.player_struct.hp = global.player_struct.max_hp;
+	global.player_struct.get_action = bhvr_player;
 	
 	room_goto(rm_menu);
 }
