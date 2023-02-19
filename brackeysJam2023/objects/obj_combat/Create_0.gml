@@ -122,6 +122,8 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 			//send ui text the new attack text
 			var _shake = 20;
 			add_main_message(_action[0].name + " used " + _action[1].name + "!");
+			var _soundvariant = irandom(array_length(_action[1].sound) - 1);
+			audio_play_sound(_action[1].sound[_soundvariant], 750, false);
 			
 			if(_is_crit)
 			{
