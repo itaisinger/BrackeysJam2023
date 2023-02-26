@@ -217,12 +217,13 @@ function create_base_fighter(fighter_index) constructor
 	copy.merge_stats(source);
 	return copy;
 }
-function attack(_name, _damage,  _type=TYPES.none,_speed_add=0, _acc=100, _ability=function(){}) constructor
+function attack(_name, _damage,  _type=TYPES.none,_speed_add=0, _sound, _acc=100, _ability=function(){}) constructor
 {
 	///@param name
 	///@param damage
 	///@param type
 	///@param speed_add
+	///@param sound
 	///@param accuracy
 	///@param ability_script
 	
@@ -233,13 +234,15 @@ function attack(_name, _damage,  _type=TYPES.none,_speed_add=0, _acc=100, _abili
 		type : _type,
 		ability_script: _ability,
 		accuracy: _acc,
+		sound: _sound
 	}
 }
-function item(_name, _sprite_num, _script, _damage=0, _spd=0, _acc=100) constructor
+function item(_name, _sprite_num, _script, _sound, _damage=0, _spd=0, _acc=100) constructor
 {
 	///@param name
 	///@param sprite_index
 	///@param script
+	///@param sound
 	///@param damage
 	///@param speed_add
 	///@param accuracy
@@ -252,6 +255,7 @@ function item(_name, _sprite_num, _script, _damage=0, _spd=0, _acc=100) construc
 		speed_add: _spd,
 		type : TYPES.none,
 		accuracy: _acc,
+		sound: _sound
 	}
 }
 
