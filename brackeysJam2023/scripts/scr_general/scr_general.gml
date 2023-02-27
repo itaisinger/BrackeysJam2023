@@ -41,3 +41,14 @@ function room_transition(rm)
 	
 	instance_create_depth(0,0,0,obj_transition,{room_dest:rm});
 }
+function create_vfx(xx,yy,sprite,scale=1,in=0,out=0)
+{
+	///@param x
+	///@param y
+	///@param sprite
+	///@param scale
+	///@param fade_in
+	///@param fade_out
+	
+	return instance_create_depth(xx,yy,DEPTH.vfx,obj_vfx,{sprite_index: sprite, image_xscale: scale, image_yscale: scale, fade_in: in, fade_out: out});
+}

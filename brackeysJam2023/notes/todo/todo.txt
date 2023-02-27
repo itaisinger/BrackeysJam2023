@@ -10,3 +10,7 @@ boomy balance
 make first enemy weak
 make merge\heal options
 boom vfx
+
+
+sfx:
+eye open

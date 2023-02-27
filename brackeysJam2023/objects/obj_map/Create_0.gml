@@ -42,7 +42,6 @@ arr_stage_functions[MAP_STAGES.zoom_out] = function()
 		    if(_children[i].type == TYPES.eye)
 				eyes_remain++;
 		}
-		
 	}
 	
 	//zoom out again or finish stage
@@ -52,6 +51,9 @@ arr_stage_functions[MAP_STAGES.zoom_out] = function()
 		{
 			obj_camera.zoom_dest += 0.2;
 			eyes_remain--;
+			
+			//vfx
+			create_vfx(player.x,player.y,spr_eye_open, 0.5, 1, 1);
 		}
 		else
 		{

@@ -50,5 +50,7 @@ enum DEPTH{
 	button = 0,
 	dropdown = -3,
 	transition = - 100,
+	
+	vfx = -20,
 }
 

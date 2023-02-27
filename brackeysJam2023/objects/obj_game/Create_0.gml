@@ -10,6 +10,7 @@ randomise();
 
 global.player_struct = create_base_fighter(FIGHTERS.hand);
 global.player_struct.get_action = bhvr_player;
+global.player_struct.merge_stats(get_base_fighter(FIGHTERS.eye));
 //global.player_struct.name = "moshe";
 //global.player_struct.set_attack(global.map_attacks[?"cannon2"],2);
 
