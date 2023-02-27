@@ -32,3 +32,12 @@ function log(msg)
 {
 	show_debug_message(msg);
 }
+
+function room_transition(rm)
+{
+	///@param room
+	
+	if(instance_exists(obj_transition)) return;
+	
+	instance_create_depth(0,0,0,obj_transition,{room_dest:rm});
+}

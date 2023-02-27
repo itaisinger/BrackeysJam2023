@@ -4,3 +4,9 @@
 make auto merge also merge the names by taking random group of letters and stiching it at the end
 make eyes zoom out ui
 make merge stats to the whole enemy or just the organ? if mergin with wheelie after fuels, does it count?
+
+transition
+boomy balance
+make first enemy weak
+make merge\heal options
+boom vfx

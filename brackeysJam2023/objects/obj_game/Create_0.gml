@@ -10,8 +10,8 @@ randomise();
 
 global.player_struct = create_base_fighter(FIGHTERS.hand);
 global.player_struct.get_action = bhvr_player;
-global.player_struct.name = "moshe";
-global.player_struct.set_attack(global.map_attacks[?"cannon2"],2);
+//global.player_struct.name = "moshe";
+//global.player_struct.set_attack(global.map_attacks[?"cannon2"],2);
 
 global.nme_struct = -1;
 
@@ -62,12 +62,12 @@ function start_run()
 {
 	global.current_floor = 0;
 	generate_run();
-	room_goto(rm_map);
+	room_transition(rm_map);
 }
 function start_combat()
 {
 	global.nme_struct = global.list_encounters[|global.current_floor]
-	room_goto(rm_combat);
+	room_transition(rm_combat);
 }
 function combat_won()
 {
@@ -77,22 +77,22 @@ function combat_won()
 	//end game
 	if(global.current_floor >= ds_list_size(global.list_encounters))
 	{
-		room_goto(rm_win);
+		room_transition(rm_win);
 	}
 	//continute to next floor
 	else
 	{
-		room_goto(rm_map);
+		room_transition(rm_map);
 	}
 }
 function combat_lost()
 {
-	room_goto(rm_end);
+	room_transition(rm_end);
 }
 function start_merge()
 {
 	global.player_struct.merge_stats(global.nme_struct);
-	room_goto(rm_merge);
+	room_transition(rm_merge);
 }
 function finish_merge()
 {
@@ -104,11 +104,11 @@ function finish_run()
 	global.player_struct.hp = global.player_struct.max_hp;
 	global.player_struct.get_action = bhvr_player;
 	
-	room_goto(rm_menu);
+	room_transition(rm_menu);
 }
 function win_run()
 {
 	global.player_struct.hp = global.player_struct.max_hp;
 	
-	room_goto(rm_menu);
+	room_transition(rm_menu);
 }

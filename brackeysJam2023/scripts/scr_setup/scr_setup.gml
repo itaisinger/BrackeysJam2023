@@ -49,5 +49,6 @@ function game_init(){
 enum DEPTH{
 	button = 0,
 	dropdown = -3,
+	transition = - 100,
 }
 

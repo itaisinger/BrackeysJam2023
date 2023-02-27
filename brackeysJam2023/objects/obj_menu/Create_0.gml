@@ -24,6 +24,7 @@ ds_list_add(menu_main,button("options", function(){change_menu(menu_options)}));
 ds_list_add(menu_main,button("quit", function(){game_end()}));
 
 ds_list_add(menu_options,{text: "sfx volume", my_function: function(){show_message("pow!")}});
+ds_list_add(menu_options,{text: "toggle fullscreen", my_function: function(){window_set_fullscreen(!window_get_fullscreen())}});
 ds_list_add(menu_options,{text: "back", my_function: function(){obj_menu.change_menu(obj_menu.menu_main)}});
 
 

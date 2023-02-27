@@ -96,7 +96,9 @@ arr_stage_functions[MAP_STAGES.endd] = function()
 	wait = approach(wait,0,0.05);
 	
 	if(wait <= 0)
+	{
 		obj_game.start_combat();
+	}
 }
 
 
