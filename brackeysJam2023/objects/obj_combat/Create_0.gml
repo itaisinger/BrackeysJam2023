@@ -48,6 +48,10 @@ arr_states_functions[COMBAT_STATES.init] = function(){
 	//send the ui object the fighters data
 	
 	state = COMBAT_STATES.choose_action;
+	
+	//add fighters colors to scribble
+	global.__scribble_colours.c_player = global.player_struct.color;
+	global.__scribble_colours.c_nme = global.nme_struct.color;
 }
 arr_states_functions[COMBAT_STATES.choose_action] = function(){
 
@@ -121,7 +125,7 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 			
 			//send ui text the new attack text
 			var _shake = 20;
-			add_main_message(_action[0].name + " used " + _action[1].name + "!");
+			add_main_message("[c_red]" + _action[0].name + "[/color] used " + _action[1].name + "!");
 			var _soundvariant = irandom(array_length(_action[1].sound) - 1);
 			audio_play_sound(_action[1].sound[_soundvariant], 750, false);
 			
@@ -140,12 +144,12 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 				if(_eff >= (SUPER_EFFECTIVE+1)/2)
 				{
 					_shake *= 1.5;
-					add_main_message("HOLY SHIT");
+					add_main_message("It's super effective!");
 				}
 				if(_eff <= (NOT_EFFECTIVE+1)/2)
 				{
 					_shake *= 0.5;
-					add_main_message("yikes..");	
+					add_main_message("it wasn't very effective..");	
 				}
 			}
 			

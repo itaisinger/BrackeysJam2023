@@ -12,8 +12,8 @@
   "conversionMode": 0,
   "duration": 4.726395,
   "parent": {
-    "name": "SFX",
-    "path": "folders/Sounds/SFX.yy",
+    "name": "sfx",
+    "path": "folders/Sounds/sfx.yy",
   },
   "preload": false,
   "sampleRate": 44100,

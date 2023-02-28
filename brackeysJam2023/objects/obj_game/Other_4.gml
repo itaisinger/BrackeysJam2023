@@ -1,4 +1,4 @@
-log(instance_number(obj_music));
+
 switch (room) {
     case rm_combat:
 		obj_music.change_music(ost_combat);

@@ -52,3 +52,7 @@ function create_vfx(xx,yy,sprite,scale=1,in=0,out=0)
 	
 	return instance_create_depth(xx,yy,DEPTH.vfx,obj_vfx,{sprite_index: sprite, image_xscale: scale, image_yscale: scale, fade_in: in, fade_out: out});
 }
+function array_add(array,value)
+{
+	array_insert(array,array_length(array),value);
+}

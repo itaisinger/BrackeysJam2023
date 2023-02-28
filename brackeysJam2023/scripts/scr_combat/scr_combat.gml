@@ -18,7 +18,7 @@ function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _acti
 		arr_attacks: _attacks,
 		arr_items: _items,
 		get_action : _action,
-		
+		color : c_col2,
 		
 		arr_types : array_create(3,0),	//array of 0-1 for each type, representing %.
 		arr_children : [],				//children structs are inserted. used to calculate types.

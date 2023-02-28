@@ -1,3 +1,4 @@
+
 game_init();
 randomise();
 
@@ -10,7 +11,8 @@ randomise();
 
 global.player_struct = create_base_fighter(FIGHTERS.hand);
 global.player_struct.get_action = bhvr_player;
-global.player_struct.merge_stats(get_base_fighter(FIGHTERS.eye));
+global.player_struct.color = c_col3;
+//global.player_struct.merge_stats(get_base_fighter(FIGHTERS.eye));
 //global.player_struct.name = "moshe";
 //global.player_struct.set_attack(global.map_attacks[?"cannon2"],2);
 
@@ -45,6 +47,28 @@ function generate_run()
 			global.list_encounters[|ds_list_size(global.list_encounters)-1].merge_auto(get_base_fighter(irandom(FIGHTERS.maxx-1)),true);
 		}
 	}
+	
+	/// first enemy weak
+	
+	//get array of the corresponding fighters
+	var _player_type = global.player_struct.get_main_type();
+	var _fighters = [];
+	switch(_player_type)
+	{
+		case TYPES.hand:
+			_fighters = get_fighters_by_type(TYPES.eye);
+			break;
+		case TYPES.eye:
+			_fighters = get_fighters_by_type(TYPES.leg);
+			break;
+		case TYPES.leg:
+			_fighters = get_fighters_by_type(TYPES.hand);
+			break;
+	}
+	
+	//apply one of them as the first enemy
+	global.list_encounters[|0] = create_base_fighter(_fighters[irandom(array_length(_fighters)-1)]);
+	
 	
 	//boss
 	var _boss = global.list_encounters[|ds_list_size(global.list_encounters)-1];

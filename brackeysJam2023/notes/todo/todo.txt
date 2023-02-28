@@ -6,11 +6,9 @@ make eyes zoom out ui
 make merge stats to the whole enemy or just the organ? if mergin with wheelie after fuels, does it count?
 
 transition
-boomy balance
+boomy balance ? 
 make first enemy weak
 make merge\heal options
-boom vfx
-
 
 sfx:
 eye open

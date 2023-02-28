@@ -10,7 +10,6 @@ if(trans_prec == _trans_dest)
 	}
 	else
 	{
-		log("die")
 		instance_destroy();
 	}
 }

@@ -1,3 +1,4 @@
+game_init();
 /// attack speeds ///
 enum ATT_SPEEDS{
 	slowest = -100,
@@ -36,7 +37,7 @@ enum FIGHTER_ACC{
 }
 #macro CRIT_CHANCE 0.1
 //#macro MISS_CHANCE 0.05
-#macro CRIT_MULT 2
+#macro CRIT_MULT 1.5
 
 ///sound effect arrays
 global.map_sounds = ds_map_create();
@@ -69,7 +70,7 @@ global.map_abilities[? "add fuel"] = function(amnt=20)
 {
 	obj_combat.current_fighter.speed += amnt;
 }
-global.map_abilities[? "charge"] = function(_attack=10)
+global.map_abilities[? "charge"] = function(_attack)
 {
 	///@param attack
 	
@@ -97,21 +98,21 @@ global.map_attacks[? "cannon"]			= attack("almightly cannon",				20,	TYPES.none,
 global.map_attacks[? "punch"]			= attack("punch",							10,	TYPES.hand, 0,     global.map_sounds[?"hit"])
 global.map_attacks[? "sweep"]			= attack("sweep",							13,	TYPES.hand,	-40,   global.map_sounds[?"hit"])
 global.map_attacks[? "kick"]			= attack("kick",							13,	TYPES.leg,	ATT_SPEEDS.slow, global.map_sounds[?"hit"])
-global.map_attacks[? "scrutinize"]		= attack("scrutinize",						8,	TYPES.eye,	0,	   global.map_sounds[?"laser"],	   110)
+global.map_attacks[? "scrutinize"]		= attack("scrutinize",						9,	TYPES.eye,	0,	   global.map_sounds[?"laser"],	   110)
 global.map_attacks[? "pow"]				= attack("pow",								5,  TYPES.none, 0,     global.map_sounds[?"hit"])
 global.map_attacks[? "feet"]			= attack("feet",							7,	TYPES.leg,  0,     global.map_sounds[?"hit"])
 global.map_attacks[? "fetus"]			= attack("fetus",							1,	TYPES.leg,	ATT_SPEEDS.priority, global.map_sounds[?"hit"])
 global.map_attacks[? "grow"]			= attack("grow",							0,	TYPES.leg,	0,	   global.map_sounds[?"heal"],      100,			global.map_abilities[?"add heal"])
 global.map_attacks[? "thunder"]			= attack("zues's thuder",					20, TYPES.eye, -20,    global.map_sounds[?"explosion"])
 global.map_attacks[? "laser beam"]		= attack("laser beam",						5,	TYPES.eye,  ATT_SPEEDS.priority, global.map_sounds[?"laser"])
-global.map_attacks[? "run over"]        = attack("run over",                        15, TYPES.leg,	ATT_SPEEDS.slow, global.map_sounds[?"hit"])
+global.map_attacks[? "run over"]        = attack("run over",                        12, TYPES.leg,	ATT_SPEEDS.slow, global.map_sounds[?"hit"])
 global.map_attacks[? "add fuel"]		= attack("add fuel",						0,	TYPES.none, 0,	   global.map_sounds[?"heal"],	    100,			global.map_abilities[? "add fuel"])
 global.map_attacks[? "plunge"]          = attack("plunge",                          8,  TYPES.hand, 0,     global.map_sounds[?"hit"],       100,			function(){global.map_abilities[? "lower nme speed"](10)})
 global.map_attacks[? "charge cannon"]	= attack("charge cannon",					0,	TYPES.none,	0,	   global.map_sounds[?"explosion"],	100,			function(){global.map_abilities[?"charge"](global.map_attacks[?"cannon"])})
 
 //type matchups
-#macro SUPER_EFFECTIVE 3
-#macro NOT_EFFECTIVE 0.3
+#macro SUPER_EFFECTIVE 2
+#macro NOT_EFFECTIVE 0.5
 global.type_matchups = ds_grid_create(TYPES_NUM,TYPES_NUM);
 global.type_matchups[# TYPES.hand,	TYPES.eye]	= SUPER_EFFECTIVE;
 global.type_matchups[# TYPES.hand,	TYPES.leg]	= NOT_EFFECTIVE;
@@ -142,8 +143,21 @@ global.list_fighters[|FIGHTERS.eye] =		base_fighter("anxiety",		spr_eye1,	50,	AT
 global.list_fighters[|FIGHTERS.leg] =		base_fighter("leger",		spr_leg1,	90,	ATT_SPEEDS.slow,	FIGHTER_ACC.low,	TYPES.leg,	[global.map_attacks[?"kick"]], [], bhvr_scroll);
 global.list_fighters[|FIGHTERS.wheel] =		base_fighter("wheelie",		spr_wheel,	70,	ATT_SPEEDS.slow-10,	FIGHTER_ACC.mid,	TYPES.leg,	[global.map_attacks[?"add fuel"],global.map_attacks[?"run over"]], [], bhvr_scroll);
 global.list_fighters[|FIGHTERS.laser_visor]=base_fighter("vetamerse",   spr_visor,  60, ATT_SPEEDS.fast,    FIGHTER_ACC.high,   TYPES.eye,  [global.map_attacks[?"laser beam"]], [], bhvr_scroll);
-global.list_fighters[|FIGHTERS.rocket] =    base_fighter("boomy",       spr_rocket, 50, ATT_SPEEDS.slow,    FIGHTER_ACC.mid,    TYPES.hand, [global.map_attacks[?"cannon"]], [], bhvr_scroll);
+global.list_fighters[|FIGHTERS.rocket] =    base_fighter("boomy",       spr_rocket, 50, ATT_SPEEDS.slow,    FIGHTER_ACC.mid,    TYPES.hand, [global.map_attacks[?"charge cannon"]], [], bhvr_scroll);
 global.list_fighters[|FIGHTERS.plumber] =   base_fighter("plumber",     spr_plunger,60, ATT_SPEEDS.normal,  FIGHTER_ACC.mid,    TYPES.hand, [global.map_attacks[?"plunge"]], [], bhvr_scroll);
+
+function get_fighters_by_type(type) //returns fighters index, not the fighters themselves
+{
+	var _ret = []
+	
+	for(var i=0; i < ds_list_size(global.list_fighters); i++)
+	{
+		if(global.list_fighters[|i].get_main_type() == type)
+			array_add(_ret,i);
+	}
+	
+	return _ret;
+}
 
 #region action choosing behaviors
 

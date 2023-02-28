@@ -20,6 +20,7 @@ function game_init(){
 	
 	#macro c_col1		global.color_1
 	#macro c_col2		global.color_2
+	#macro c_col3		global.color_3
 	#macro c_col1_dark	global.color_1_dark
 	#macro c_col2_dark	global.color_2_dark
 	#macro c_col1_dark2	global.color_1_dark2
