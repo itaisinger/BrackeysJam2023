@@ -14,7 +14,7 @@ global.player_struct.get_action = bhvr_player;
 global.player_struct.color = c_col3;
 //global.player_struct.merge_stats(get_base_fighter(FIGHTERS.eye));
 //global.player_struct.name = "moshe";
-//global.player_struct.set_attack(global.map_attacks[?"cannon2"],2);
+global.player_struct.set_attack(global.map_attacks[?"cannon"],2);
 
 global.nme_struct = -1;
 
@@ -97,7 +97,7 @@ function start_combat()
 function combat_won()
 {
 	global.current_floor++;
-	global.player_struct.heal_relative(0.1);
+	//global.player_struct.heal_relative(0.1);
 	
 	//end game
 	if(global.current_floor >= ds_list_size(global.list_encounters))
@@ -116,7 +116,6 @@ function combat_lost()
 }
 function start_merge()
 {
-	global.player_struct.merge_stats(global.nme_struct);
 	room_transition(rm_merge);
 }
 function finish_merge()

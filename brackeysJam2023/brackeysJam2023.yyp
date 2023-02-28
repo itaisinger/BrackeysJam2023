@@ -231,6 +231,7 @@
     {"id":{"name":"todo","path":"notes/todo/todo.yy",},"order":0,},
     {"id":{"name":"spr_hand","path":"sprites/spr_hand/spr_hand.yy",},"order":0,},
     {"id":{"name":"__scribble_gc_collect","path":"scripts/__scribble_gc_collect/__scribble_gc_collect.yy",},"order":0,},
+    {"id":{"name":"cur_hit","path":"animcurves/cur_hit/cur_hit.yy",},"order":0,},
     {"id":{"name":"scribble_external_sound_exists","path":"scripts/scribble_external_sound_exists/scribble_external_sound_exists.yy",},"order":0,},
     {"id":{"name":"__scribble_font_add_sprite","path":"scripts/__scribble_font_add_sprite/__scribble_font_add_sprite.yy",},"order":0,},
     {"id":{"name":"scribble_font_bake_shadow","path":"scripts/scribble_font_bake_shadow/scribble_font_bake_shadow.yy",},"order":0,},

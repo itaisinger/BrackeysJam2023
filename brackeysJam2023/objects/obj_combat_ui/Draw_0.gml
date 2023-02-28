@@ -38,7 +38,7 @@ draw_set_alpha(main_text_a)
 _pos = positions.main_text;
 draw_panel(_pos[0],_pos[1],500,60,c_col1,c_col1);
 draw_text_scribble(_pos[0]+10,_pos[1]+10,"[c_red]" + current_main_text,typer_count);
-draw_set_color(global.__scribble_colours.c_blue);
+
 draw_text_scribble(5,5,"[c_blue]hi");
 
 draw_reset();

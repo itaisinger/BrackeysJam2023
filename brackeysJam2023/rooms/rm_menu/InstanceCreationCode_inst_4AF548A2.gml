@@ -1,0 +1,1 @@
+wave_range = 0;

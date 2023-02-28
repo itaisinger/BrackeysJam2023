@@ -19,8 +19,11 @@ list_buttons_insts = ds_list_create();	//holds the current buttons
 menu = ds_list_create();
 
 //menu yes\no
-ds_list_add(menu,button("YES",function(){next_stage();}));
-ds_list_add(menu,button("NO",function(){obj_game.combat_won();}));
+ds_list_add(menu,button("MERGE",function(){next_stage();}));
+ds_list_add(menu,button("CONSUME",function(){
+		global.player_struct.heal_relative(0.3);
+		obj_game.combat_won();
+		}));
 
 
 //logic
@@ -72,7 +75,7 @@ function next_stage()
 		#region yes or not
 		case 0:
 		
-		add_main_message("INITIATE MERGE?")
+		add_main_message("INITIATE MERGE? OR CONSUME?")
 		//global.messages_skippable = 0;
 		change_menu(menu)
 		
@@ -263,7 +266,8 @@ function next_stage()
 		}
 		
 		//end
-		global.nme_struct = organ_to_merge;
+		global.player_struct.merge_stats(global.nme_struct);	//merge stats with the whole enemy, not just the organ.
+		global.nme_struct = organ_to_merge;	//send in the organ, since we are merging the sprite only with it.
 		obj_game.start_merge();
 		
 		break;

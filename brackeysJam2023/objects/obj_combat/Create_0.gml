@@ -48,10 +48,6 @@ arr_states_functions[COMBAT_STATES.init] = function(){
 	//send the ui object the fighters data
 	
 	state = COMBAT_STATES.choose_action;
-	
-	//add fighters colors to scribble
-	global.__scribble_colours.c_player = global.player_struct.color;
-	global.__scribble_colours.c_nme = global.nme_struct.color;
 }
 arr_states_functions[COMBAT_STATES.choose_action] = function(){
 
@@ -120,7 +116,7 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 			
 			//act out attack
 			var _dmg_dealt = current_nme.damage(_final_damage,_action[1].type);
-			var _eff = _dmg_dealt / _action[1].damage;
+			var _eff = get_type_damage(_action[1].type,current_nme.get_main_type());//_dmg_dealt / _action[1].damage;
 			_action[1].ability_script();
 			
 			//send ui text the new attack text
@@ -153,10 +149,13 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 				}
 			}
 			
-			//shake
-			var _shake = 50 * (_final_damage / current_nme.max_hp)	//will not work properly if some sort of block is added.
+			//displays
+			var _shake = 100 * (_final_damage / current_nme.max_hp)	//will not work properly if some sort of block is added.
 			var _current_nme_display = current_nme == global.nme_struct ? global.nme_display : global.player_display;
+			var _current_player_display = current_nme == global.nme_struct ? global.player_display : global.nme_display;
+			
 			_current_nme_display.shake(_shake);
+			_current_player_display.hit();
 			
 			
 			

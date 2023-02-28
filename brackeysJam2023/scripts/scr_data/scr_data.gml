@@ -93,22 +93,22 @@ global.map_items[? "heal"] = item("heal",0,function(){global.map_abilities[? "he
 // attacks map
 global.map_attacks = ds_map_create();
 //					  data name					  ingame name						dmg type		speed	  sound   	                  accuracy	   ability
-global.map_attacks[? "cannon2"]			= attack("almightly cannon of destruction",	100,TYPES.none,	20,    global.map_sounds[?"explosion"])
-global.map_attacks[? "cannon"]			= attack("almightly cannon",				20,	TYPES.none,	0,	   global.map_sounds[?"explosion"] ,80)
-global.map_attacks[? "punch"]			= attack("punch",							10,	TYPES.hand, 0,     global.map_sounds[?"hit"])
-global.map_attacks[? "sweep"]			= attack("sweep",							13,	TYPES.hand,	-40,   global.map_sounds[?"hit"])
+global.map_attacks[? "cannon2"]			= attack("almightly cannon of destruction",	100,TYPES.none,	20,		global.map_sounds[?"explosion"])
+global.map_attacks[? "cannon"]			= attack("almightly cannon",				20,	TYPES.none,	0,		global.map_sounds[?"explosion"] ,80)
+global.map_attacks[? "punch"]			= attack("punch",							10,	TYPES.hand, 0,		global.map_sounds[?"hit"])
+global.map_attacks[? "sweep"]			= attack("sweep",							13,	TYPES.hand,	-40,	global.map_sounds[?"hit"])
 global.map_attacks[? "kick"]			= attack("kick",							13,	TYPES.leg,	ATT_SPEEDS.slow, global.map_sounds[?"hit"])
-global.map_attacks[? "scrutinize"]		= attack("scrutinize",						9,	TYPES.eye,	0,	   global.map_sounds[?"laser"],	   110)
-global.map_attacks[? "pow"]				= attack("pow",								5,  TYPES.none, 0,     global.map_sounds[?"hit"])
-global.map_attacks[? "feet"]			= attack("feet",							7,	TYPES.leg,  0,     global.map_sounds[?"hit"])
+global.map_attacks[? "scrutinize"]		= attack("scrutinize",						9,	TYPES.eye,	0,		global.map_sounds[?"laser"],	   110)
+global.map_attacks[? "pow"]				= attack("pow",								5,  TYPES.none, 0,		global.map_sounds[?"hit"])
+global.map_attacks[? "feet"]			= attack("feet",							7,	TYPES.leg,  0,		global.map_sounds[?"hit"])
 global.map_attacks[? "fetus"]			= attack("fetus",							1,	TYPES.leg,	ATT_SPEEDS.priority, global.map_sounds[?"hit"])
-global.map_attacks[? "grow"]			= attack("grow",							0,	TYPES.leg,	0,	   global.map_sounds[?"heal"],      100,			global.map_abilities[?"add heal"])
-global.map_attacks[? "thunder"]			= attack("zues's thuder",					20, TYPES.eye, -20,    global.map_sounds[?"explosion"])
+global.map_attacks[? "grow"]			= attack("grow",							0,	TYPES.leg,	0,		global.map_sounds[?"heal"],      100,			global.map_abilities[?"add heal"])
+global.map_attacks[? "thunder"]			= attack("zues's thuder",					20, TYPES.eye, -20,		global.map_sounds[?"explosion"])
 global.map_attacks[? "laser beam"]		= attack("laser beam",						5,	TYPES.eye,  ATT_SPEEDS.priority, global.map_sounds[?"laser"])
 global.map_attacks[? "run over"]        = attack("run over",                        12, TYPES.leg,	ATT_SPEEDS.slow, global.map_sounds[?"hit"])
-global.map_attacks[? "add fuel"]		= attack("add fuel",						0,	TYPES.none, 0,	   global.map_sounds[?"heal"],	    100,			global.map_abilities[? "add fuel"])
-global.map_attacks[? "plunge"]          = attack("plunge",                          8,  TYPES.hand, 0,     global.map_sounds[?"hit"],       100,			function(){global.map_abilities[? "lower nme speed"](10)})
-global.map_attacks[? "charge cannon"]	= attack("charge cannon",					0,	TYPES.none,	0,	   global.map_sounds[?"explosion"],	100,			function(){global.map_abilities[?"charge"](global.map_attacks[?"cannon"])})
+global.map_attacks[? "add fuel"]		= attack("add fuel",						0,	TYPES.none, 0,		global.map_sounds[?"heal"],	    100,			global.map_abilities[? "add fuel"])
+global.map_attacks[? "plunge"]          = attack("plunge",                          8,  TYPES.hand, 0,		global.map_sounds[?"hit"],       100,			function(){global.map_abilities[? "lower nme speed"](10)})
+global.map_attacks[? "charge cannon"]	= attack("charge cannon",					0,	TYPES.none,	0,		global.map_sounds[?"explosion"],	100,			function(){global.map_abilities[?"charge"](global.map_attacks[?"cannon"])})
 
 //type matchups
 #macro SUPER_EFFECTIVE 2
