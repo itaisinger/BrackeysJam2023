@@ -93,10 +93,18 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 		
 		if(ds_priority_size(prio_actions))	//there are actions left, start the next one.
 		{
-			var _action = ds_priority_delete_max(prio_actions);
+			current_action = ds_priority_delete_max(prio_actions);
 			
-			current_fighter = _action[0];
+			current_fighter = current_action[0];
 			current_nme = current_fighter == global.player_struct ? global.nme_struct : global.player_struct;
+			
+			//main attack text
+			add_main_message("[c_red]" + current_action[0].name + "[/color] used " + current_action[1].name + "!");
+			var _soundvariant = irandom(array_length(current_action[1].sound) - 1);
+			audio_play_sound(current_action[1].sound[_soundvariant], 750, false);
+			
+			//act out attack
+			current_action[1].ability_script();
 			
 			//calculate crit or miss
 			/*/ 
@@ -105,26 +113,21 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 			if the number is smalled than the acc/10, crit.
 			/*/
 			
-			var _acc = (_action[0].accuracy/100) * (_action[1].accuracy/100);
+			var _acc = (current_action[0].accuracy/100) * (current_action[1].accuracy/100);
 			var _roll = random(1);
 			var _is_miss = _roll > _acc;
 			var _is_crit = _roll < (_acc * CRIT_CHANCE);
 			
-			var _final_damage = _action[1].damage
+			var _final_damage = current_action[1].damage
 			if(_is_crit) _final_damage *= CRIT_MULT;
 			if(_is_miss) _final_damage = 0;
 			
-			//act out attack
-			var _dmg_dealt = current_nme.damage(_final_damage,_action[1].type);
-			var _eff = get_type_damage(_action[1].type,current_nme.get_main_type());//_dmg_dealt / _action[1].damage;
-			_action[1].ability_script();
+			var _dmg_dealt = current_nme.damage(_final_damage,current_action[1].type);
+			var _eff = get_type_damage(current_action[1].type,current_nme.get_main_type());//_dmg_dealt / current_action[1].damage;
 			
-			//send ui text the new attack text
+			//send shake
 			var _shake = 20;
-			add_main_message("[c_red]" + _action[0].name + "[/color] used " + _action[1].name + "!");
-			var _soundvariant = irandom(array_length(_action[1].sound) - 1);
-			audio_play_sound(_action[1].sound[_soundvariant], 750, false);
-			
+
 			if(_is_crit)
 			{
 				add_main_message("CRIT!");

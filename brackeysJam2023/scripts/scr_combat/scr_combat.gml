@@ -62,7 +62,7 @@ function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _acti
 			return hp - _hpprev;
 		},
 		add_item: function(_item){	//returns whether the item was added or not
-			if(array_length(arr_items) >= 4) return false;
+			if(array_length(arr_items) >= max_items) return false;
 			array_push(arr_items,_item);
 			return true;
 		},

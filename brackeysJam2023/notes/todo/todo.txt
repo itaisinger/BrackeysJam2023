@@ -5,3 +5,6 @@ make auto merge also merge the names by taking random group of letters and stich
 
 sfx:
 eye open
+
+
+as of now, when nmes use items, they are not consumed. is this cool?

@@ -4,7 +4,7 @@ randomise();
 
 //text:
 //global.player_struct = fighter("yossi",spr_hand1,100,10,FIGHTER_ACC.mid,
-//					[global.map_attacks[?"punch"],global.map_attacks[?"kick"],global.map_attacks[?"cannon"],global.map_attacks[?"scrutinize"]],
+//					[global.map_attacks[?"jab"],global.map_attacks[?"kick"],global.map_attacks[?"cannon"],global.map_attacks[?"scrutinize"]],
 //					[item("messanger",0,function(){show_message("the messanger!")}),
 //					item("heal",1,function(){global.map_abilities[?"heal"](10)},0,-20)],
 //					bhvr_player);
@@ -67,7 +67,7 @@ function generate_run()
 	}
 	
 	//apply one of them as the first enemy
-	global.list_encounters[|0] = create_base_fighter(_fighters[irandom(array_length(_fighters)-1)]);
+	global.list_encounters[|0] = create_base_fighter(FIGHTERS.pen)//(_fighters[irandom(array_length(_fighters)-1)]);
 	
 	
 	//boss

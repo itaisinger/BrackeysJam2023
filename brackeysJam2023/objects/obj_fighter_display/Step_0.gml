@@ -6,6 +6,5 @@ if(my_fighter.hp <= 0)
 {
 	xscale = 1.3;
 	yscale = 0.7;
-	//y += 30;
 	wave_range = 0;
 }
