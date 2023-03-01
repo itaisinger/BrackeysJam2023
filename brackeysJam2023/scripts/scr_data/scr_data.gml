@@ -120,7 +120,7 @@ global.map_abilities[? "write"] = function()
 	{
 		
 		//init
-		if(!variable_struct_exists(self,"letter_arr"))
+		if(!variable_struct_exists(self,"letters_arr"))
 		{
 			//it gets here over and over
 			letters_arr = ["P","O","W"];
@@ -129,13 +129,14 @@ global.map_abilities[? "write"] = function()
 			write_damage = obj_combat.current_action[1].damage;
 			obj_combat.current_action[1].damage = 0;
 		}
-	
+		
 		pen_scroll++;
 	
 		name += letters_arr[pen_scroll];
-	
+		
+		
 		//scroll
-		if(pen_scroll >= array_length(letters_arr))
+		if(pen_scroll >= array_length(letters_arr)-1)
 		{
 			pen_scroll = -1;
 			obj_combat.current_action[1].damage = write_damage;
@@ -143,7 +144,7 @@ global.map_abilities[? "write"] = function()
 		else
 			obj_combat.current_action[1].damage = 0;
 		
-		obj_combat.current_action[1].name = "write " + letters_arr[pen_scroll+1];
+		obj_combat.current_action[1].name = "write " + letters_arr[pen_scroll+1];	
 	}
 	
 }
@@ -158,7 +159,7 @@ global.map_attacks = ds_map_create();
 global.map_attacks[? "cannon2"]			= attack("almightly cannon of destruction",	100,TYPES.none,	20,					 global.map_sounds[?"explosion"])
 global.map_attacks[? "cannon"]			= attack("almightly cannon",				20,	TYPES.none,	0,					 global.map_sounds[?"explosion"],	80)
 global.map_attacks[? "jab"]				= attack("jab",								10,	TYPES.hand, 0,					 global.map_sounds[?"hit"])
-global.map_attacks[? "write"]			= attack("write",							26,	TYPES.none, 0,					 global.map_sounds[?"explosion"],	130,			global.map_abilities[?"write"]);
+global.map_attacks[? "write"]			= attack("write P",							26,	TYPES.none, 0,					 global.map_sounds[?"explosion"],	130,			global.map_abilities[?"write"]);
 global.map_attacks[? "sweep"]			= attack("sweep",							13,	TYPES.hand,	-40,				 global.map_sounds[?"hit"])
 global.map_attacks[? "kick"]			= attack("kick",							13,	TYPES.leg,	ATT_SPEEDS.slow,	 global.map_sounds[?"hit"])
 global.map_attacks[? "scrutinize"]		= attack("scrutinize",						9,	TYPES.eye,	0,					 global.map_sounds[?"laser"],		110)

@@ -95,11 +95,15 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 		{
 			current_action = ds_priority_delete_max(prio_actions);
 			
+			//set currents for everyone to use
 			current_fighter = current_action[0];
 			current_nme = current_fighter == global.player_struct ? global.nme_struct : global.player_struct;
+			global.__scribble_colours.c_fighter = current_fighter.color;
+			global.__scribble_colours.c_nme = current_nme.color;
+			
 			
 			//main attack text
-			add_main_message("[c_red]" + current_action[0].name + "[/color] used " + current_action[1].name + "!");
+			add_main_message("[c_fighter]" + current_action[0].name + "[/color] used " + current_action[1].name + "!");
 			var _soundvariant = irandom(array_length(current_action[1].sound) - 1);
 			audio_play_sound(current_action[1].sound[_soundvariant], 750, false);
 			
@@ -122,7 +126,7 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 			if(_is_crit) _final_damage *= CRIT_MULT;
 			if(_is_miss) _final_damage = 0;
 			
-			var _dmg_dealt = current_nme.damage(_final_damage,current_action[1].type);
+			current_nme.damage(_final_damage,current_action[1].type);
 			var _eff = get_type_damage(current_action[1].type,current_nme.get_main_type());//_dmg_dealt / current_action[1].damage;
 			
 			//send shake

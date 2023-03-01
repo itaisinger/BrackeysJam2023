@@ -13,6 +13,7 @@ function draw_panel(_x,_y,width,height,col_1,col_2,o_width=2,o_color=c_black)
 	//the outline is scaled inside
 	
 	var _alpha_prev = draw_get_alpha()
+	var _color_prev = draw_get_color();
 	
 	//draw outline
 	draw_rectangle_color(_x,_y, _x+width,_y+height,
@@ -26,5 +27,7 @@ function draw_panel(_x,_y,width,height,col_1,col_2,o_width=2,o_color=c_black)
 	draw_set_alpha(_alpha_prev);
 	draw_rectangle_color(_x+o_width,_y+o_width, _x+width-o_width,_y+height-o_width,
 						col_1,col_2, col_2,col_1,0);
+			
+	draw_set_color(_color_prev);
 }
 

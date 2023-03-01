@@ -1,7 +1,7 @@
 {
   "resourceType": "GMFont",
   "resourceVersion": "1.0",
-  "name": "font_button",
+  "name": "font_main_text",
   "AntiAlias": 1,
   "applyKerning": 0,
   "ascender": 23,
@@ -10,7 +10,7 @@
   "canGenerateBitmap": true,
   "charset": 0,
   "first": 0,
-  "fontName": "Yu Gothic Medium",
+  "fontName": "Yu Gothic UI Semibold",
   "glyphOperations": 0,
   "glyphs": {
     "32": {"character":32,"h":33,"offset":0,"shift":6,"w":6,"x":2,"y":2,},
@@ -1243,7 +1243,7 @@
   "regenerateBitmap": false,
   "sampleText": "abcdef ABCDEF\n0123456789 .,<>\"'&!?\nthe quick brown fox jumps over the lazy dog\nTHE QUICK BROWN FOX JUMPS OVER THE LAZY DOG\nDefault character: ▯ (9647)",
   "size": 18.0,
-  "styleName": "Regular",
+  "styleName": "Bold",
   "textureGroupId": {
     "name": "Default",
     "path": "texturegroups/Default",

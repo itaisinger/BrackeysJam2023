@@ -2,6 +2,9 @@
 function set_fighter(_fighter)
 {
 	my_fighter = _fighter;
+	
+	col = my_fighter.color;
+	o_col = merge_color(col,c_black,0.5);
 }
 dir = 1;
 name = "boi";
