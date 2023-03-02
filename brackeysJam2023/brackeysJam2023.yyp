@@ -88,6 +88,7 @@
     {"id":{"name":"spr_torso1","path":"sprites/spr_torso1/spr_torso1.yy",},"order":0,},
     {"id":{"name":"multi_chance","path":"scripts/multi_chance/multi_chance.yy",},"order":0,},
     {"id":{"name":"obj_vfx","path":"objects/obj_vfx/obj_vfx.yy",},"order":0,},
+    {"id":{"name":"spr_loading","path":"sprites/spr_loading/spr_loading.yy",},"order":0,},
     {"id":{"name":"spr_run_over","path":"sprites/spr_run_over/spr_run_over.yy",},"order":1,},
     {"id":{"name":"set_chance","path":"scripts/set_chance/set_chance.yy",},"order":0,},
     {"id":{"name":"__shd_scribble","path":"shaders/__shd_scribble/__shd_scribble.yy",},"order":0,},

@@ -107,8 +107,10 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 			var _soundvariant = irandom(array_length(current_action[1].sound) - 1);
 			audio_play_sound(current_action[1].sound[_soundvariant], 750, false);
 			
+			
 			//act out attack
-			current_action[1].ability_script();
+			if(variable_struct_exists(current_action[1],"ability_script"))
+				current_action[1].ability_script();
 			
 			//calculate crit or miss
 			/*/ 
@@ -126,8 +128,8 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 			if(_is_crit) _final_damage *= CRIT_MULT;
 			if(_is_miss) _final_damage = 0;
 			
-			current_nme.damage(_final_damage,current_action[1].type);
-			var _eff = get_type_damage(current_action[1].type,current_nme.get_main_type());//_dmg_dealt / current_action[1].damage;
+			var _dmg = current_nme.damage(_final_damage,current_action[1].type);
+			var _eff = _dmg[0] / current_action[1].damage;//get_type_damage(current_action[1].type,current_nme.get_main_type());//
 			
 			//send shake
 			var _shake = 20;
@@ -147,12 +149,12 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 				if(_eff >= (SUPER_EFFECTIVE+1)/2)
 				{
 					_shake *= 1.5;
-					add_main_message("It's super effective!");
+					add_main_message("It's super effective! (" + string(_eff) + ")");
 				}
 				if(_eff <= (NOT_EFFECTIVE+1)/2)
 				{
 					_shake *= 0.5;
-					add_main_message("it wasn't very effective..");	
+					add_main_message("it wasn't very effective..(" + string(_eff) + ")");	
 				}
 			}
 			
@@ -164,6 +166,8 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 			_current_nme_display.shake(_shake);
 			_current_player_display.hit();
 			
+			if(variable_struct_exists(current_action[1],"vfx"))
+				create_vfx(_current_player_display.x,_current_player_display.y,current_action[1].vfx,1,1,1);
 			
 			
 			//update stuff

@@ -15,8 +15,8 @@ function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _acti
 		max_hp : _hp,
 		speed: _speed,
 		accuracy: _accuracy,
-		arr_attacks: _attacks,
-		arr_items: _items,
+		arr_attacks: deep_copy(_attacks),
+		arr_items: deep_copy(_items),
 		get_action : _action,
 		color : c_col2,
 		
@@ -28,7 +28,7 @@ function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _acti
 		//arr_children_fighters_structs : [],	//base fighters are inserted when enemies are created, so their data could be used to merge with.
 		
 		//methods
-		damage	: function(dmg,_type=TYPES.none)		//returns how much damage was done
+		damage	: function(dmg,_type=TYPES.none)		//returns [how much dmg was to do, how much damage was done]
 		{	
 			//loop through types and add to the total:	base_dmg*type_effectiveness*how much of me is this type
 			var hpprev = hp;
@@ -42,7 +42,7 @@ function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _acti
 			hp = max(0,hp-_dmg_todo);
 
 			//return damage dealt
-			return hpprev - hp;	
+			return [_dmg_todo,hpprev - hp];	
 			},
 		heal	: function(amnt)	//returns how much hp was healed
 			{
@@ -240,7 +240,7 @@ function attack(_name, _damage,  _type=TYPES.none,_speed_add=0, _sound, _acc=100
 function item(_name, _sprite_num, _script, _sound, _damage=0, _spd=0, _acc=100) constructor
 {
 	///@param name
-	///@param sprite_index
+	///@param vfx
 	///@param script
 	///@param sound
 	///@param damage
@@ -249,7 +249,7 @@ function item(_name, _sprite_num, _script, _sound, _damage=0, _spd=0, _acc=100) 
 	
 	return {
 		name: _name,
-		sprite: _sprite_num,
+		vfx: _sprite_num,
 		ability_script: _script,
 		damage: _damage,
 		speed_add: _spd,
@@ -271,4 +271,3 @@ function get_type_damage(_attack,_fighter)
 	return global.type_matchups[# _attack,_fighter];
 	
 }
-

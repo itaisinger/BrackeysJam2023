@@ -13,7 +13,7 @@ global.queue_messages = ds_queue_create();
 global.messages_skippable = 1;
 typer_count = 0;
 current_main_text = "";
-typer_cd = 3;
+typer_cd = 2;
 alarm[0] = 1;
 
 main_text_a = 1;

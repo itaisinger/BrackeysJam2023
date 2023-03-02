@@ -14,7 +14,7 @@ global.player_struct.get_action = bhvr_player;
 global.player_struct.color = c_col3;
 //global.player_struct.merge_stats(get_base_fighter(FIGHTERS.eye));
 //global.player_struct.name = "moshe";
-global.player_struct.set_attack(global.map_attacks[?"cannon"],2);
+//global.player_struct.set_attack(global.map_attacks[?"cannon"],2);
 
 global.nme_struct = -1;
 
@@ -67,7 +67,7 @@ function generate_run()
 	}
 	
 	//apply one of them as the first enemy
-	global.list_encounters[|0] = create_base_fighter(FIGHTERS.pen)//(_fighters[irandom(array_length(_fighters)-1)]);
+	global.list_encounters[|0] = create_base_fighter(_fighters[irandom(array_length(_fighters)-1)]);
 	
 	
 	//boss
@@ -86,7 +86,12 @@ function generate_run()
 function start_run()
 {
 	global.current_floor = 0;
-	generate_run();
+	
+	//loading screen
+	var _fx = create_vfx(room_width/2,room_height/2,spr_loading,3)
+	_fx.image_speed = 0;
+	
+	alarm[0] = 1;
 	room_transition(rm_map);
 }
 function start_combat()

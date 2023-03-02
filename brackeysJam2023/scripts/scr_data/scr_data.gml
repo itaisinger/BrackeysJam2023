@@ -57,7 +57,9 @@ global.map_abilities[? "heal"] = function(amnt=40)
 }
 global.map_abilities[? "speed up"] = function(amnt=10)
 {
-	obj_combat.current_fighter.speed += amnt;
+	var _me = obj_combat.current_fighter;
+	_me.speed += amnt;
+	add_main_message(_me.name + "'s speed was increased!");
 }
 global.map_abilities[? "lower nme speed"] = function(amnt=10)
 {
@@ -69,7 +71,9 @@ global.map_abilities[? "add heal"] = function(amnt=10)
 }
 global.map_abilities[? "add fuel"] = function(amnt=20)
 {
-	obj_combat.current_fighter.speed += amnt;
+	var _me = obj_combat.current_fighter;
+	_me.speed += amnt;
+	add_main_message(_me.name + "'s speed was increased!");
 }
 global.map_abilities[? "charge"] = function(_attack)
 {
@@ -151,7 +155,8 @@ global.map_abilities[? "write"] = function()
 
 // items map
 global.map_items = ds_map_create();
-global.map_items[? "heal"] = item("heal",0,function(){global.map_abilities[? "heal"](40)},global.map_sounds[?"heal"])
+global.map_items[? "heal"] = item("heal",0,function(){global.map_abilities[? "heal"](40)},global.map_sounds[?"heal"]);
+global.map_items[? "storm"] = item("eye of the storm",spr_eye_open,function(){},global.map_sounds[?"explosion"],50,0,120);
 
 // attacks map
 global.map_attacks = ds_map_create();
@@ -159,7 +164,7 @@ global.map_attacks = ds_map_create();
 global.map_attacks[? "cannon2"]			= attack("almightly cannon of destruction",	100,TYPES.none,	20,					 global.map_sounds[?"explosion"])
 global.map_attacks[? "cannon"]			= attack("almightly cannon",				20,	TYPES.none,	0,					 global.map_sounds[?"explosion"],	80)
 global.map_attacks[? "jab"]				= attack("jab",								10,	TYPES.hand, 0,					 global.map_sounds[?"hit"])
-global.map_attacks[? "write"]			= attack("write P",							26,	TYPES.none, 0,					 global.map_sounds[?"explosion"],	130,			global.map_abilities[?"write"]);
+global.map_attacks[? "write"]			= attack("write P",							26,	TYPES.none, 0,					 global.map_sounds[?"merge"],		130,			global.map_abilities[?"write"]);
 global.map_attacks[? "sweep"]			= attack("sweep",							13,	TYPES.hand,	-40,				 global.map_sounds[?"hit"])
 global.map_attacks[? "kick"]			= attack("kick",							13,	TYPES.leg,	ATT_SPEEDS.slow,	 global.map_sounds[?"hit"])
 global.map_attacks[? "scrutinize"]		= attack("scrutinize",						9,	TYPES.eye,	0,					 global.map_sounds[?"laser"],		110)
@@ -208,7 +213,7 @@ enum FIGHTERS{
 global.list_fighters = ds_list_create();
 global.list_fighters[|FIGHTERS.hand] =		base_fighter("handyman",	spr_hand1,	70,	ATT_SPEEDS.fast,	FIGHTER_ACC.mid,	TYPES.hand, [global.map_attacks[?"jab"],global.map_attacks[?"sweep"]], [global.map_items[? "heal"]], bhvr_random);
 global.list_fighters[|FIGHTERS.pen] =		base_fighter("pen",			spr_pen,	70,	ATT_SPEEDS.normal,	FIGHTER_ACC.high,	TYPES.hand, [global.map_attacks[?"write"]], [], bhvr_random);
-global.list_fighters[|FIGHTERS.eye] =		base_fighter("anxiety",		spr_eye1,	50,	ATT_SPEEDS.normal,	FIGHTER_ACC.high,	TYPES.eye,	[global.map_attacks[?"scrutinize"]], [], bhvr_scroll);
+global.list_fighters[|FIGHTERS.eye] =		base_fighter("anxiety",		spr_eye1,	50,	ATT_SPEEDS.normal,	FIGHTER_ACC.high,	TYPES.eye,	[global.map_attacks[?"scrutinize"]], [global.map_items[?"storm"]], bhvr_scroll);
 global.list_fighters[|FIGHTERS.leg] =		base_fighter("leger",		spr_leg1,	90,	ATT_SPEEDS.slow,	FIGHTER_ACC.low,	TYPES.leg,	[global.map_attacks[?"kick"]], [], bhvr_scroll);
 global.list_fighters[|FIGHTERS.wheel] =		base_fighter("wheelie",		spr_wheel,	70,	ATT_SPEEDS.slow-10,	FIGHTER_ACC.mid,	TYPES.leg,	[global.map_attacks[?"add fuel"],global.map_attacks[?"run over"]], [], bhvr_scroll);
 global.list_fighters[|FIGHTERS.laser_visor]=base_fighter("vetamerse",   spr_visor,  60, ATT_SPEEDS.fast,    FIGHTER_ACC.high,   TYPES.eye,  [global.map_attacks[?"laser beam"]], [], bhvr_scroll);
@@ -218,7 +223,7 @@ global.list_fighters[|FIGHTERS.beauty] =	base_fighter("beauty",	    spr_beauty, 
 
 function get_fighters_by_type(type) //returns fighters index, not the fighters themselves
 {
-	var _ret = []
+	var _ret = [];
 	
 	for(var i=0; i < ds_list_size(global.list_fighters); i++)
 	{
