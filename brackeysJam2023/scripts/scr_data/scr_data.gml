@@ -59,7 +59,7 @@ global.map_abilities[? "speed up"] = function(amnt=10)
 {
 	var _me = obj_combat.current_fighter;
 	_me.speed += amnt;
-	add_main_message(_me.name + "'s speed was increased!");
+	add_main_message("[c_fighter]"+_me.name + "[/color]'s speed was increased!");
 }
 global.map_abilities[? "lower nme speed"] = function(amnt=10)
 {
@@ -73,7 +73,7 @@ global.map_abilities[? "add fuel"] = function(amnt=20)
 {
 	var _me = obj_combat.current_fighter;
 	_me.speed += amnt;
-	add_main_message(_me.name + "'s speed was increased!");
+	add_main_message("[c_fighter]"+_me.name + "[/color]'s speed was increased!");
 }
 global.map_abilities[? "charge"] = function(_attack)
 {
@@ -100,7 +100,7 @@ global.map_abilities[? "steal"] = function()
 	//abort if nme has no items
 	if(array_length(_nme.arr_items) == 0)
 	{
-		add_main_message("But " + _nme.name + " has not items!")
+		add_main_message("But [c_nme]" + _nme.name + "[/color] has no items!")
 		return;
 	}
 	var _item_i = irandom(array_length(_nme.arr_items)-1)
@@ -110,7 +110,7 @@ global.map_abilities[? "steal"] = function()
 	if(_self.add_item(_item))
 	{
 		array_delete(_nme.arr_items,_item_i,1);
-		add_main_message("He stole " + _nme.name + "'s " + _item.name + "!")
+		add_main_message("He stole [c_nme]" + _nme.name + "[/color]'s " + _item.name + "!")
 	}
 	else
 	{
@@ -211,15 +211,15 @@ enum FIGHTERS{
 }
 
 global.list_fighters = ds_list_create();
-global.list_fighters[|FIGHTERS.hand] =		base_fighter("handyman",	spr_hand1,	70,	ATT_SPEEDS.fast,	FIGHTER_ACC.mid,	TYPES.hand, [global.map_attacks[?"jab"],global.map_attacks[?"sweep"]], [global.map_items[? "heal"]], bhvr_random);
-global.list_fighters[|FIGHTERS.pen] =		base_fighter("pen",			spr_pen,	70,	ATT_SPEEDS.normal,	FIGHTER_ACC.high,	TYPES.hand, [global.map_attacks[?"write"]], [], bhvr_random);
-global.list_fighters[|FIGHTERS.eye] =		base_fighter("anxiety",		spr_eye1,	50,	ATT_SPEEDS.normal,	FIGHTER_ACC.high,	TYPES.eye,	[global.map_attacks[?"scrutinize"]], [global.map_items[?"storm"]], bhvr_scroll);
-global.list_fighters[|FIGHTERS.leg] =		base_fighter("leger",		spr_leg1,	90,	ATT_SPEEDS.slow,	FIGHTER_ACC.low,	TYPES.leg,	[global.map_attacks[?"kick"]], [], bhvr_scroll);
-global.list_fighters[|FIGHTERS.wheel] =		base_fighter("wheelie",		spr_wheel,	70,	ATT_SPEEDS.slow-10,	FIGHTER_ACC.mid,	TYPES.leg,	[global.map_attacks[?"add fuel"],global.map_attacks[?"run over"]], [], bhvr_scroll);
-global.list_fighters[|FIGHTERS.laser_visor]=base_fighter("vetamerse",   spr_visor,  60, ATT_SPEEDS.fast,    FIGHTER_ACC.high,   TYPES.eye,  [global.map_attacks[?"laser beam"]], [], bhvr_scroll);
-global.list_fighters[|FIGHTERS.rocket] =    base_fighter("boomy",       spr_rocket, 50, ATT_SPEEDS.slow,    FIGHTER_ACC.mid,    TYPES.hand, [global.map_attacks[?"charge cannon"]], [], bhvr_scroll);
-global.list_fighters[|FIGHTERS.plumber] =   base_fighter("plumber",     spr_plunger,60, ATT_SPEEDS.normal,  FIGHTER_ACC.mid,    TYPES.hand, [global.map_attacks[?"plunge"]], [], bhvr_scroll);
-global.list_fighters[|FIGHTERS.beauty] =	base_fighter("beauty",	    spr_beauty, 50, ATT_SPEEDS.normal,  FIGHTER_ACC.high,   TYPES.eye,	[global.map_attacks[?"charm"],global.map_attacks[?"judge"]], [], bhvr_random);
+global.list_fighters[|FIGHTERS.hand] =		base_fighter("handyman",	spr_hand1,	70,	ATT_SPEEDS.fast,	FIGHTER_ACC.mid,	TYPES.hand, [global.map_attacks[?"jab"],global.map_attacks[?"sweep"]], [global.map_items[? "heal"]], bhvr_random, c_red);
+global.list_fighters[|FIGHTERS.pen] =		base_fighter("pen",			spr_pen,	70,	ATT_SPEEDS.normal,	FIGHTER_ACC.high,	TYPES.hand, [global.map_attacks[?"write"]], [], bhvr_random, c_gray);
+global.list_fighters[|FIGHTERS.eye] =		base_fighter("anxiety",		spr_eye1,	50,	ATT_SPEEDS.normal,	FIGHTER_ACC.high,	TYPES.eye,	[global.map_attacks[?"scrutinize"]], [global.map_items[?"storm"]], bhvr_scroll, c_aqua);
+global.list_fighters[|FIGHTERS.leg] =		base_fighter("leger",		spr_leg1,	90,	ATT_SPEEDS.slow,	FIGHTER_ACC.low,	TYPES.leg,	[global.map_attacks[?"kick"]], [], bhvr_scroll, c_olive);
+global.list_fighters[|FIGHTERS.wheel] =		base_fighter("wheelie",		spr_wheel,	70,	ATT_SPEEDS.slow-10,	FIGHTER_ACC.mid,	TYPES.leg,	[global.map_attacks[?"add fuel"],global.map_attacks[?"run over"]], [], bhvr_scroll, c_ltgray);
+global.list_fighters[|FIGHTERS.laser_visor]=base_fighter("vetamerse",   spr_visor,  60, ATT_SPEEDS.fast,    FIGHTER_ACC.high,   TYPES.eye,  [global.map_attacks[?"laser beam"]], [], bhvr_scroll, c_maroon);
+global.list_fighters[|FIGHTERS.rocket] =    base_fighter("boomy",       spr_rocket, 50, ATT_SPEEDS.slow,    FIGHTER_ACC.mid,    TYPES.hand, [global.map_attacks[?"charge cannon"]], [], bhvr_scroll, c_dkgray);
+global.list_fighters[|FIGHTERS.plumber] =   base_fighter("plumber",     spr_plunger,60, ATT_SPEEDS.normal,  FIGHTER_ACC.mid,    TYPES.hand, [global.map_attacks[?"plunge"]], [], bhvr_scroll, c_green);
+global.list_fighters[|FIGHTERS.beauty] =	base_fighter("beauty",	    spr_beauty, 50, ATT_SPEEDS.normal,  FIGHTER_ACC.high,   TYPES.eye,	[global.map_attacks[?"charm"],global.map_attacks[?"judge"]], [], bhvr_random, c_col3);
 
 function get_fighters_by_type(type) //returns fighters index, not the fighters themselves
 {

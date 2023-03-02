@@ -1,4 +1,4 @@
-function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _action) constructor
+function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _action, _color) constructor
 {
 	///@param name
 	///@param sprite
@@ -18,7 +18,8 @@ function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _acti
 		arr_attacks: deep_copy(_attacks),
 		arr_items: deep_copy(_items),
 		get_action : _action,
-		color : c_col2,
+		color : _color,
+		dmg_mult : 4,
 		
 		arr_types : array_create(3,0),	//array of 0-1 for each type, representing %.
 		arr_children : [],				//children structs are inserted. used to calculate types.
@@ -92,16 +93,23 @@ function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _acti
 				    _cnt += arr_children[i].type == TYPES.hand;
 				}
 				
-				max_items = min(4,1 + floor(_cnt/2));
-				//0-1: 1
-				//1-2: 2
-				//3-4: 3
-				//4-5: 4
+				max_items = _cnt+1;//min(4,2 + floor(_cnt/1.5));
+				//0-1: 2
+				//2: 3
+				//4: 4
 			}
 			
 			//sprite
 			if(auto_merge_sprites)
 				obj_sprite_merger.get_merged_sprite(self,child.sprite);
+			
+			//color
+			color = merge_color(color,child.color,0.5);
+			
+			//name
+			var _insert = string_copy(child.name,irandom(string_length(child.name)-2),2);
+			name = string_insert(_insert,name,irandom(string_length(name)));
+			
 		},
 		merge_auto : function(child)
 		{
@@ -128,7 +136,7 @@ function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _acti
 			else
 			{
 				add_item(child.arr_items[_rand-_att_num]);
-			}
+			}	
 		},
 		set_attack : function(_attack,_pos)
 		{
@@ -180,7 +188,7 @@ function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _acti
 		},
 	}
 }
-function base_fighter(_name, _sprite, _hp, _speed, _accuracy, _type, _attacks, _items, _action) constructor
+function base_fighter(_name, _sprite, _hp, _speed, _accuracy, _type, _attacks, _items, _action, _color) constructor
 {
 	///@param name
 	///@param sprite
@@ -192,7 +200,7 @@ function base_fighter(_name, _sprite, _hp, _speed, _accuracy, _type, _attacks, _
 	///@param items
 	///@param behavior
 	
-	var _f =  fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _action)
+	var _f =  fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _action, _color)
 	_f.type = _type
 	_f.arr_children[0] = _f;
 	_f.update_types();
@@ -208,7 +216,7 @@ function create_base_fighter(fighter_index) constructor
 	var source = global.list_fighters[|fighter_index];
 
 	var copy = fighter(source.name,source.sprite,source.hp,source.speed,source.accuracy,
-					   [],[],source.get_action);
+					   [],[],source.get_action, source.color);
 					   
 	array_copy(copy.arr_attacks,0,source.arr_attacks,0,array_length(source.arr_attacks))
 	array_copy(copy.arr_items,0,source.arr_items,0,array_length(source.arr_items))

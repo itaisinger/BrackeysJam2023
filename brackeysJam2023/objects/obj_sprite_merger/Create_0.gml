@@ -2,7 +2,7 @@
 this object is sent sprites from fighter structs, and handles merging them on draw events.
 /*/
 
-queue_merges = ds_queue_create();
+queue_merges = ds_list_create();
 
 function get_merged_sprite(_fighter,_sprite)
 {
@@ -43,5 +43,6 @@ function get_merged_sprite(_fighter,_sprite)
 	_grid[# _rand[0],_rand[1]] = _sprite;
 	
 	//add fighter to queueu
-	ds_queue_enqueue(queue_merges,_fighter);
+	if(ds_list_find_index(queue_merges,_fighter) == -1)
+		ds_list_add(queue_merges,_fighter);
 }

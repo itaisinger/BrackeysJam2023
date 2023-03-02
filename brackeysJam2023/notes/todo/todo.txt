@@ -1,10 +1,13 @@
 
 
 //////////////////
-make auto merge also merge the names by taking random group of letters and stiching it at the end
-
 sfx:
 eye open
 
 
 as of now, when nmes use items, they are not consumed. is this cool?
+
+
+things done bad:
+effectiveness text output
+making attacks that cant miss

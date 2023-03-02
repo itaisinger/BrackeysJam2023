@@ -104,3 +104,9 @@ function deep_copy(ref) {
         return ref;
     }
 }
+function ds_list_pop(list)
+{
+	var _val = list[|0];
+	ds_list_delete(list,0);
+	return _val;
+}

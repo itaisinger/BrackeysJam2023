@@ -37,7 +37,7 @@ function progress_messages()
 	}
 	typer_count = 0;
 	
-	if(current_main_text == "INITIATE MERGE?")
+	if(current_main_text == "INITIATE MERGE? OR CONSUME?")
 		global.messages_skippable = 0;
 	
 }

@@ -21,7 +21,7 @@ menu = ds_list_create();
 //menu yes\no
 ds_list_add(menu,button("MERGE",function(){next_stage();}));
 ds_list_add(menu,button("CONSUME",function(){
-		global.player_struct.heal_relative(0.3);
+		global.player_struct.heal_relative(0.5);
 		obj_game.combat_won();
 		}));
 

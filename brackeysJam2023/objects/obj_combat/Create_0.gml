@@ -124,13 +124,25 @@ arr_states_functions[COMBAT_STATES.play_out] = function(){
 			var _is_miss = _roll > _acc;
 			var _is_crit = _roll < (_acc * CRIT_CHANCE);
 			
-			var _final_damage = current_action[1].damage
+			var _final_damage = current_action[1].damage * current_action[0].dmg_mult;
+			
+			//// all hail workarounds.
+			if(current_nme == global.player_struct)
+			{
+				while(	(_final_damage > current_nme.max_hp * 0.6) or	//cant take away more than 60% of hp at once
+						(_final_damage > current_nme.hp and  current_nme.hp <= current_nme.max_hp * 0.4)	//cant one shot from 40%
+						)
+				{
+					_final_damage *= 0.95
+				}
+			}	//doesnt account for effectiveness. maybe move to inside damage method.
+			
 			if(_is_crit) _final_damage *= CRIT_MULT;
 			if(_is_miss) _final_damage = 0;
 			
 			var _dmg = current_nme.damage(_final_damage,current_action[1].type);
-			var _eff = _dmg[0] / current_action[1].damage;//get_type_damage(current_action[1].type,current_nme.get_main_type());//
-			
+			var _eff = _dmg[0] / _final_damage;//get_type_damage(current_action[1].type,current_nme.get_main_type());//
+
 			//send shake
 			var _shake = 20;
 

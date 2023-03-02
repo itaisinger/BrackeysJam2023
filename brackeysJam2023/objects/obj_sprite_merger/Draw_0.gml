@@ -1,13 +1,13 @@
 ///@desc do merges
 
-while(ds_queue_size(queue_merges))
+while(ds_list_size(queue_merges))
 {
 	//init surface
 	var _sur = surface_create(FIGHTER_SPR_W,FIGHTER_SPR_H);
 	surface_set_target(_sur);
 	
 	//loop through sprites
-	var _fighter = ds_queue_dequeue(queue_merges);
+	var _fighter = ds_list_pop(queue_merges);
 	var _grid = _fighter.grid_organ_places;
 	var _gridw = ds_grid_width(_grid);
 	var _gridh = ds_grid_height(_grid);
@@ -23,7 +23,8 @@ while(ds_queue_size(queue_merges))
 			
 			//pos
 			_pos = [i * (FIGHTER_SPR_W/_gridw),j * (FIGHTER_SPR_H/_gridh)];
-			_pos = [(_pos[0] + FIGHTER_SPR_W)/2,(_pos[1] + FIGHTER_SPR_H)/2];
+			_pos = [(_pos[0] + FIGHTER_SPR_W/2)/2,(_pos[1] + FIGHTER_SPR_H/2)/2];
+			//log(string([i,j]) + ":	" + string(_pos));
 			
 			//draw
 			if(_grid[# i,j] != -1)
