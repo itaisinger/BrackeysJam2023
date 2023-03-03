@@ -82,7 +82,7 @@ function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _acti
 			array_push(arr_items,_item);
 			return true;
 		},
-		merge_stats : function(child, auto_merge_sprites=0) //send in a fighter to merge it into me
+		merge_stats : function(child, auto_merge_sprites=0, merge_name=1) //send in a fighter to merge it into me
 		{	
 			///@param child_fighter
 			
@@ -122,8 +122,11 @@ function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _acti
 			color = merge_color(color,child.color,0.5);
 			
 			//name
-			var _insert = string_copy(child.name,irandom(string_length(child.name)-2),2);
-			name = string_insert(_insert,name,irandom(string_length(name)));
+			if(merge_name)
+			{
+				var _insert = string_copy(child.name,irandom(string_length(child.name)-2),2);
+				name = string_insert(_insert,name,irandom(string_length(name)));
+			}
 			
 		},
 		merge_auto : function(child)
@@ -237,7 +240,7 @@ function create_base_fighter(fighter_index) constructor
 	array_copy(copy.arr_items,0,source.arr_items,0,array_length(source.arr_items))
 	
 	copy.type = source.type;
-	copy.merge_stats(source);
+	copy.merge_stats(source,false,false);
 	return copy;
 }
 function attack(_name, _damage,  _type=TYPES.none,_speed_add=0, _sound, _acc=100, _ability=function(){}) constructor

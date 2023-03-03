@@ -87,6 +87,7 @@ function generate_run()
 function start_run()
 {
 	global.current_floor = 0;
+	global.player_struct.dmg_mult = 1.1;
 	
 	//loading screen
 	var _fx = create_vfx(room_width/2,room_height/2,spr_loading,3)
