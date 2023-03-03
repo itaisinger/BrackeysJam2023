@@ -11,7 +11,7 @@ randomise();
 
 global.player_struct = create_base_fighter(FIGHTERS.hand);
 global.player_struct.get_action = bhvr_player;
-global.player_struct.dmg_mult = 1.2;
+global.player_struct.dmg_mult = 1.1;
 global.player_struct.color = c_col3;
 //global.player_struct.merge_stats(get_base_fighter(FIGHTERS.eye));
 //global.player_struct.name = "moshe";

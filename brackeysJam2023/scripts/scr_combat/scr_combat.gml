@@ -19,7 +19,7 @@ function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _acti
 		arr_items: deep_copy(_items),
 		get_action : _action,
 		color : _color,
-		dmg_mult : 4,
+		dmg_mult : 1,
 		
 		arr_types : array_create(3,0),	//array of 0-1 for each type, representing %.
 		arr_children : [],				//children structs are inserted. used to calculate types.
@@ -39,13 +39,28 @@ function fighter(_name, _sprite, _hp, _speed, _accuracy, _attacks, _items, _acti
 			    _dmg_todo += dmg*get_type_damage(_type,i)*arr_types[i]
 			}
 			
+			//// all hail workarounds.
+			var _eff_dmg = _dmg_todo;
+			if(self == global.player_struct)
+			{
+				if(hp < max_hp * 0.2)
+					_dmg_todo *= 0.7;
+					
+				while(	(_dmg_todo > max_hp * 0.7) or				//cant take away more than 60% of hp at once
+						(_dmg_todo > hp and hp >= max_hp * 0.45)	//cant one shot from 45%
+						)
+				{
+					_dmg_todo *= 0.95
+				}
+			}
+			
 			//deal damage
 			hp = max(0,hp-_dmg_todo);
-
+			
 			//return damage dealt
-			return [_dmg_todo,hpprev - hp];	
+			return [_eff_dmg,hpprev - hp];	
 			},
-		heal	: function(amnt)	//returns how much hp was healed
+		heal : function(amnt)	//returns how much hp was healed
 			{
 			var hpprev = hp;
 			hp = min(max_hp,hp+amnt)

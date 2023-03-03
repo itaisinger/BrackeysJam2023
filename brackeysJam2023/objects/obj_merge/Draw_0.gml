@@ -1,3 +1,10 @@
+if(trigger_finish)
+{
+	finish();
+	trigger_finish = 0;
+}
+
+if(!active) exit;
 
 if(sur == -1)
 	sur_init();
@@ -20,8 +27,3 @@ for (var i = 0; i < array_length(arr); ++i) {
     draw_text(5,10 + i * _m, arr[i]);
 }
 
-if(trigger_finish)
-{
-	finish();
-	trigger_finish = 0;
-}

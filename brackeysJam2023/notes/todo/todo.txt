@@ -11,3 +11,5 @@ as of now, when nmes use items, they are not consumed. is this cool?
 things done bad:
 effectiveness text output
 making attacks that cant miss
+moves are set when they are sent to the manager and dont account for changed the accour in the turn before their, 
+	like using an item and it can be stolen then immedietly used.

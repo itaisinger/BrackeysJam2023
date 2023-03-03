@@ -13,7 +13,7 @@ size = min(_sizew,_sizeh)/2;
 
 //surface
 sur = -1;
-
+active = 1;
 trigger_finish = 0;
 
 function sur_init()
@@ -30,6 +30,7 @@ function sur_init()
 
 function finish()
 {
+	
 	surface_set_target(sur);
 	
 	//add enemy to surface
@@ -43,10 +44,12 @@ function finish()
 	
 	//save sprite into the player
 	var _spr = sprite_create_from_surface(sur,0,0,FIGHTER_SPR_W,FIGHTER_SPR_H,0,0,FIGHTER_SPR_W/2,FIGHTER_SPR_H/2);
+	global.player_sprite_prev = global.player_struct.sprite;
 	global.player_struct.set_sprite(_spr);
 	
 	//free
 	surface_free(sur);
+	instance_destroy(obj_merge_nme);
 	
-	obj_game.finish_merge();
+	//obj_game.finish_merge(); the sequence calls this now.
 }
